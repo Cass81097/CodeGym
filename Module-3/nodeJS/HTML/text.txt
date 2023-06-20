@@ -1,0 +1,4 @@
+Có 2 cách để gửi request tới server :
+
+1. Nhập đường dẫn localhost:8080, không gửi dữ liệu, method = "GET"
+2. Nhận từ form : <form action="http://localhost:8080" method="POST">
