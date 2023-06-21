@@ -30,8 +30,9 @@ const server = http.createServer((req, res) => {
     } else {
         if (req.method === 'GET') {
             showList(req, res);
-    
-        } else {
+        } 
+        
+        else {
             let data = '';
             req.on('data', (dataRaw) => {
                 data += dataRaw;
@@ -60,9 +61,7 @@ const server = http.createServer((req, res) => {
                 }
             });
         }
-    }
-
-    
+    }  
 });
 
 function showList(req, res) {

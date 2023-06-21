@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "qs": "^6.11.2",
+    "url": "^0.11.1"
+  },
+  "type": "module"
+}
