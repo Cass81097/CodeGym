@@ -10,6 +10,14 @@
     padding: 0;
 }
 
+.panel {
+    margin-left: 20px;
+}
+
+a:visited {
+    color: blue;
+}
+
 header {
     margin-bottom: 20px;
     margin-left: 20px;
@@ -59,9 +67,9 @@ header {
     margin-left: 10px;
 }
 
-.form {
+/* .form {
     margin-left: 10px;
-}
+} */
 
 .bottom-container {
     display: flex;
@@ -84,10 +92,6 @@ header {
     margin-left: 190px;
 }
 
-.search-container .col-6 {
-    margin-left: 100px;
-}
-
 .delete-container button {
-    margin-left: 170px;
+    margin-left: 180px;
 }
