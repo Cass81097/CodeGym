@@ -16,19 +16,14 @@
     <link href="/lib/fontawesome/css/regular.min.css" rel="stylesheet"> -->
 </head>
 <body>
-    <header>
-    <h1>Danh sách sinh viên: <span style="opacity: 0;">{item}</span></h1>
-    </header>    
-    <hr>
-
     <div class="bottom-container">
         <div class="search-container">
             <div class="col-6">
                 <h2>Tìm kiếm sinh viên :</h2>
-                <form action="http://localhost:8080/search" method="POST" class="form">
+                <form action="/student/search" method="POST" class="form">
                     <div class="search-box mb-3"> 
                         <i class='bx bx-search icon'></i>
-                        <input type="text" name="search" class="form-control-test" id="name-input" placeholder="Nhập tên sinh viên">         
+                        <input type="text" name="search" class="form-control-test" id="name-input" placeholder="Nhập ID sinh viên">         
                     </div>   
                     <button type="submit" class="btn btn-success">Tìm kiếm</button>
                 </form>
@@ -37,5 +32,27 @@
     </div>
     <hr>
 
+    <header>
+        <h2>Danh sách sinh viên :</h2>
+        <div class="container"> 
+          <table class="table table-striped">
+            <thead>
+              <tr>  
+                <th></th> <!-- Button column -->
+                <th>ID</th>
+                <th>Name</th>
+                <th>Score</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <span style="opacity: 0; margin-left: -55px;">{item}</span>
+            </tbody>
+          </table>
+        </div>
+    </header>
+    <hr>
+
+    
 </body>
 </html>

@@ -11,7 +11,12 @@
 }
 
 .panel {
-    margin-left: 20px;
+    position: absolute;
+    right: calc(30% + 30px);
+}
+
+.panel a {
+    font-size: 20px;
 }
 
 a:visited {
@@ -20,7 +25,8 @@ a:visited {
 
 header {
     margin-bottom: 20px;
-    margin-left: 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .list {
@@ -67,21 +73,26 @@ header {
     margin-left: 10px;
 }
 
-/* .form {
-    margin-left: 10px;
-} */
-
 .bottom-container {
+    margin-top: 20px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .bottom-container h2 {
-    width: 350px;
+    width: 600px;
 }
   
+.search-container{
+    margin: auto
+}
 .search-container, .delete-container {
-    width: 30%;
+    width: 22%;
+}
+
+.add-container h2 {
+    margin-top: 20px;
 }
   
 .add-container button {
@@ -89,9 +100,128 @@ header {
 }
 
 .search-container button {
-    margin-left: 190px;
+    margin-left: 180px;
 }
 
 .delete-container button {
     margin-left: 180px;
+}
+
+.button-remove{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: #e13737;
+    text-align: center;
+    line-height: 30px !important;
+    color: white;
+    border-radius: 30px;
+    cursor: pointer;
+    left: calc(100% - 20px);
+    top: -5px;
+    opacity: 1;
+    transition: 0.3s ease-in-out;
+}
+ 
+.card-manager:hover {
+    box-shadow: 0px 0px 20px -2px rgba(0,0,0,0.75);
+}
+ 
+.card-manager:hover .button-remove,
+.card-manager:hover .button-update{
+    opacity: 1;
+}
+ 
+.card-manager .button-remove:hover,
+.card-manager .button-update:hover{
+    box-shadow: 0px 0px 20px -2px rgba(0,0,0,0.75);
+}
+ 
+.remove-code{
+    font-weight: 600;
+    color: #e13737;
+    margin-right: 4px;
+}
+ 
+.button-update{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: #3789e1;
+    text-align: center;
+    line-height: 30px !important;
+    color: white;
+    border-radius: 30px;
+    cursor: pointer;
+    left: -10px;
+    top: -5px;
+    opacity: 1;
+    transition: 0.3s ease-in-out;
+}
+ 
+.update-code{
+    font-weight: 600;
+    color: #3789e1;
+    margin-right: 4px;
+}
+
+.btn-button {
+    background: #2ab1c7;
+    color: white;
+}
+
+.table td {
+    vertical-align: middle !important;
+}
+
+.table-striped tbody tr:nth-child(odd) td:nth-child(1) {
+    width: 100px;
+}
+
+.table-striped tbody tr:nth-child(odd) td:nth-child(2) {
+    width: 100px;
+}
+
+.table-striped tbody tr:nth-child(odd) td:nth-child(3) {
+    width: 200px;
+}
+
+.table-striped tbody tr:nth-child(odd) td:nth-child(4) {
+    width: 100px;
+}
+
+.table {
+    width: auto !important;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+header h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.table thead th {
+    vertical-align: middle !important;
+}
+
+.sort {
+    position: relative;
+    left: 13.5px;
+    margin-top: -6px;
+    font-size: smaller !important;
+}
+
+.re-sort {
+    font-size: smaller !important;
+    margin-top: 15px;
+}
+
+th button {
+    padding: 0px 0px 0px 0px !important;
+    /* border: 1px solid black !important; */
 }

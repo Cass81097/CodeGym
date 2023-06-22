@@ -16,11 +16,12 @@ const typeFile = {
 }
 
 const server = http.createServer((req, res) => {
-    let handle = router[req.url];
+    let urlObject = url.parse(req.url, true)
+    let handle = router[urlObject.pathname];
     if (handle === undefined) {
-      handle = router['/err'];
+        handle = router['/err'];
     }
-    handle(req, res)
+    handle(req, res);
     
     //handle css
     const pathName = url.parse(req.url, true).pathname;
