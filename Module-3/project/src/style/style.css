@@ -96,7 +96,7 @@ header {
 }
   
 .add-container button {
-    margin-left: 240px
+    margin-left: 128px
 }
 
 .search-container button {
@@ -104,7 +104,11 @@ header {
 }
 
 .delete-container button {
-    margin-left: 180px;
+    margin-left: 170px;
+}
+
+.form-control {
+    width: auto !important;
 }
 
 .button-remove{
