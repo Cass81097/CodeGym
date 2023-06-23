@@ -34,7 +34,7 @@ class JewelryController {
         fs.readFile('view/jewelry/editJewelry.html', 'utf-8', (err, html) => {
             const urlObject = url.parse(req.url, true);
             const proEdit = jewelryServices.findJewelryById(urlObject.query.idEdit);
-            console.log(proEdit);
+            // console.log(proEdit);
             html = html.replace('{id}', proEdit.id);
             html = html.replace('{name}', proEdit.name);
             html = html.replace('{price}', proEdit.price);
@@ -114,26 +114,40 @@ class JewelryController {
 function showList(req, res) {
     fs.readFile('view/index.html', 'utf-8', (err, html) => {
         let list = jewelryServices.findAll();
-        console.log(list);
+        // console.log(list);
         let itemsHtml = '';
-        for (const item of list) {     
+        let itemsNewHtml = '';
+        for (const item of list) {  
+            itemsNewHtml += `<li class="span3">
+                            <div class="thumbnail">
+                                <a class="zoomTool" href="product_details.html" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
+                                <a href="#" class="tag"></a>
+                                <a href="product_details.html"><img src="${item.image}" alt="bootstrap-ring" style="width:200px; height:150px"></a>
+                            </div>
+                            </li>`  
+
             itemsHtml += `<li class="span4">
+                                <div class="featured-button">
                                 <a href="jewelry/edit?idEdit=${item.id}"><button type="button" class="btn bx bxs-edit-alt btn-button"></button></a>
+                                <button onclick="sendFetchDelete(${item.id})" type="button" class="btn bx bx-x"></button>
+                                </div>
+
                                 <div class="thumbnail">
                                 <a class="zoomTool" href="product_details.html" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
-                                <a href="product_details.html"><img src="${item.image}" alt=""></a>
+                                <a href="product_details.html"><img src="${item.image}" alt="" style="width:200px; height:150px"></a>
                                 <div class="caption">
                                     <h5>${item.name}</h5>
                                     <h4>
-                                        <a class="defaultBtn" href="product_details.html" title="Click to view"><span class="icon-zoom-in"></span></a>
-                                        <a class="shopBtn" href="#" title="add to cart"><span class="icon-plus"></span></a>
+                                        <a class="btn-search bx bxs-search-alt-2" href="product_details.html" title="Click to view"><span class="icon-zoom-in"></span></a>
+                                        <a class="btn-add bx bxs-cart-add" href="#" title="add to cart"><span class="icon-plus"></span></a>
                                         <span class="pull-right">${item.price}</span>
                                     </h4>
                                 </div>
                                 </div>
-                            </li>`
+                            </li>`               
         }
         html = html.replace('{item}', itemsHtml);
+        html = html.replace('{newItem}', itemsNewHtml);
         res.write(html);
         res.end();
     })
