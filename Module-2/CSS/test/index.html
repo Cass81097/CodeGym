@@ -1,83 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 </head>
-<style>
-    .book {
-  width: 200px;
-  height: 250px;
-  position: relative;
-  perspective: 1000px;
-}
-
-.cover {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 1s;
-}
-
-.front,
-.back {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #ccc;
-}
-
-.back {
-  transform: rotateY(180deg);
-}
-
-.pages {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 1s;
-}
-
-.page {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: white;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
-}
-
-.book:hover .cover {
-  transform: rotateY(-180deg);
-}
-
-.book:hover .pages {
-  transform: rotateY(180deg);
-}
-</style>
-
 <body>
-    <div class="book">
-        <div class="cover">
-          <div class="front"></div>
-          <div class="back"></div>
-        </div>
-        <div class="pages">
-          <div class="page"></div>
-          <div class="page"></div>
-          <div class="page"></div>
-        </div>
-      </div>
-      
+  <i class="fas fa-users"></i>
 </body>
 </html>
