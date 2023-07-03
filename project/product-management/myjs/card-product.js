@@ -135,7 +135,7 @@ function showCard(){
                     <div class="card-bottom">
                         <div class="card-name">
                             <h6 style="font-weight: 600;" id="username-${i}">${name}</h6>
-                            <input type="text" class="edit-name-input" id="edit-name-${i}" value="${name}" style="display:none;">
+                           
                         </div>
                     </div>   
                 </div>

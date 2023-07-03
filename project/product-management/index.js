@@ -8,9 +8,10 @@ function page(){
 }
 
 let body = document.querySelector('body');
-let sidebar = body.querySelector('.sidebar');
+let sidebar = document.querySelector('.sidebar');
 let toggle = body.querySelector('.toggle');
 let searchSidebar = body.querySelector('.search-box');
+
 toggle.addEventListener('click', function() {
     sidebar.classList.toggle('close');
 });
