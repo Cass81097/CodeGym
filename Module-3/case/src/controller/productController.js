@@ -84,6 +84,104 @@ class ProductController {
             res.end();
         });
     }
+
+    sort(req, res) {
+        fs.readFile('view/product/sidebar.html', 'utf-8', (err, stringHTML) => {
+            let str = '';
+            const urlObject = url.parse(req.url, true);
+            productService.sortProduct(urlObject.query.id).then((products)=> {
+                for (const product of products) {
+                    str+=`
+                    <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+                        <div class="product-item bg-light mb-4">
+                            <div class="product-img position-relative overflow-hidden">
+                                <img class="img-fluid w-100" src="../${product.image}" alt="">
+                                <div class="product-action">
+                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                                </div>
+                            </div>
+                            <div class="text-center py-4">
+                                <a class="h6 text-decoration-none text-truncate" href="">${product.name}</a>
+                                <div class="d-flex align-items-center justify-content-center mt-2">
+                                    <h5>$${product.price}</h5>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center mb-1">
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star-half-alt text-primary mr-1"></small>
+                                    <small>(99)</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `
+                }
+                stringHTML = stringHTML.replace('{list}', str)
+                res.write(stringHTML);
+                res.end();
+            })
+        })
+    }
+
+    // sort(req, res) {
+    //     let str = '';
+    //     const urlObject = url.parse(req.url, true);
+    //     productService.sortProduct(urlObject.query.id)
+    //         .then((result) => {
+    //             for (const product of result) {
+    //                 str+=`
+    //                 <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+    //                     <div class="product-item bg-light mb-4">
+    //                         <div class="product-img position-relative overflow-hidden">
+    //                             <img class="img-fluid w-100" src="${product.image}" alt="">
+    //                             <div class="product-action">
+    //                                 <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+    //                                 <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+    //                                 <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+    //                                 <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+    //                             </div>
+    //                         </div>
+    //                         <div class="text-center py-4">
+    //                             <a class="h6 text-decoration-none text-truncate" href="">${product.name}</a>
+    //                             <div class="d-flex align-items-center justify-content-center mt-2">
+    //                                 <h5>$${product.price}</h5>
+    //                             </div>
+    //                             <div class="d-flex align-items-center justify-content-center mb-1">
+    //                                 <small class="fa fa-star text-primary mr-1"></small>
+    //                                 <small class="fa fa-star text-primary mr-1"></small>
+    //                                 <small class="fa fa-star text-primary mr-1"></small>
+    //                                 <small class="fa fa-star text-primary mr-1"></small>
+    //                                 <small class="fa fa-star-half-alt text-primary mr-1"></small>
+    //                                 <small>(99)</small>
+    //                             </div>
+    //                         </div>
+    //                     </div>
+    //                 </div>
+    //                 `
+    //             }
+    //             stringHTML = stringHTML.replace('{list}', str)
+    //             res.write(stringHTML);
+    //             res.end();
+    //         })
+
+    //         .catch((error) => {
+    //             console.error(error);
+    //             res.write("error occurred");
+    //             res.end();
+    //         });
+    // }
+    
+    // reSortById(req, res) {
+    //     const urlObject = url.parse(req.url, true);
+    //     let test = productService.reSortByID(urlObject.query.id);
+    //     res.write("sorted");
+    //     res.end();
+    // }
 }
 
 function showList(req, res) {

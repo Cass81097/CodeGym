@@ -245,3 +245,96 @@ input[type="text"][name="code"] {
    display: flex;
    align-items: center;
 }
+
+/* .feat-show.show {
+   display: block;
+}
+
+.sub-menu a {
+   position: relative;
+   color: white;
+   text-decoration: none;
+   font-size: 18px;
+   padding-left: 40px;
+   font-weight: 500;
+   display: block;
+   width: 100%;
+   border-left: 3px solid transparent;
+}
+
+.sub-menu a i {
+   position: absolute;
+   top: 50%;
+   right: 20px;
+   transform: translateY(-50%);
+   font-size: 22px;
+   transition: transform 0.4s;
+} */
+
+.menu .sub-menu{
+   background: #1b1b1b;
+   height: 100%;
+   width: 100%;
+   list-style: none;
+ }
+ .menu .sub-menu li{
+   line-height: 60px;
+   border-top: 1px solid rgba(255,255,255,0.1);
+ }
+ .menu .sub-menu li:last-child{
+   border-bottom: 1px solid rgba(255,255,255,0.05);
+ }
+ .menu .sub-menu li a{
+   position: relative;
+   color: white;
+   text-decoration: none;
+   font-size: 18px;
+   padding-left: 40px;
+   font-weight: 500;
+   display: block;
+   width: 100%;
+   border-left: 3px solid transparent;
+ }
+ .menu .sub-menu li.active a{
+   color: cyan;
+   background: #1e1e1e;
+   border-left-color: cyan;
+ }
+ .menu .sub-menu li a:hover{
+   background: #1e1e1e;
+ }
+ .menu .sub-menu ul{
+   position: static;
+   display: none;
+ }
+ .menu .sub-menu .feat-show.show{
+   display: block;
+ }
+ .menu .sub-menu .serv-show.show1{
+   display: block;
+ }
+ .menu .sub-menu ul li{
+   line-height: 42px;
+   border-top: none;
+ }
+ .menu .sub-menu ul li a{
+   font-size: 17px;
+   color: #e6e6e6;
+   padding-left: 80px;
+ }
+
+ .menu .sub-menu ul li a:hover{
+   color: cyan!important;
+   background: #1e1e1e!important;
+ }
+ .menu .sub-menu li a span{
+   position: absolute;
+   top: 50%;
+   right: 20px;
+   transform: translateY(-50%);
+   font-size: 22px;
+   transition: transform 0.4s;
+ }
+ .menu .sub-menu li a span.rotate{
+   transform: translateY(-50%) rotate(-180deg);
+ }

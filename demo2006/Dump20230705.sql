@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `demo2006` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE  IF NOT EXISTS `demo2006` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `demo2006`;
 -- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: demo2006
+-- Host: localhost    Database: demo2006
 -- ------------------------------------------------------
 -- Server version	8.0.33
 
@@ -30,7 +30,7 @@ CREATE TABLE `blog` (
   `content` varchar(45) NOT NULL,
   `idCategory` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -54,7 +54,7 @@ CREATE TABLE `category` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79,7 +79,7 @@ CREATE TABLE `customer` (
   `name` varchar(45) DEFAULT NULL,
   `age` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -159,7 +159,7 @@ CREATE TABLE `order` (
   PRIMARY KEY (`id`),
   KEY `FK1_idx` (`customerId`),
   CONSTRAINT `FK1` FOREIGN KEY (`customerId`) REFERENCES `customer` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -187,7 +187,7 @@ CREATE TABLE `orderdetail` (
   KEY `Fk2_idx` (`productId`),
   CONSTRAINT `Fk` FOREIGN KEY (`orderId`) REFERENCES `order` (`id`) ON DELETE RESTRICT,
   CONSTRAINT `Fk2` FOREIGN KEY (`productId`) REFERENCES `product` (`id`) ON DELETE RESTRICT
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -214,7 +214,7 @@ CREATE TABLE `product` (
   `quantity` int DEFAULT NULL,
   `image` longtext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -288,7 +288,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `mg` AS select `o`.`id` AS `id`,`o`.`time` AS `time` from ((`orderdetail` `od` join `product` `p`) join `order` `o`) where ((`od`.`productId` = `p`.`id`) and (`o`.`id` = `od`.`orderId`) and (`p`.`name` like 'Máy Giặt')) */;
@@ -306,7 +306,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `mg1` AS select `o`.`id` AS `id`,`o`.`time` AS `time` from ((`orderdetail` `od` join `product` `p`) join `order` `o`) where ((`od`.`productId` = `p`.`id`) and (`o`.`id` = `od`.`orderId`) and (`p`.`name` like 'Máy Giặt')) */;
@@ -324,7 +324,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `mg2` AS select `o`.`id` AS `id`,`o`.`time` AS `time` from ((`orderdetail` `od` join `product` `p`) join `order` `o`) where ((`od`.`productId` = `p`.`id`) and (`o`.`id` = `od`.`orderId`) and (`p`.`name` like 'Máy Giặt') and (`od`.`quantity` > 10) and (`od`.`quantity` < 20)) */;
@@ -342,7 +342,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `mg3` AS select `o`.`id` AS `id`,`o`.`time` AS `time` from ((`orderdetail` `od` join `product` `p`) join `order` `o`) where ((`od`.`productId` = `p`.`id`) and (`o`.`id` = `od`.`orderId`) and (`p`.`name` like 'Máy Giặt') and (`od`.`quantity` >= 10) and (`od`.`quantity` <= 20)) */;
@@ -360,7 +360,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `tl` AS select `o`.`id` AS `id`,`o`.`time` AS `time` from ((`orderdetail` `od` join `product` `p`) join `order` `o`) where ((`od`.`productId` = `p`.`id`) and (`o`.`id` = `od`.`orderId`) and (`p`.`name` like 'Tủ Lạnh')) */;
@@ -378,7 +378,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `tl1` AS select `o`.`id` AS `id`,`o`.`time` AS `time` from ((`orderdetail` `od` join `product` `p`) join `order` `o`) where ((`od`.`productId` = `p`.`id`) and (`o`.`id` = `od`.`orderId`) and (`p`.`name` like 'Tủ Lạnh') and (`od`.`quantity` > 10) and (`od`.`quantity` < 20)) */;
@@ -396,7 +396,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `tl3` AS select `o`.`id` AS `id`,`o`.`time` AS `time` from ((`orderdetail` `od` join `product` `p`) join `order` `o`) where ((`od`.`productId` = `p`.`id`) and (`o`.`id` = `od`.`orderId`) and (`p`.`name` like 'Tủ Lạnh') and (`od`.`quantity` >= 10) and (`od`.`quantity` <= 20)) */;
@@ -414,7 +414,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `top3p` AS select `product`.`price` AS `price` from `product` group by `product`.`price` order by `product`.`price` desc limit 3 */;

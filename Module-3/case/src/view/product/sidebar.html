@@ -6,18 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Side Bar</title>
    
-    <!-- <script src="/lib/jquery/jquery-3.6.4.min.js"></script>
-    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link href="style.css" rel="stylesheet">
-    <link href="./mystyle/homepage.css" rel="stylesheet" >
-    <link href="./mystyle/add-product.css" rel="stylesheet" >
-    <link href="/lib/fontawesome/css/fontawesome.min.css" rel="stylesheet">
-    <link href="/lib/fontawesome/css/brands.min.css" rel="stylesheet">
-    <link href="/lib/fontawesome/css/solid.min.css" rel="stylesheet">
-    <link href="/lib/fontawesome/css/regular.min.css" rel="stylesheet">
-    <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
-    <script src="./myjs/localstore.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
@@ -28,6 +18,7 @@
         <link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.6.95/css/materialdesignicons.min.css">
 	
 		<!-- Customized Bootstrap Stylesheet -->
+        <!-- <link rel="stylesheet" href="../css/sub-menu.css"> -->
         <link rel="stylesheet" href="../css/style-sidebar.css">
         <link rel="stylesheet" href="../css/bootstrap.min.css">
 		<link rel="stylesheet" href="../css/sidebar.css">
@@ -76,13 +67,29 @@
                         </a>
                     </li>             
                     <li class="links">
-
                       <button id="btn-add-product" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-add-new-product">
                         <span class="add">+ Add Product</span>            
-                      </button>     
-                 
-                     
+                      </button>
+                      <button id="sort" onclick="sendFetchSort()">Sort</button>
                     </li>                                                   
+                    <!-- <li class="links sub-menu">
+                        <a href="#" class="feat-btn"><span class="text nav-text">Features</span>
+                            <i class="fas fa-caret-down first icon"></i>
+                        </a>
+                            <ul class="feat-show">
+                                <li><a href="#">Pages</a></li>
+                                <li><a href="#">Elements</a></li>
+                            </ul>
+                    </li>  -->
+                    <li class="sub-menu" style="display:block">
+                        <a href="#" class="feat-btn">Features
+                            <span class="fas fa-caret-down first"></span>
+                            </a>
+                            <ul class="feat-show">
+                               <li><a href="#">Pages</a></li>
+                               <li><a href="#">Elements</a></li>
+                            </ul>
+                    </li>
                </ul>            
             </div>
             
@@ -160,8 +167,8 @@
 
     <script src="../../js/index.js"></script>
     <script src="../../js/delete.js"></script>
-    <!-- <script src="../../js/search-product.js"></script> -->
-	
+    <script src="../../js/sub-menu.js"></script>
+    
 </body>
 </html>
 

@@ -72,17 +72,23 @@ class ProductService {
 
     deleteProduct(productId) {
         return new Promise((resolve, reject) => {
-            connection.getConnection().query(`DELETE FROM product WHERE id = ${productId}`, (err, products) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    console.log(`Xóa thành công!`);
-                    resolve(products);
-                }
-            });
+          connection.getConnection().query(`DELETE FROM product WHERE id = ${productId}`, (err, products) => {
+            if (err) {
+              if (err.code === 'ER_ROW_IS_REFERENCED_2' || err.code === 'ER_NO_REFERENCED_ROW') {
+                const error = 'Không thể xóa sản phẩm này vì đang có ràng buộc với dữ liệu khác.';
+                console.log(error);
+                resolve(error);
+              } else {
+                reject(err);
+              }
+            } else {
+              console.log('Xóa thành công!');
+              resolve(products);
+            }
+          });
         });
-    }    
-
+    }
+      
     findProduct(product) {
         return new Promise((resolve, reject) => {
             connection.getConnection().query(`SELECT * FROM products WHERE name LIKE ${product}%`, (err, products) => {
@@ -95,6 +101,20 @@ class ProductService {
             });
         });
     }    
+
+    sortProduct() {
+        return new Promise((resolve, reject) => {
+            const sql = `SELECT * FROM demo2006.product
+                         ORDER BY price ASC;`;
+            connection.getConnection().query(sql, (err, rs) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(rs);
+                }
+            });
+        });
+    }
 }
 
 export default new ProductService();
