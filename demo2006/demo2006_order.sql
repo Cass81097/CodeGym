@@ -16,30 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `product`
+-- Dumping data for table `order`
 --
 
-DROP TABLE IF EXISTS `product`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `product` (
-  `id` int NOT NULL,
-  `name` varchar(45) DEFAULT NULL,
-  `price` int DEFAULT NULL,
-  `quantity` int DEFAULT NULL,
-  `image` longtext,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `product`
---
-
-LOCK TABLES `product` WRITE;
-/*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,'Tivi Samsung Fix',280,5,'img/my-img/tivi-samsung.jpg'),(2,'Điều hòa ',190,8,'img/my-img/dieu-hoa.jpg'),(3,'Máy giặt ',800,15,'img/my-img/may-giat.jpg'),(4,'Tủ Lạnh',320,30,'img/my-img/tu-lanh.jpg'),(5,'Tủ đông',150,20,'img/my-img/tu-dong.jpg'),(6,'Máy tính ',500,100,'img/my-img/may-tinh.jpg');
-/*!40000 ALTER TABLE `product` ENABLE KEYS */;
+LOCK TABLES `order` WRITE;
+/*!40000 ALTER TABLE `order` DISABLE KEYS */;
+INSERT INTO `order` VALUES (1,'2006-06-20 00:00:00',NULL,1),(2,'2006-09-19 00:00:00',NULL,2),(3,'2006-07-19 00:00:00',NULL,2),(4,'2021-06-19 00:00:00',NULL,3),(5,'2006-10-12 00:00:00',NULL,8),(6,'2006-10-15 00:00:00',NULL,8);
+/*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-05 19:57:27
+-- Dump completed on 2023-07-05 20:03:43
