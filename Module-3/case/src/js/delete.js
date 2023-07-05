@@ -6,3 +6,4 @@ function sendFetchDelete(id) {
         location.reload();
     })
 }
+

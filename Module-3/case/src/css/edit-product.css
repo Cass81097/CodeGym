@@ -1,0 +1,13 @@
+body {
+    background: url(../../img/my-img/background.jpg);
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.edit-modal {
+    position: absolute;
+    top: 50%;
+    transform: translateY(12%);
+}
+
+

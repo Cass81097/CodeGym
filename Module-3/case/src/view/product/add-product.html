@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Side Bar</title>
+      <link rel="stylesheet" href="../css/my-style.css">
     <!-- <script src="/lib/jquery/jquery-3.6.4.min.js"></script>
     <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -20,7 +21,7 @@
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="../css/my-style.css">
 		<!-- Font Awesome -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 		<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -28,11 +29,11 @@
 	
 		<!-- Customized Bootstrap Stylesheet -->
         <link rel="stylesheet" href="../css/style-sidebar.css">
-        <link rel="stylesheet" href="../css/my-style.css">
         <link rel="stylesheet" href="../css/bootstrap.min.css">
 		<link rel="stylesheet" href="../css/sidebar.css">
         <link rel="stylesheet" href="../css/homepage.css">
         <link rel="stylesheet" href="../css/add-product.css">
+        <link rel="stylesheet" href="../css/button.css">
 
 </head>
 <body>
@@ -64,18 +65,18 @@
                     <li class="links">
                         <a href="../product-management/index.html">
                             <i class='bx bx-home-alt icon'></i>
-                            <span class="text nav-text">Trang chủ</span>
+                            <span class="text nav-text">Home Page</span>
                         </a>
                     </li>             
                     <li class="links">
                         <a href="">
                             <i class='bx bx-bell icon'></i>
-                            <span class="text nav-text">Thông báo</span>
+                            <span class="text nav-text">Notification</span>
                         </a>
                     </li>             
                     <li class="links">
                       <button id="btn-add-product" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-add-new-product">
-                        <span class="add">+ Thêm mới</span>            
+                        <span class="add">+ Add Product</span>            
                       </button>       
                     </li>                                                   
                </ul>            
@@ -85,7 +86,7 @@
                 <li class="logout-mode">
                     <div id="btn-add-product" data-bs-toggle="modal" data-bs-target="#modal-confirm-logout" style="display: flex;">
                         <i class='bx bx-log-out icon'></i>
-                        <span class="text nav-text">Đăng xuất</span>
+                        <span class="text nav-text">Log Out</span>
                     </div>         
                 </li> 
 
@@ -119,23 +120,7 @@
               <button type="button" class="bx bx-window-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" style="background-color: #f9f8fb;">
-                <form id="form-add-product" action="" method="post">
-                    <!-- <div class="mb-3">
-                        <label for="formFile" class="form-label">ID</label>
-                        <input class="form-control" type="text" name="id" id="client-name" required style="width: 50px">
-                        <label for="formFile" class="form-label" style="margin: 0px 5px 0px 25px;">Name</label>
-                        <input class="form-control" type="text" name="name" id="client-name" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label inputcode" style="margin: 0px 5px 0px 0px;">Price</label>
-                        <input class="form-control" type="text" name="price" required style="width: 80px">
-                        <label for="formFile" class="form-label inputcode" style="margin: 0px 5px 0px 25px;">Quantity</label>
-                        <input class="form-control" type="text" name="quantity" required>                
-                    </div>
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label inputcode" style="margin: 0px 5px 0px 0px;">IMG</label>
-                        <input class="form-control" type="text" name="image" required>    
-                    </div> -->
+                <form id="form-add-product" action="/products" method="post">
                     <div class="mb-id">
                         <label for="formFile" class="form-label"><span>ID :</span></label>
                         <input class="form-control" type="text" name="id" id="client-name" required>
@@ -156,18 +141,22 @@
                         <label for="formFile" class="form-label inputcode"><span>IMG :</span></label>
                         <input class="form-control" type="text" name="image" required>    
                     </div>
-                </form>
+                
+                
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-              <button onclick="saveCard()" id="btn-savecard" type="button" class="btn btn-primary ps-5 pe-5">Lưu</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button id="btn-savecard" class="btn btn-primary ps-5 pe-5">Lưu</button>
+                </div>
+            </form>
           </div>
+
         </div>
       </div>
     </div>
 
     <script src="../../js/index.js"></script>
+    <script src="../../js/delete.js"></script>
 	
 </body>
 </html>

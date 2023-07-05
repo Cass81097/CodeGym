@@ -18,7 +18,7 @@ class Connection {
             if (error) {
                 console.log(error);
             } else {
-                console.log('Connection Success !!!')
+                // console.log('Connection Success !!!')
             }
         });
     }

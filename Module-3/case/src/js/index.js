@@ -20,9 +20,9 @@ searchSidebar.addEventListener('click', function() {
     sidebar.classList.remove('close');
 });
 
-window.addEventListener('load', function() {
-    sidebar.classList.toggle('close');
-})
+// window.addEventListener('load', function() {
+//     sidebar.classList.toggle('close');
+// })
 
 // let logoutYes = document.querySelector('.yes')
 // logoutYes.addEventListener('click', function() {

@@ -6,13 +6,25 @@ class ProductService {
         connection.connecting();
     }
 
-    findAll() {
+    findAllAtHome() {
         return new Promise((resolve, reject) => {
             connection.getConnection().query('select * from product', (err, products) => {
                 if (err) {
                     reject(err)
                 } else {
                     // console.log(products)
+                    resolve(products)
+                }
+            })
+        })
+    }
+
+    findAll(keyword) {
+        return new Promise((resolve, reject) => {
+            connection.getConnection().query(`SELECT * FROM product WHERE id like '%${keyword}%' or name like '%${keyword}%'`, (err, products) => {
+                if (err) {
+                    reject(err)
+                } else {
                     resolve(products)
                 }
             })
@@ -65,6 +77,19 @@ class ProductService {
                     reject(err);
                 } else {
                     console.log(`Xóa thành công!`);
+                    resolve(products);
+                }
+            });
+        });
+    }    
+
+    findProduct(product) {
+        return new Promise((resolve, reject) => {
+            connection.getConnection().query(`SELECT * FROM products WHERE name LIKE ${product}%`, (err, products) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    console.log(`Tìm thành công!`);
                     resolve(products);
                 }
             });

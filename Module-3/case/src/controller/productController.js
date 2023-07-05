@@ -25,6 +25,18 @@ class ProductController {
         })
     }
 
+    showListAll(req, res) {
+        let data = '';
+        req.on('data', dataRaw => {
+            data += dataRaw;
+        })
+        req.on('end', () => {
+            if (req.method === 'GET') {
+               showListProduct(req, res);
+            } 
+        })
+    }
+
     edit(req, res) {
         let data = '';
         req.on('data', dataRaw => {
@@ -51,16 +63,9 @@ class ProductController {
                     res.writeHead(302, {
                         Location: `/products`,
                     });
-                showList(req, res);
+                    res.end();
                 })
             }
-        })
-    }
-
-    showFormAdd(req, res) {
-        fs.readFile('view/product/add.html', 'utf-8', (err, stringHTML) => {
-            res.write(stringHTML);
-            res.end();
         })
     }
 
@@ -74,7 +79,6 @@ class ProductController {
     delete(req, res) {
         const urlObject = url.parse(req.url, true);
         const productId = urlObject.query.id;
-        // console.log(productId);
         productService.deleteProduct(productId).then(() => {
             res.write("Deleted");
             res.end();
@@ -85,20 +89,69 @@ class ProductController {
 function showList(req, res) {
     fs.readFile('view/product/sidebar.html', 'utf-8', (err, stringHTML) => {
         let str = '';
-        productService.findAll().then((products)=> {
+        const urlObject = url.parse(req.url, true)
+        const keyword = urlObject.query.keyword ?? '';
+        productService.findAll(keyword).then((products)=> {
+            if (products.length === 0) {
+                str = `<h4>Không có sản phẩm phù hợp</h4>`
+            } else {
+                for (const product of products) {
+                    str+=`
+                    <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+                        <div class="product-item bg-light mb-4">
+                            <div class="featured-button">
+                                <a href="products/edit-product?idEdit=${product.id}">
+                                <button id ="edit-icon" class="edit"><span class="edit-icon"></span></button>
+                                </a>
+                                <button class="btn-remove btn-delete-remove" onclick="sendFetchDelete(${product.id})">
+                                    <span class="mdi mdi-delete mdi-24px"></span>
+                                    <span class="mdi mdi-delete-empty mdi-24px"></span>
+                                </button>
+                            </div>
+                            <div class="product-img position-relative overflow-hidden">
+                                <img class="img-fluid w-100" src="${product.image}" alt="">
+                                <div class="product-action">
+                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                                </div>
+                            </div>
+                            <div class="text-center py-4">
+                                <a class="h6 text-decoration-none text-truncate" href="">${product.name}</a>
+                                <div class="d-flex align-items-center justify-content-center mt-2">
+                                    <h5>$${product.price}</h5>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center mb-1">
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star-half-alt text-primary mr-1"></small>
+                                    <small>(99)</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `
+                }
+            }
+            stringHTML = stringHTML.replaceAll('{list}', str)
+            stringHTML = stringHTML.replaceAll('{keyword}', keyword)
+            res.write(stringHTML);
+            res.end();
+        })
+    })
+}
+
+function showListProduct(req, res) {
+    fs.readFile('index.html', 'utf-8', (err, stringHTML) => {
+        let str = '';
+        productService.findAllAtHome().then((products)=> {
             for (const product of products) {
                 str+=`
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                     <div class="product-item bg-light mb-4">
-                        <div class="featured-button">
-                            <button class="edit" type="button"><span class="edit-icon"></span>
-                            <a class="edit-product" href="products/edit-product?idEdit=${product.id}"></a>
-                            </button>
-                            <button class="btn-remove btn-delete-remove" onclick="sendFetchDelete(${product.id})">
-                                <span class="mdi mdi-delete mdi-24px"></span>
-                                <span class="mdi mdi-delete-empty mdi-24px"></span>
-                            </button>
-                        </div>
                         <div class="product-img position-relative overflow-hidden">
                             <img class="img-fluid w-100" src="${product.image}" alt="">
                             <div class="product-action">
@@ -126,29 +179,11 @@ function showList(req, res) {
                 </div>
                 `
             }
-            stringHTML = stringHTML.replace('{list}', str)
+            stringHTML = stringHTML.replace('{list-product}', str)
             res.write(stringHTML);
             res.end();
         })
     })
 }
-{/* <button onclick="sendFetchDelete(${product.id})" type="button" class="remove btn bx bx-x"></button> */}
-/* <h6 class="text-muted ml-2"><del>$123.00</del></h6> */
-// function showList(req, res) {
-//     fs.readFile('view/product/list.html', 'utf-8', (err, stringHTML) => {
-//         let str = '';
-//         productService.findAll().then((products)=> {
-//             for (const product of products) {
-//                 str+=`<h3>${product.name}</h3>
-//                 <a href="products/edit-product?idEdit=${product.id}"><button type="button" class="btn bx bxs-edit-alt btn-button">Edit</button></a>
-//                 <button onclick="sendFetchDelete(${product.id})" type="button" class="btn bx bx-x">X</button>
-//                 `
-//             }
-//             stringHTML = stringHTML.replace('{list}', str)
-//             res.write(stringHTML);
-//             res.end();
-//         })
-//     })
-// }
 
 export default new ProductController();

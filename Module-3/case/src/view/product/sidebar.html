@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Side Bar</title>
+   
+    <!-- <script src="/lib/jquery/jquery-3.6.4.min.js"></script>
+    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="style.css" rel="stylesheet">
+    <link href="./mystyle/homepage.css" rel="stylesheet" >
+    <link href="./mystyle/add-product.css" rel="stylesheet" >
+    <link href="/lib/fontawesome/css/fontawesome.min.css" rel="stylesheet">
+    <link href="/lib/fontawesome/css/brands.min.css" rel="stylesheet">
+    <link href="/lib/fontawesome/css/solid.min.css" rel="stylesheet">
+    <link href="/lib/fontawesome/css/regular.min.css" rel="stylesheet">
+    <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./myjs/localstore.js"></script> -->
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/my-style.css">
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+		<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.6.95/css/materialdesignicons.min.css">
+	
+		<!-- Customized Bootstrap Stylesheet -->
+        <link rel="stylesheet" href="../css/style-sidebar.css">
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/sidebar.css">
+        <link rel="stylesheet" href="../css/homepage.css">
+        <link rel="stylesheet" href="../css/add-product.css">
+        <link rel="stylesheet" href="../css/button.css">
+
+</head>
+<body>
+    <nav class="sidebar">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <a href="./products">
+                        <img src="../img/my-img/logo.png" alt="logo">
+                    </a>    
+                </span>
+
+                <div class="text header-text">
+                    <span class="name">Product</span>
+                    <span class="profession">Dashboard</span>
+                </div>
+            </div>
+            <i class="bx bx-chevron-right toggle"></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+                    <form>
+                    <li class="search-box">
+                            <i class='bx bx-search icon'></i>
+                            <input id="search-card" type="search" name="keyword" id="search" value="{keyword}" placeholder="Search..." style="font-weight: 500">                 
+                    </li>              
+                    </form>    
+                    <li class="links">
+                        <a href="../home">
+                            <i class='bx bx-home-alt icon'></i>
+                            <span class="text nav-text">Home Page</span>
+                        </a>
+                    </li>             
+                    <li class="links">
+                        <a href="">
+                            <i class='bx bx-bell icon'></i>
+                            <span class="text nav-text">Notification</span>
+                        </a>
+                    </li>             
+                    <li class="links">
+
+                      <button id="btn-add-product" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-add-new-product">
+                        <span class="add">+ Add Product</span>            
+                      </button>     
+                 
+                     
+                    </li>                                                   
+               </ul>            
+            </div>
+            
+            <div class="bottom-content">
+                <li class="logout-mode">
+                    <div id="btn-add-product" data-bs-toggle="modal" data-bs-target="#modal-confirm-logout" style="display: flex;">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Log Out</span>
+                    </div>         
+                </li> 
+
+                <li class="mode dm">
+                    <div class="moon-sun">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>    
+                    <span class="mode-text text">Dark Mode</span>
+                    
+                    <div class="toggle-switch">
+                        <i class='bx bxs-toggle-left icondm icon'></i>
+                    </div>
+                </li>    
+            </div>  
+        </div>
+    </nav>
+
+
+    <!-- Home -->
+    <section class="home">
+        <div class="home-text">
+          {list}
+        </div>
+    </section>
+
+    <!-- Add-Product -->
+    <div class="modal fade" id="modal-add-new-product" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="modal-title">Thêm sản phẩm mới :</h1>
+              <button type="button" class="bx bx-window-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="background-color: #f9f8fb;">
+                <form id="form-add-product" action="/products" method="post">
+                    <div class="mb-id">
+                        <label for="formFile" class="form-label"><span>ID :</span></label>
+                        <input class="form-control" type="text" name="id" id="client-name" required>
+                    </div>
+                    <div class="mb-name">
+                        <label for="formFile" class="form-label"><span>Name :</span></label>
+                        <input class="form-control" type="text" name="name" id="client-name" required>
+                    </div>
+                    <div class="mb-price">
+                        <label for="formFile" class="form-label inputcode"><span>Price :</span></label>
+                        <input class="form-control" type="text" name="price" required>              
+                    </div>
+                    <div class="mb-quantity">
+                        <label for="formFile" class="form-label inputcode"><span>Quantity :</span></label>
+                        <input class="form-control" type="text" name="quantity" required>  
+                    </div>
+                    <div class="mb-img">
+                        <label for="formFile" class="form-label inputcode"><span>IMG :</span></label>
+                        <input class="form-control" type="text" name="image" required>    
+                    </div> 
+            </div>            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button id="btn-savecard" class="btn btn-primary ps-5 pe-5">Lưu</button>
+            </div>
+                </form>
+          </div>    
+        </div>
+      </div>
+    </div>
+
+    <script src="../../js/index.js"></script>
+    <script src="../../js/delete.js"></script>
+    <!-- <script src="../../js/search-product.js"></script> -->
+	
+</body>
+</html>
+
+
+ 
