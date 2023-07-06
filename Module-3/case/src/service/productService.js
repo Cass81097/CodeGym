@@ -105,7 +105,21 @@ class ProductService {
     sortProduct() {
         return new Promise((resolve, reject) => {
             const sql = `SELECT * FROM demo2006.product
-                         ORDER BY price ASC;`;
+                         ORDER BY price DESC;`;
+            connection.getConnection().query(sql, (err, rs) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(rs);
+                }
+            });
+        });
+    }
+
+    sortId() {
+        return new Promise((resolve, reject) => {
+            const sql = `SELECT * FROM demo2006.product
+                         ORDER BY id DESC;`;
             connection.getConnection().query(sql, (err, rs) => {
                 if (err) {
                     reject(err);

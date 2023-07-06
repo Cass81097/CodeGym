@@ -12,13 +12,13 @@ class ProductController {
         })
         req.on('end', () => {
             if (req.method === 'GET') {
-               showList(req, res);
+                showList(req, res);
             } else {
                 data = qs.parse(data);
                 productService.save(data).then(() => {
                     res.writeHead(302, {
                         Location: '/products',
-                        });
+                    });
                     res.end();
                 })
             }
@@ -32,8 +32,8 @@ class ProductController {
         })
         req.on('end', () => {
             if (req.method === 'GET') {
-               showListProduct(req, res);
-            } 
+                showListProduct(req, res);
+            }
         })
     }
 
@@ -52,8 +52,8 @@ class ProductController {
                         stringHTML = stringHTML.replace('{price}', product.price);
                         stringHTML = stringHTML.replace('{quantity}', product.quantity);
                         stringHTML = stringHTML.replace('{image}', product.image);
-                    res.write(stringHTML);
-                    res.end();
+                        res.write(stringHTML);
+                        res.end();
                     });
                 })
 
@@ -69,13 +69,6 @@ class ProductController {
         })
     }
 
-    sideBar(req, res) {
-        fs.readFile('view/product/sidebar.html', 'utf-8', (err, stringHTML) => {
-            res.write(stringHTML);
-            res.end();
-        })
-    }
-
     delete(req, res) {
         const urlObject = url.parse(req.url, true);
         const productId = urlObject.query.id;
@@ -85,17 +78,17 @@ class ProductController {
         });
     }
 
-    sort(req, res) {
+    sortByPrice(req, res) {
         fs.readFile('view/product/sidebar.html', 'utf-8', (err, stringHTML) => {
             let str = '';
             const urlObject = url.parse(req.url, true);
-            productService.sortProduct(urlObject.query.id).then((products)=> {
+            productService.sortProduct(urlObject.query.id).then((products) => {
                 for (const product of products) {
-                    str+=`
+                    str += `
                     <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                         <div class="product-item bg-light mb-4">
                             <div class="product-img position-relative overflow-hidden">
-                                <img class="img-fluid w-100" src="../${product.image}" alt="">
+                                <img class="img-fluid w-100" src="../img/my-img/${product.image}" alt="">
                                 <div class="product-action">
                                     <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
                                     <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
@@ -128,86 +121,17 @@ class ProductController {
         })
     }
 
-    // sort(req, res) {
-    //     let str = '';
-    //     const urlObject = url.parse(req.url, true);
-    //     productService.sortProduct(urlObject.query.id)
-    //         .then((result) => {
-    //             for (const product of result) {
-    //                 str+=`
-    //                 <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-    //                     <div class="product-item bg-light mb-4">
-    //                         <div class="product-img position-relative overflow-hidden">
-    //                             <img class="img-fluid w-100" src="${product.image}" alt="">
-    //                             <div class="product-action">
-    //                                 <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-    //                                 <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-    //                                 <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-    //                                 <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-    //                             </div>
-    //                         </div>
-    //                         <div class="text-center py-4">
-    //                             <a class="h6 text-decoration-none text-truncate" href="">${product.name}</a>
-    //                             <div class="d-flex align-items-center justify-content-center mt-2">
-    //                                 <h5>$${product.price}</h5>
-    //                             </div>
-    //                             <div class="d-flex align-items-center justify-content-center mb-1">
-    //                                 <small class="fa fa-star text-primary mr-1"></small>
-    //                                 <small class="fa fa-star text-primary mr-1"></small>
-    //                                 <small class="fa fa-star text-primary mr-1"></small>
-    //                                 <small class="fa fa-star text-primary mr-1"></small>
-    //                                 <small class="fa fa-star-half-alt text-primary mr-1"></small>
-    //                                 <small>(99)</small>
-    //                             </div>
-    //                         </div>
-    //                     </div>
-    //                 </div>
-    //                 `
-    //             }
-    //             stringHTML = stringHTML.replace('{list}', str)
-    //             res.write(stringHTML);
-    //             res.end();
-    //         })
-
-    //         .catch((error) => {
-    //             console.error(error);
-    //             res.write("error occurred");
-    //             res.end();
-    //         });
-    // }
-    
-    // reSortById(req, res) {
-    //     const urlObject = url.parse(req.url, true);
-    //     let test = productService.reSortByID(urlObject.query.id);
-    //     res.write("sorted");
-    //     res.end();
-    // }
-}
-
-function showList(req, res) {
-    fs.readFile('view/product/sidebar.html', 'utf-8', (err, stringHTML) => {
-        let str = '';
-        const urlObject = url.parse(req.url, true)
-        const keyword = urlObject.query.keyword ?? '';
-        productService.findAll(keyword).then((products)=> {
-            if (products.length === 0) {
-                str = `<h4>Không có sản phẩm phù hợp</h4>`
-            } else {
+    sortById(req, res) {
+        fs.readFile('view/product/sidebar.html', 'utf-8', (err, stringHTML) => {
+            let str = '';
+            const urlObject = url.parse(req.url, true);
+            productService.sortId(urlObject.query.id).then((products) => {
                 for (const product of products) {
-                    str+=`
+                    str += `
                     <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                         <div class="product-item bg-light mb-4">
-                            <div class="featured-button">
-                                <a href="products/edit-product?idEdit=${product.id}">
-                                <button id ="edit-icon" class="edit"><span class="edit-icon"></span></button>
-                                </a>
-                                <button class="btn-remove btn-delete-remove" onclick="sendFetchDelete(${product.id})">
-                                    <span class="mdi mdi-delete mdi-24px"></span>
-                                    <span class="mdi mdi-delete-empty mdi-24px"></span>
-                                </button>
-                            </div>
                             <div class="product-img position-relative overflow-hidden">
-                                <img class="img-fluid w-100" src="${product.image}" alt="">
+                                <img class="img-fluid w-100" src="../img/my-img/${product.image}" alt="">
                                 <div class="product-action">
                                     <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
                                     <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
@@ -233,9 +157,61 @@ function showList(req, res) {
                     </div>
                     `
                 }
+                stringHTML = stringHTML.replace('{list}', str)
+                res.write(stringHTML);
+                res.end();
+            })
+        })
+    }
+}
+
+function showList(req, res) {
+    fs.readFile('view/product/sidebar.html', 'utf-8', (err, stringHTML) => {
+        let str = '';
+        const urlObject = url.parse(req.url, true)
+        const keyword = urlObject.query.keyword ?? '';
+        productService.findAll(keyword).then((products) => {
+            if (products.length === 0) {
+                str = `<h4>Không có sản phẩm phù hợp</h4>`
+            } else {
+                for (const product of products) {
+                    str += `
+                    <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+                        <div class="product-item bg-light mb-4">
+                            <div class="featured-button">
+                                <a href="products/edit-product?idEdit=${product.id}">
+                                <button id ="edit-icon" class="edit"><span class="edit-icon"></span></button>
+                                </a>
+                                <button class="btn-remove btn-delete-remove" onclick="sendFetchDelete(${product.id})">
+                                    <span class="mdi mdi-delete mdi-24px"></span>
+                                    <span class="mdi mdi-delete-empty mdi-24px"></span>
+                                </button>
+                            </div>
+                            <div class="product-img position-relative overflow-hidden">
+                                <img class="img-fluid w-100" src="img/my-img/${product.image}" alt="">
+                                
+                            </div>
+                            <div class="text-center py-4">
+                                <a class="h6 text-decoration-none text-truncate" href="">${product.name}</a>
+                                <div class="d-flex align-items-center justify-content-center mt-2">
+                                    <h5>$${product.price}</h5>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center mb-1">
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star-half-alt text-primary mr-1"></small>
+                                    <small>(99)</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `
+                }
             }
             stringHTML = stringHTML.replaceAll('{list}', str)
-            stringHTML = stringHTML.replaceAll('{keyword}', keyword)
+            stringHTML = stringHTML.replaceAll('{key}', keyword)
             res.write(stringHTML);
             res.end();
         })
@@ -245,13 +221,13 @@ function showList(req, res) {
 function showListProduct(req, res) {
     fs.readFile('index.html', 'utf-8', (err, stringHTML) => {
         let str = '';
-        productService.findAllAtHome().then((products)=> {
+        productService.findAllAtHome().then((products) => {
             for (const product of products) {
-                str+=`
+                str += `
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                     <div class="product-item bg-light mb-4">
                         <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="${product.image}" alt="">
+                            <img class="img-fluid w-100" src="img/my-img/${product.image}" alt="">
                             <div class="product-action">
                                 <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
                                 <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>

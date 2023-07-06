@@ -7,8 +7,8 @@ let productRouter = {
     '/home': productController.showListAll,
     '/products/edit-product': productController.edit,
     '/products/delete': productController.delete,
-    '/products/sort': productController.sort,
-    // '/products/reSort': productController.reSortById,
+    '/products/sortPrice': productController.sortByPrice,
+    '/products/sortId': productController.sortById,
     
 }
 

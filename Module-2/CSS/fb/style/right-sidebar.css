@@ -21,7 +21,7 @@
     height: 100%;
 }
 
-.ads-one a{
+.ads-one a {
     height: 120px;
     padding-left: 7px;
     display: flex;
@@ -30,7 +30,7 @@
     border-radius: 10px;
 }
 
-.ads-two a{
+.ads-two a {
     height: 120px;
     padding-left: 7px;
     display: flex;
@@ -61,7 +61,7 @@
 .ads-one a:hover,
 .ads-two a:hover {
     background: var(--primary-color);
-    box-shadow: 0px 0px 20px -2px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 20px -2px rgba(0, 0, 0, 0.75);
 }
 
 .button-remove {
@@ -81,16 +81,16 @@
 }
 
 .button-remove:hover {
-   box-shadow: 0px 0px 10px -2px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 10px -2px rgba(0, 0, 0, 0.75);
 }
 
 .ads-one:hover .button-remove {
-   opacity: 1;
-}   
+    opacity: 1;
+}
 
 .ads-two:hover .button-remove {
-   opacity: 1;
-}   
+    opacity: 1;
+}
 
 .rightbar-birthday h4 {
     font-weight: 600;
@@ -119,11 +119,19 @@
 
 .birthday-info p {
     line-height: 20px;
+    transform: translateY(-50%);
+    position: absolute;
+    top: 50%;
 }
 
 .birthday-info a {
     color: black;
     font-weight: 600;
+}
+
+.birthday-content {
+   position: relative; 
+   flex-grow: 1;
 }
 
 .rightbar-contact {
@@ -167,7 +175,7 @@
 .online-list {
     position: relative;
     margin-top: 10px;
-    transition: var(--tran);        
+    transition: var(--tran);
     border-radius: 6px;
 }
 
@@ -194,10 +202,10 @@
     position: absolute;
     bottom: 5px;
     left: 35px;
-}   
+}
 
 .online-list a {
-    display:flex;
+    display: flex;
     align-items: center;
     padding-bottom: 25px;
     padding-left: 10px;
@@ -217,5 +225,4 @@
     font-size: 15px;
     font-weight: 500;
 }
-
 

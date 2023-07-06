@@ -6,6 +6,7 @@ import router from "./router/router.js";
 
 let mimeTypes = {
     'jpg': 'images/jpg',
+    'jpeg': 'images/jpeg',
     'png': 'images/png',
     'js': 'text/javascript',
     'css': 'text/css',
@@ -17,7 +18,7 @@ let mimeTypes = {
 }
 const server = http.createServer((req, res) => {
     let urlPath = url.parse(req.url).pathname;
-    const filesDefences = urlPath.match(/\.js|\.css|\.png|\.svg|\.jpg|\.ttf|\.woff|\.woff2|\.eot/);
+    const filesDefences = urlPath.match(/\.js|\.css|\.png|\.svg|\.jpg|\.ttf|\.woff|\.woff2|\.jpeg|\.eot/);
     if (filesDefences) {
         const extension = mimeTypes[filesDefences[0].toString().split('.')[1]];
         res.writeHead(200, {'Content-Type': extension});

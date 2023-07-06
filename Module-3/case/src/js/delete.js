@@ -1,4 +1,3 @@
-
 function sendFetchDelete(id) {
     fetch(`http://localhost:8080/products/delete?id=${id}`)
         .then(res => {
@@ -8,22 +7,20 @@ function sendFetchDelete(id) {
     })
 }
 
-function sendFetchSort() {
-    fetch(`http://localhost:8080/products/sort`)
-        .then(res => {
-        console.log(res);
-            document.getElementById("sort").addEventListener("click", function() {
-                window.location.href = "products/sort";
-            });
-        })
-    }
+// function sendFetchSort() {
+//     fetch(`http://localhost:8080/products`)
+//         .then(res => {
+//         console.log(res);
+//         })
+//     }
 
-    function sendFetchReSort() {
-    fetch(`http://localhost:8080/products/reSort`)
-        .then(res => {
-        console.log(res);
-        location.reload();
-    })
-}
+//     function sendFetchReSort() {
+//     fetch(`http://localhost:8080/products/reSort`)
+//         .then(res => {
+//         console.log(res);
+//         location.reload();
+//     })
+// }
+
 
 

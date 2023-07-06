@@ -1,191 +1,209 @@
-
 /* Edit Button */
 .edit {
-    top: 10px;
-    left: 20px;
- }
- 
- .edit {
-    background: #79DB79;
-    border: 0;
-    border-radius: 5px;
-    color: #fff;
-    cursor: pointer;
-    font-size: 25px;
-    height: 40px;
-    line-height: 40px;
-    outline: none;
-    padding: 0;
-    padding-right: 10px;
-    position: relative;
-    -webkit-transition: var() .4s;
-    transition: background .4s;
-  }
-  .edit:hover {
-    background: #4F9E4F;
-  }
-  .edit span {
-    display: inline-block;
-    float: left;
-  }
-  .edit .edit-icon {
-    height: 36px;
-    position: relative;
-    width: 36px;
-  }
-  .edit .edit-icon:before {
-    border: 3px solid #fff;
-    border-radius: 3px;
-    content: "";
-    display: inline-block;
-    height: 50%;
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    width: 50%;
-    transform: translate(-50%, -50%);
-  }
-  .edit .edit-icon:after { 
-    background: #79DB79;
-    border: 2px #fff solid;
-    border-bottom-left-radius: 5px 15px;
-    border-bottom-right-radius: 5px 15px;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px; 
-    box-shadow: 0 0 0 2px #79DB79;
-    content: "";
-    display: inline-block;
-    height: 55%;
-    position: absolute;
-    top: 7%;
-    left: 45%;
-    width: 6px; 
+  top: 10px;
+  left: 20px;
+}
+
+.edit {
+  background: #79DB79;
+  border: 0;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 25px;
+  height: 40px;
+  line-height: 40px;
+  outline: none;
+  padding: 0;
+  padding-right: 10px;
+  position: relative;
+  -webkit-transition: var() .4s;
+  transition: background .4s;
+}
+
+.edit:hover {
+  background: #4F9E4F;
+}
+
+.edit span {
+  display: inline-block;
+  float: left;
+}
+
+.edit .edit-icon {
+  height: 36px;
+  position: relative;
+  width: 36px;
+}
+
+.edit .edit-icon:before {
+  border: 3px solid #fff;
+  border-radius: 3px;
+  content: "";
+  display: inline-block;
+  height: 50%;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  width: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.edit .edit-icon:after {
+  background: #79DB79;
+  border: 2px #fff solid;
+  border-bottom-left-radius: 5px 15px;
+  border-bottom-right-radius: 5px 15px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  box-shadow: 0 0 0 2px #79DB79;
+  content: "";
+  display: inline-block;
+  height: 55%;
+  position: absolute;
+  top: 7%;
+  left: 45%;
+  width: 6px;
+  transform: translate(0, 0) rotate(45deg);
+  transform-origin: 50% 75%;
+  transition: background .4s, box-shadow .4s;
+}
+
+.edit:hover span:after {
+  background: #4F9E4F;
+  box-shadow: 0 0 0 2px #4F9E4F;
+  animation: wiggle .25s 3 linear;
+}
+
+@keyframes wiggle {
+  0% {
     transform: translate(0, 0) rotate(45deg);
-    transform-origin: 50% 75%;
-    transition: background .4s, box-shadow .4s;
   }
-  .edit:hover span:after {
-    background: #4F9E4F;
-    box-shadow: 0 0 0 2px #4F9E4F;
-    animation: wiggle .25s 3 linear;
+
+  25% {
+    transform: translate(0, 0) rotate(25deg);
   }
-  
-  @keyframes wiggle {
-    0% {transform: translate(0,0) rotate(45deg);}
-    25% {transform: translate(0,0) rotate(25deg);}
-    50% {transform: translate(0,0) rotate(45deg);}
-    75% {transform: translate(0,0) rotate(65deg);}
-    100% {transform: translate(0,0) rotate(45deg);}
+
+  50% {
+    transform: translate(0, 0) rotate(45deg);
   }
- 
- /* Delete Button */
- .btn-remove {
-    position: absolute;
-    top: 10px;
-    right: 30px;
- }
- 
- .btn-remove {
-    display: flex;
-     align-items: center;
-     background: none;
-     border: 1px solid #bdbdbd;
-     height: 48px;
-     padding: 0 8px 0 16px;
-     letter-spacing: 0.25px;
-     border-radius: 6px;
-     cursor: pointer;
-    
-    &:focus {
-      outline: none;
-    }
-    
-    .mdi {
-      margin-right: 8px;
-    }
+
+  75% {
+    transform: translate(0, 0) rotate(65deg);
   }
-  
-  .btn-delete-remove {
-    font-size: 16px;
-    color: white;
-    background: red;
-    
+
+  100% {
+    transform: translate(0, 0) rotate(45deg);
+  }
+}
+
+/* Delete Button */
+.btn-remove {
+  position: absolute;
+  top: 10px;
+  right: 30px;
+}
+
+.btn-remove {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: 1px solid #bdbdbd;
+  height: 48px;
+  padding: 0 8px 0 16px;
+  letter-spacing: 0.25px;
+  border-radius: 6px;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  .mdi {
+    margin-right: 8px;
+  }
+}
+
+.btn-delete-remove {
+  font-size: 16px;
+  color: white;
+  background: red;
+
+  >.mdi-delete-empty {
+    display: none;
+  }
+
+  &:hover {
+    background-color: lighten(red, 48%);
+
     >.mdi-delete-empty {
+      display: block;
+    }
+
+    >.mdi-delete {
       display: none;
     }
-    
-    &:hover {
-      background-color: lighten(red, 48%);
-      
-      >.mdi-delete-empty {
-        display: block;
-      }
-      
-      >.mdi-delete {
-        display: none;
-      }
-    }
-  
-    &:focus {
-      box-shadow: 0 0 0 4px lighten(red, 40%);
-    }
   }
- 
- .mdi {
-    transform: translateX(-11px);
- }
 
- /* Style Button */
+  &:focus {
+    box-shadow: 0 0 0 4px lighten(red, 40%);
+  }
+}
+
+.mdi {
+  transform: translateX(-11px);
+}
+
+/* Style Button */
 .featured-button {
-    display : flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 5px;
- }
- 
- .featured-button button {
-    width: 35px;
-    height: 35px;
- }
- 
- .featured-button .update {
-    padding: 4px 4px 4px 4px;
-    background: #2ab1c7;
-    color: white;
-    border: none;
-    opacity: 1;
- }
- 
- .featured-button .remove {
-    padding: 4px 4px 4px 4px;
-    background: red;
-    color: white;
-    border: none;
-    opacity: 1;
- }
- 
- .update {
-    position: relative;
-    top: 10px;
-    left: 25px;
- }
- 
- .remove {
-    position: relative;
-    top: 10px;
-    right: 25px;
- }
- 
- .modal-footer button {
-    color: white !important;
- }
- 
- .bx-window-close {
-    border: none;
-    font-size: 25px;
-    background: white;
-    transform: translateY(18px);
-    color: rgb(68 69 69);;
- }
- 
- 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.featured-button button {
+  width: 35px;
+  height: 35px;
+}
+
+.featured-button .update {
+  padding: 4px 4px 4px 4px;
+  background: #2ab1c7;
+  color: white;
+  border: none;
+  opacity: 1;
+}
+
+.featured-button .remove {
+  padding: 4px 4px 4px 4px;
+  background: red;
+  color: white;
+  border: none;
+  opacity: 1;
+}
+
+.update {
+  position: relative;
+  top: 10px;
+  left: 25px;
+}
+
+.remove {
+  position: relative;
+  top: 10px;
+  right: 25px;
+}
+
+.modal-footer button {
+  color: white !important;
+}
+
+.bx-window-close {
+  border: none;
+  font-size: 25px;
+  background: white;
+  transform: translateY(18px);
+  color: rgb(68 69 69);
+  ;
+}

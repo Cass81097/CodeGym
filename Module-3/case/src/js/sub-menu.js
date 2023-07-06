@@ -1,7 +1,4 @@
-$('.btn').click(function(){
-$(this).toggleClass("click");
-$('.sidebar').toggleClass("show");
-});
+
 $('.feat-btn').click(function(){
     $('.menu .sub-menu .feat-show').toggleClass("show");
     $('.menu .sub-menu .first').toggleClass("rotate");
