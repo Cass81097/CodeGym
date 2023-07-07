@@ -132,8 +132,9 @@
 }
 
 .story {
+    height: 220px;
     flex-basis: 18%;
-    padding-top: 37.5%;
+    /* padding-top: 37.5%; */
     padding-left: 24%;
     position: relative;
     background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url("./../img/avatar-main.jpg");
