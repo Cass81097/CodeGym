@@ -86,32 +86,31 @@ class ProductController {
                 for (const product of products) {
                     str += `
                     <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                        <div class="product-item bg-light mb-4">
-                            <div class="product-img position-relative overflow-hidden">
-                                <img class="img-fluid w-100" src="../img/my-img/${product.image}" alt="">
-                                <div class="product-action">
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="text-center py-4">
-                                <a class="h6 text-decoration-none text-truncate" href="">${product.name}</a>
-                                <div class="d-flex align-items-center justify-content-center mt-2">
-                                    <h5>$${product.price}</h5>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-center mb-1">
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star-half-alt text-primary mr-1"></small>
-                                    <small>(99)</small>
+                    <div class="product-item bg-light mb-4">
+                        <div class="featured-button">
+                            <a href="products/edit-product?idEdit=${product.id}">
+                            <button id ="edit-icon" class="edit"><span class="edit-icon"></span></button>
+                            </a>
+                            <button class="btn-remove btn-delete-remove" onclick="sendFetchDelete(${product.id})">
+                                <span class="mdi mdi-delete mdi-24px"></span>
+                                <span class="mdi mdi-delete-empty mdi-24px"></span>
+                            </button>
+                        </div>
+                        <div class="product-img position-relative overflow-hidden">
+                            <img class="img-fluid w-100" src="${product.image}" alt="">
+                        </div>
+                        <div class="text-center py-4">
+                            <small>ID: ${product.id} - ${product.name}</small>
+                            <div class="price">
+                                <h5>$${product.price}</h5>
+                                <div class="id-quantity">
+                                    <i class='bx bx-cart icon-cart'></i>
+                                    <small>${product.quantity}</small>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
                     `
                 }
                 stringHTML = stringHTML.replace('{list}', str)
@@ -129,32 +128,31 @@ class ProductController {
                 for (const product of products) {
                     str += `
                     <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                        <div class="product-item bg-light mb-4">
-                            <div class="product-img position-relative overflow-hidden">
-                                <img class="img-fluid w-100" src="../img/my-img/${product.image}" alt="">
-                                <div class="product-action">
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="text-center py-4">
-                                <a class="h6 text-decoration-none text-truncate" href="">${product.name}</a>
-                                <div class="d-flex align-items-center justify-content-center mt-2">
-                                    <h5>$${product.price}</h5>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-center mb-1">
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star-half-alt text-primary mr-1"></small>
-                                    <small>(99)</small>
+                    <div class="product-item bg-light mb-4">
+                        <div class="featured-button">
+                            <a href="products/edit-product?idEdit=${product.id}">
+                            <button id ="edit-icon" class="edit"><span class="edit-icon"></span></button>
+                            </a>
+                            <button class="btn-remove btn-delete-remove" onclick="sendFetchDelete(${product.id})">
+                                <span class="mdi mdi-delete mdi-24px"></span>
+                                <span class="mdi mdi-delete-empty mdi-24px"></span>
+                            </button>
+                        </div>
+                        <div class="product-img position-relative overflow-hidden">
+                            <img class="img-fluid w-100" src="${product.image}" alt="">                  
+                        </div>
+                        <div class="text-center py-4">
+                            <small>ID: ${product.id} - ${product.name}</small>
+                            <div class="price">
+                                <h5>$${product.price}</h5>
+                                <div class="id-quantity">
+                                    <i class='bx bx-cart icon-cart'></i>
+                                    <small>${product.quantity}</small>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
                     `
                 }
                 stringHTML = stringHTML.replace('{list}', str)
@@ -188,21 +186,17 @@ function showList(req, res) {
                                 </button>
                             </div>
                             <div class="product-img position-relative overflow-hidden">
-                                <img class="img-fluid w-100" src="img/my-img/${product.image}" alt="">
+                                <img class="img-fluid w-100" src="${product.image}" alt="">
                                 
                             </div>
                             <div class="text-center py-4">
-                                <a class="h6 text-decoration-none text-truncate" href="">${product.name}</a>
-                                <div class="d-flex align-items-center justify-content-center mt-2">
+                                <small>ID: ${product.id} - ${product.name}</small>
+                                <div class="price">
                                     <h5>$${product.price}</h5>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-center mb-1">
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star-half-alt text-primary mr-1"></small>
-                                    <small>(99)</small>
+                                    <div class="id-quantity">
+                                        <i class='bx bx-cart icon-cart'></i>
+                                        <small>${product.quantity}</small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -219,7 +213,7 @@ function showList(req, res) {
 }
 
 function showListProduct(req, res) {
-    fs.readFile('index.html', 'utf-8', (err, stringHTML) => {
+    fs.readFile('view/home.html', 'utf-8', (err, stringHTML) => {
         let str = '';
         productService.findAllAtHome().then((products) => {
             for (const product of products) {
@@ -227,7 +221,7 @@ function showListProduct(req, res) {
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                     <div class="product-item bg-light mb-4">
                         <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/my-img/${product.image}" alt="">
+                            <img class="img-fluid w-100" src="${product.image}" alt="">
                             <div class="product-action">
                                 <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
                                 <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>

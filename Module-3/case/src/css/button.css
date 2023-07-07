@@ -1,7 +1,8 @@
 /* Edit Button */
-.edit {
-  top: 10px;
-  left: 20px;
+.featured-button a {
+  position: absolute;
+  top: 2.5%;
+  left: 8%;
 }
 
 .edit {
@@ -100,7 +101,7 @@
 /* Delete Button */
 .btn-remove {
   position: absolute;
-  top: 10px;
+  top: 0px;
   right: 30px;
 }
 
@@ -160,6 +161,9 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 5px;
+  position: relative;
+  top: 10px;
+  height: 45px;
 }
 
 .featured-button button {

@@ -66,6 +66,10 @@ body{
   text-align: center;
 }
 
+a:visited {
+  color: blue;
+}
+
 .head-wrap{
   display: flex;
   margin: 10px;

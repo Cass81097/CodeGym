@@ -64,7 +64,7 @@
 .first {
   position: relative;
   top: calc(50% - 12px);
-  right: -120px;
+  right: -100px;
   transform: translateY(-50%);
   font-size: 22px;
   transition: transform 0.4s;

@@ -1,10 +1,11 @@
-window.onload = hideMyDivBasedOnURL;
+window.onload = hideElementsBasedOnURL;
 
-function hideMyDivBasedOnURL() {
-    var myDiv = document.querySelector('.search-box')
-    if (window.location.href.includes("products/sortId") || window.location.href.includes("products/sortPrice")){
-      myDiv.style.display = "none";
-    }
+function hideElementsBasedOnURL() {
+  const searchBox = document.querySelector('.search-box');
+  const addButton = document.querySelector('#btn-add-product');
+
+  if (window.location.href.includes("products/sortId") || window.location.href.includes("products/sortPrice")) {
+    searchBox.style.display = "none";
+    addButton.style.display = "none";
+  }
 }
-
-

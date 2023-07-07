@@ -248,6 +248,7 @@ input[type="text"][name="code"] {
 
 .mb-img .progress {
    background: #f9f8fb !important;
+   margin-top: -10px
 }
 
 .menu-links {
@@ -256,4 +257,32 @@ input[type="text"][name="code"] {
 
 .show {
    padding-left: 0 !important;
+}
+
+.image-url img {
+   width: 100%;
+}
+
+.image-url {
+   margin-bottom: 10px;
+}
+
+#file-name {
+   color: blue;
+}
+
+.file-upload-button {
+   background-color: #1ca9c5;
+   border-radius: 6px;
+   padding: 5px 10px 5px 10px;
+   color: white;
+   cursor: pointer;
+}
+
+.file-upload-button:hover {
+   background-color: #0DCAF0;
+}
+
+.file-upload-button:active {
+   background-color: #56d6ec;
 }

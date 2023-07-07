@@ -18,22 +18,20 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/my-style.css">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.6.95/css/materialdesignicons.min.css">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <!-- <link rel="stylesheet" href="../css/sub-menu.css"> -->
     <link rel="stylesheet" href="../css/style-sidebar.css">
-    <!-- <link rel="stylesheet" href="../css/bootstrap.min.css"> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/sidebar.css">
     <link rel="stylesheet" href="../css/homepage.css">
     <link rel="stylesheet" href="../css/add-product.css">
     <link rel="stylesheet" href="../css/button.css">
     <link rel="stylesheet" href="../css/sub-menu.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
 
 </head>
 
@@ -48,8 +46,8 @@
                 </span>
 
                 <div class="text header-text">
-                    <span class="name">Product</span>
-                    <span class="profession">Dashboard</span>
+                    <span class="name">Quản lý</span>
+                    <span class="profession">sản phẩm</span>
                 </div>
             </div>
             <i class="bx bx-chevron-right toggle"></i>
@@ -62,26 +60,26 @@
                         <li class="search-box">
                             <i class='bx bx-search icon'></i>
                             <input id="search-card" type="search" name="keyword" id="search" value="{key}"
-                                placeholder="Search..." style="font-weight: 500">
+                                placeholder="Tìm kiếm sản phẩm" style="font-weight: 500">
                         </li>
                     </form>
                     <li class="links">
                         <a href="../home">
                             <i class='bx bx-home-alt icon'></i>
-                            <span class="text nav-text">Home Page</span>
+                            <span class="text nav-text">Trang chủ</span>
                         </a>
                     </li>
                     <li class="links">
                         <a href="">
                             <i class='bx bx-bell icon'></i>
-                            <span class="text nav-text">Notification</span>
+                            <span class="text nav-text">Thông báo</span>
                         </a>
                     </li>
 
                     <li class="sub-menu" style="display:block;">
                         <a href="#" class="feat-btn">
                             <i class='bx bx-sort-alt-2 icon'></i>
-                            <span class="text nav-text">Sort</span>
+                            <span class="text nav-text">Sắp xếp</span>
                             <span class="fas fa-caret-down first"></span>
                         </a>
                         <ul class="feat-show">
@@ -91,7 +89,7 @@
                             </li>
                             <li>
                                 <a href="../products/sortPrice" id="sort">
-                                    <i class='bx bx-purchase-tag icon'></i>Price</a>
+                                    <i class='bx bx-purchase-tag icon'></i>Giá</a>
                             </li>
                         </ul>
                     </li>
@@ -99,7 +97,7 @@
                     <li class="links">
                         <button id="btn-add-product" class="btn btn-primary" data-bs-toggle="modal"
                             data-bs-target="#modal-add-new-product">
-                            <span class="add">+ Add Product</span>
+                            <span class="add">+ Thêm sản phẩm</span>
                         </button>
                     </li>
                 </ul>
@@ -110,7 +108,7 @@
                     <div id="btn-add-product" data-bs-toggle="modal" data-bs-target="#modal-confirm-logout"
                         style="display: flex;">
                         <i class='bx bx-log-out icon'></i>
-                        <span class="text nav-text">Log Out</span>
+                        <span class="text nav-text">Đăng xuất</span>
                     </div>
                 </li>
 
@@ -142,7 +140,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="modal-title">Add New Product :</h1>
+                    <h1 class="modal-title fs-5" id="modal-title">Thêm mới sản phẩm :</h1>
                     <button type="button" data-bs-dismiss="modal" class="btn-close" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" style="background-color: #f9f8fb;">
@@ -152,20 +150,22 @@
                             <input class="form-control" type="text" name="id" id="client-name" required>
                         </div>
                         <div class="mb-name">
-                            <label for="formFile" class="form-label"><span>Name :</span></label>
+                            <label for="formFile" class="form-label"><span>Tên :</span></label>
                             <input class="form-control" type="text" name="name" id="client-name" required>
                         </div>
                         <div class="mb-price">
-                            <label for="formFile" class="form-label inputcode"><span>Price :</span></label>
+                            <label for="formFile" class="form-label inputcode"><span>Giá :</span></label>
                             <input class="form-control" type="text" name="price" required>
                         </div>
                         <div class="mb-quantity">
-                            <label for="formFile" class="form-label inputcode"><span>Quantity :</span></label>
+                            <label for="formFile" class="form-label inputcode"><span>Số lượng :</span></label>
                             <input class="form-control" type="text" name="quantity" required>
                         </div>
                         <div class="mb-img">
-                            <label for="formFile" class="form-label inputcode"><span>IMG :</span></label>
-                            <input type="file" id="image-upload" onchange="uploadImage(event)">
+                            <label for="formFile" class="form-label inputcode"><span>Ảnh :</span></label>
+                            <input type="file" id="image-upload" onchange="uploadImage(event)" hidden>
+                            <label for="image-upload" class="file-upload-button">Choose File</label>
+                            <span id="file-name"></span>
                             <div class="progress">
                                 <div id="upload-progress"
                                     class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
@@ -173,7 +173,10 @@
                                     style="width: 0; min-width: 2em;" hidden="">0%
                                 </div>
                             </div>
-                            <input id="image" class="form-control" type="text" name="image" required>
+                            <div class="image-url" hidden>
+                                <img src="" alt="" id="image-url">
+                            </div>
+                            <input value="" id="image" class="form-control" type="text" name="image" required>
                         </div>
                 </div>
                 <div class="modal-footer">
@@ -185,7 +188,6 @@
         </div>
     </div>
     </div>
-
     <script src="../../js/sub-menu.js"></script>
     <script src="../../js/index.js"></script>
     <script src="../../js/delete.js"></script>
@@ -224,11 +226,20 @@
         // Create the file metadata
         /** @type {any} */
         const metadata = {
-            contentType: 'image/jpg'
+            'jpg': 'images/jpg',
+            'jpeg': 'images/jpeg',
+            'png': 'images/png'
         };
 
 
         function uploadImage(e) {
+
+            var input = event.target;
+            if (input.files && input.files[0]) {
+                var fileName = input.files[0].name;
+                document.getElementById("file-name").textContent = fileName;
+            }
+
             document.getElementById("image-upload").disabled = true
             // let uploader = document.getElementById('uploader');
             let file = e.target.files[0];
@@ -249,6 +260,10 @@
                     progressBar.style.width = Math.round(progress) + "%";
                     progressBar.innerHTML = Math.round(progress) + "%";
                     progressImg.style.margin = "0px 0px 10px 0px";
+                    var divElement = document.querySelector('.image-url');
+                    divElement.removeAttribute('hidden');
+                    const inputElement = document.getElementById('image');
+                    inputElement.readOnly = true;
                     switch (snapshot.state) {
                         case 'paused':
                             console.log('Upload is paused');
@@ -281,18 +296,19 @@
                     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                         console.log('File available at', downloadURL);
                         let image = document.getElementById('image');
+                        image.value = downloadURL;
+                        document.getElementById('image-url').src = downloadURL;
                         // pushNewIMG(downloadURL)
                         setTimeout(() => {
                             document.getElementById("image-upload").disabled = false;
                         }, 500)
-
                     });
                 }
             );
         }
         window.uploadImage = uploadImage;
-    </script>
 
+    </script>
 </body>
 
 </html>
