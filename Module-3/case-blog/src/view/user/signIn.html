@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+  <!-- Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+    integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+    crossorigin="anonymous"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.6.95/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="../css/signin.css">
+</head>
+
+<body>
+  <!-- <header>
+    <div class="container mt-5">
+      <div class="alert alert-success" role="alert" style="text-align: center;">
+        Đăng ký thành công!
+      </div>
+    </div>
+  </header> -->
+
+  <header>
+    <div style="display: none;">
+      {list}
+    </div>
+  </header>
+
+  <div class="align">
+    <div class="grid">
+      <form action="/sign-in" method="post" class="form" id="form-1">
+        <div class="form login">
+          <span id="alert" class="fSignIn" style="margin-bottom: -10px"></span>
+          <div class="form-user">
+            <div class="user">
+              <i class="fas fa-user icon"></i>
+              <h6>Username</h6>
+            </div>
+            <input autocomplete="email" id="usn" type="text" name="username" class="form__input form-label"
+              placeholder="VD: hoanganh810" style="margin-bottom: 0;">
+            <span class="form-message"></span>
+          </div>
+
+          <div class="form-pw">
+            <div class="password">
+              <i class="fas fa-lock icon"></i>
+              <h6>Mật khẩu</h6>
+            </div>
+            <input id="password" type="password" name="password" class="form__input 123" placeholder="Mật khẩu"
+              style="margin-bottom: 0">
+            <span class="form-message"></span>
+          </div>
+
+          <div class="form__field">
+            <input id="signIn" type="submit" value="Đăng nhập">
+          </div>
+        </div>
+      </form>
+
+      <p class="text--center">Bạn chưa có tài khoản?
+        <a href="sign-up">Đăng ký ngay</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- <div class="footerNew">
+        <p><img src="../../img/icon-maps.jpg"> Công ty CP CodeGym Việt Nam - MST: 010 810 4526. | <img src="../../img/phoneft.jpeg"> Đ/c: Căn hộ TT01.23 dự án Hải Đăng city, phường Mỹ Đình 2, quận Nam Từ Liêm, thành phố Hà Nội. Hotline: 0989 534 458</p>
+      </div> -->
+
+
+  <!-- <script src="../../js/signin.js"></script> -->
+
+  <script src="../../js/validation-signin.js"></script>
+  <script src="../../js/form-validation-signin.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+.title-user {
+    text-align: center;
+}
+
+.profile-header {
+    height: 160px
+}
+
+.highlight {
+    border-top : 1px solid rgb(210, 212, 216)
+}
+
+.fa-mobile {
+    font-size: 1.5em !important;
+}
+
+.user-info {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.username {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.password {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirm {
+    margin-top: 10px;
+    position: absolute;
+    right: 10%;
+}
+
+.mobile {
+    transform: translateX(2px);
+}
+
+.user,
+.pass {
+    margin-right: 5px;
+}
+
