@@ -68,7 +68,7 @@ class UserController {
                 data = qs.parse(data);
                 console.log(data);
                 userService.checkUser(data)
-                    .then((result) => {
+                    .then((result) => {     
                         if (result.length > 0) {
                             res.writeHead(302, {
                                 Location: '/home'
