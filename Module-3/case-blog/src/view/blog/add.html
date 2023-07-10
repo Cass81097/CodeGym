@@ -7,11 +7,14 @@
 <body>
 <h2>Add Blog</h2>
 <form action="/blogs/add" method="post">
-    <input type="text" name="title">
-    <input type="text" name="content">
-    <select name="category" >
-        {listCategory}
-    </select>
+    <div class="mb-id">
+        <label for="formFile" class="form-label"><span>ID :</span></label>
+        <input class="form-control" type="text" name="accId" id="client-name" required>
+    </div>
+    <div class="mb-name">
+        <label for="formFile" class="form-label"><span>Tên :</span></label>
+        <input class="form-control" type="text" name="content" id="client-name" required>
+    </div>
     <button>Add</button>
 </form>
 </body>

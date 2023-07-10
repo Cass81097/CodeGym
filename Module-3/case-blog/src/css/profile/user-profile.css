@@ -1,7 +1,9 @@
-type="text/css">
-    	body{
-    margin-top:20px;
-    background:#eee;
+.modal-body span {
+    color : black
+}
+
+.mb-id, .mb-name, .mb-price, .mb-quantity {
+    margin-bottom: 10px;
 }
 
 .profile-header {

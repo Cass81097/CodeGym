@@ -9,8 +9,8 @@ class BlogService {
     findAll() {
         return new Promise((resolve, reject) => {   
             const sql = `SELECT *
-            FROM information 
-            JOIN post on postId = information.accId; `
+            FROM post 
+            JOIN information on post.accId = information.accId; `
             connection.getConnection().query(sql, (err, list) => {
                 if (err) {
                     reject(err)
@@ -41,7 +41,7 @@ class BlogService {
 
     save(blog) {
         return new Promise((resolve, reject) => {   
-            const sql = `INSERT INTO blog (title, content, idCategory) VALUES ('${blog.title}', '${blog.content}', '${blog.category}');`
+            const sql = `INSERT INTO blog.post (accId, content, image) VALUES (${blog.accId}, '${blog.content}', '${blog.image}');`
             connection.getConnection().query(sql, (err, rs) => {
                 if (err) {
                     reject(err)
@@ -51,6 +51,19 @@ class BlogService {
             })
         })
     }
+
+    findProfile() {
+        return new Promise((resolve, reject) => {
+            connection.getConnection().query('select * from post', (err, list) => {
+                if (err) {
+                    reject(err)
+                } else {
+                    // console.log(list)
+                    resolve(list)
+                }
+            })
+        })
+    } 
 }
 
 export default new BlogService();

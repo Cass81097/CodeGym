@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Profile</title>
+  <!-- Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+    integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+    crossorigin="anonymous"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.6.95/css/materialdesignicons.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <!-- Customized Bootstrap Stylesheet -->
+  <link rel="stylesheet" href="../css/profile/edit-profile.css">
+  <link rel="stylesheet" href="../css/profile/edit-avatar.css">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+
+
+</head>
+
+<body>
+  <!-- Edit-Product -->
+  <div class="edit-modal modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modal-title">Edit Profile : <span class="edit-code" id="edit-code"
+            style="color: blue;"></span></h1>
+        <a href="../profile">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </a>
+      </div>
+      <div class="modal-body" style="background-color: #f9f8fb;">
+        <form id="form-add-product" action="/profile/edit" method="post">
+          <div class="mb-id" style="display: none;">
+            <label for="formFile" class="form-label"><span>infoId :</span></label>
+            <input class="form-control" type="hidden" name="infoId" id="client-name" value="{infoId}">
+          </div>
+          <div class="mb-id" style="display: none;">
+            <label for="formFile" class="form-label"><span>accId :</span></label>
+            <input class="form-control" type="hidden" name="accId" id="client-name" value="{accId}">
+          </div>
+          <div class="mb-name">
+            <label for="formFile" class="form-label"><span>Name :</span></label>
+            <input class="form-control" type="text" name="name" id="client-name" value="{name}">
+          </div>
+          <div class="mb-phone">
+            <label for="formFile" class="form-label inputcode"><span>Phone :</span></label>
+            <input class="form-control" type="text" name="phone" value="{phone}">
+          </div>
+          <div class="mb-college">
+            <label for="formFile" class="form-label inputcode"><span>College :</span></label>
+            <input class="form-control" type="text" name="college" value="{college}">
+          </div>
+          <div class="mb-address">
+            <label for="formFile" class="form-label inputcode"><span>Address :</span></label>
+            <input class="form-control" type="text" name="address" value="{address}">
+          </div>
+          <div class="mb-email">
+            <label for="formFile" class="form-label inputcode"><span>Email :</span></label>
+            <input class="form-control" type="text" name="email" value="{email}">
+          </div>
+
+          <div class="photo-image">
+            <div class="mb-avatar">
+              <label for="formFile" class="form-label inputcode"><span>Avatar :</span></label>
+              <input type="file" id="image-upload" onchange="uploadImage(event)" hidden>
+              <label for="image-upload" class="file-upload-button">Choose File</label>
+              <span id="file-name" style="font-size: 0px;"></span>
+              <div class="info-progress">
+                <div class="progress">
+                  <div id="upload-progress" class="progress-bar progress-bar-striped progress-bar-animated"
+                    role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                    style="width: 0; min-width: 2em;" hidden="">0%
+                  </div>
+                </div>
+                <div class="image-url" hidden>
+                  <img src="" alt="" id="image-url">
+                </div>
+              </div>
+              <input value="{avatar}" id="image" class="form-control" type="text" name="avatar" required>
+            </div>
+
+            <div class="mb-cover-photo">
+              <label for="formFile" class="form-label inputcode"><span>Cover Photo :</span></label>
+              <input type="file" id="cover-upload" onchange="uploadCoverPhoto(event)" hidden>
+              <label for="cover-upload" class="file-upload-button">Choose File</label>
+              <span id="file-name-cover" style="font-size: 0px;"></span>
+              <div class="info-progress-cover">
+                <div class="progress-cover">
+                  <div id="upload-progress-cover" class="progress-bar progress-bar-striped progress-bar-animated"
+                    role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                    style="width: 0; min-width: 2em;" hidden="">0%
+                  </div>
+                </div>
+                <div class="cover-url" hidden>
+                  <img src="" alt="" id="cover-url">
+                </div>
+              </div>
+              <input value="{cover_photo}" id="cover_photo" class="form-control" type="text" name="cover_photo"
+                required>
+
+            </div>
+          </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="close-btn btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+        <button id="btn-savecard" class="btn btn-primary ps-5 pe-5">Lưu</button>
+      </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add IMG -->
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDxG2vMNkqz1sf4UGAaMzcaq3lVdAN5C8M",
+      authDomain: "users-8f542.firebaseapp.com",
+      projectId: "users-8f542",
+      storageBucket: "users-8f542.appspot.com",
+      messagingSenderId: "351740883393",
+      appId: "1:351740883393:web:b9c6a3bba9f040cf3ebf40",
+      measurementId: "G-KN5Q9HHHL7"
+    };
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+  </script>
+
+  <script type="module">
+    import {
+      getStorage,
+      ref,
+      uploadBytesResumable,
+      getDownloadURL
+    } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-storage.js";
+
+    const storage = getStorage();
+
+    // Create the file metadata
+    /** @type {any} */
+    const metadata = {
+      'jpg': 'images/jpg',
+      'jpeg': 'images/jpeg',
+      'png': 'images/png'
+    };
+
+
+    function uploadImage(e) {
+
+      var input = event.target;
+      if (input.files && input.files[0]) {
+        var fileName = input.files[0].name;
+        document.getElementById("file-name").textContent = fileName;
+      }
+
+      document.getElementById("image-upload").disabled = true
+      // let uploader = document.getElementById('uploader');
+      let file = e.target.files[0];
+
+      // Upload file and metadata to the object 'images/mountains.jpg'
+      const storageRef = ref(storage, 'images/' + file.name);
+      const uploadTask = uploadBytesResumable(storageRef, file, metadata);
+      document.getElementById("upload-progress").hidden = false;
+
+      // Listen for state changes, errors, and completion of the upload.
+      uploadTask.on('state_changed',
+        (snapshot) => {
+          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log('Upload is ' + progress + '% done');
+          let progressBar = document.getElementById("upload-progress");
+          let progressImg = document.querySelector(".progress");
+          progressBar.style.width = Math.round(progress) + "%";
+          progressBar.innerHTML = Math.round(progress) + "%";
+          progressImg.style.margin = "0px 0px 10px 0px";
+          var divElement = document.querySelector('.image-url');
+          divElement.removeAttribute('hidden');
+          const inputElement = document.getElementById('image');
+          inputElement.readOnly = true;
+          switch (snapshot.state) {
+            case 'paused':
+              console.log('Upload is paused');
+              break;
+            case 'running':
+              console.log('Upload is running');
+              break;
+          }
+        },
+        (error) => {
+          // A full list of error codes is available at
+          // https://firebase.google.com/docs/storage/web/handle-errors
+          switch (error.code) {
+            case 'storage/unauthorized':
+              // User doesn't have permission to access the object
+              break;
+            case 'storage/canceled':
+              // User canceled the upload
+              break;
+
+            // ...
+
+            case 'storage/unknown':
+              // Unknown error occurred, inspect error.serverResponse
+              break;
+          }
+        },
+        () => {
+          // Upload completed successfully, now we can get the download URL
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log('File available at', downloadURL);
+            let image = document.getElementById('image');
+            image.value = downloadURL;
+            document.getElementById('image-url').src = downloadURL;
+            // pushNewIMG(downloadURL)
+            setTimeout(() => {
+              document.getElementById("image-upload").disabled = false;
+            }, 500)
+          });
+        }
+      );
+    }
+
+    function uploadCoverPhoto(e) {
+
+      var input = event.target;
+      if (input.files && input.files[0]) {
+        var fileName = input.files[0].name;
+        document.getElementById("file-name-cover").textContent = fileName;
+      }
+
+      document.getElementById("cover-upload").disabled = true
+      // let uploader = document.getElementById('uploader');
+      let file = e.target.files[0];
+
+      // Upload file and metadata to the object 'images/mountains.jpg'
+      const storageRef = ref(storage, 'images/' + file.name);
+      const uploadTask = uploadBytesResumable(storageRef, file, metadata);
+      document.getElementById("upload-progress-cover").hidden = false;
+
+      // Listen for state changes, errors, and completion of the upload.
+      uploadTask.on('state_changed',
+        (snapshot) => {
+          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log('Upload is ' + progress + '% done');
+          let progressBar = document.getElementById("upload-progress-cover");
+          let progressImg = document.querySelector(".progress-cover");
+          progressBar.style.width = Math.round(progress) + "%";
+          progressBar.innerHTML = Math.round(progress) + "%";
+          progressImg.style.margin = "0px 0px 10px 0px";
+          var divElement = document.querySelector('.cover-url');
+          divElement.removeAttribute('hidden');
+          const inputElement = document.getElementById('cover_photo');
+          inputElement.readOnly = true;
+          switch (snapshot.state) {
+            case 'paused':
+              console.log('Upload is paused');
+              break;
+            case 'running':
+              console.log('Upload is running');
+              break;
+          }
+        },
+        (error) => {
+          // A full list of error codes is available at
+          // https://firebase.google.com/docs/storage/web/handle-errors
+          switch (error.code) {
+            case 'storage/unauthorized':
+              // User doesn't have permission to access the object
+              break;
+            case 'storage/canceled':
+              // User canceled the upload
+              break;
+
+            // ...
+
+            case 'storage/unknown':
+              // Unknown error occurred, inspect error.serverResponse
+              break;
+          }
+        },
+        () => {
+          // Upload completed successfully, now we can get the download URL
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log('File available at', downloadURL);
+            let image = document.getElementById('cover_photo');
+            image.value = downloadURL;
+            document.getElementById('cover-url').src = downloadURL;
+            // pushNewIMG(downloadURL)
+            setTimeout(() => {
+              document.getElementById("cover-upload").disabled = false;
+            }, 500)
+          });
+        }
+      );
+    }
+
+    window.uploadImage = uploadImage;
+    window.uploadCoverPhoto = uploadCoverPhoto;
+
+  </script>
+
+
+</body>
+
+</html>

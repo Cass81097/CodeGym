@@ -1,0 +1,70 @@
+* {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: url(../../img/my-img/background.jpg);
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.edit-modal {
+    position: absolute;
+    top: 50%;
+    /* transform: translateY(12%); */
+}
+
+.modal-title {
+    font-size: 35px !important;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center !important
+}
+
+.btn-close {
+    font-size: 20px !important;
+    padding: 7px !important;
+}
+
+.mb-name {
+    margin-bottom: 10px;
+}
+
+.mb-phone {
+    margin-bottom: 10px;
+}
+
+.mb-college {
+    margin-bottom: 10px;
+}
+
+.mb-address {
+    margin-bottom: 10px;
+}
+
+.mb-email {
+    margin-bottom: 10px;
+}
+
+.mb-avatar {
+    margin-bottom: 10px;
+}
+
+.mb-cover-photo {
+    margin-bottom: 10px;
+}
+
+span {
+    font-weight: 600;
+}
+
+.photo-image {
+    display: flex;
+}
+

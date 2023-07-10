@@ -215,7 +215,7 @@ header {
 
 .home-content {
     background: white !important; 
-    height: 210px;
+    /* height: 210px; */
     border-radius: 15px;
     overflow: hidden;
     border: 1px solid #dfdaec;

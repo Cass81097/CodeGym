@@ -255,3 +255,87 @@ function showListProduct(req, res) {
 }
 
 export default new ProductController();
+
+
+ // showHome = async (req, res) => {
+    //     let userID = await userController.getUserID(req)
+    //     if (userID) {
+    //         // console.log('UserId', userID, 'signed in');
+    //         fs.readFile('view/blog/home.html', 'utf-8', (err, stringHTML) => {
+    //             let str1 = '';
+    //             let str2 = '';
+    //             let str3 = '';
+    //             let str4 = '';
+    //             let str5 = '';
+
+    //             blogService.findAllByIdAccount(userID).then((blogs) => {
+    //                 for (const blog of blogs) {
+    //                     str1 = `
+    //                     <div class="ava">
+    //                     <a href=""><i class="bx avatar online" data-bs-toggle="tooltip" data-bs-placement="bottom"
+    //                         title="Tài khoản" style="background-image: url('${blog.avatar}')"></i></a>
+    //                         </div>
+    //                 `
+
+    //                     str2 = `
+    //                 <li class="links link-avatar">
+    //                 <a href="">
+    //                 <div class="left-ava"><i class="bx left-avatar" style="background-image: url('${blog.avatar}');"></i></div>
+    //                 <span style="margin-left: 5px;" class="text nav-text">${blog.name}</span>
+    //                 </a>
+    //                 </li>
+    //                 `
+
+    //                     str3 = `
+    //                 <div class="story" style="background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url('${blog.avatar}');">
+    //                 <img src="../../img/upload.png" alt="">
+    //                 <h6>Tạo tin</h6>
+    //                 </div> 
+    //                 `
+
+    //                     str4 = `
+    //                 <div class="user-profile">
+    //                 <img src="${blog.avatar}">
+    //                 <div>
+    //                 <p>${blog.name}</p>
+    //                 <small>Public
+    //                 <i class="fas fa-caret-down"></i>
+    //                 </small>
+    //                 </div>
+    //                 </div>
+    //                 `
+
+    //                     str5 += `
+    //                     <div class="index-content">
+    //                 <div class="post-container">
+    //                 <div class="user-profile">
+    //                 <img src="${blog.avatar}">
+    //                 <div>
+    //                 <p>${blog.name}</p>
+    //                 <div class="time-status">
+    //                 <span>8 tháng 7 lúc 20:20</span>
+    //                 <i class="fas fa-globe-americas" style="color: #65676B;"></i>
+    //                 </div>
+    //                     </div>
+    //                 </div>
+    //                 <div class="post-user">
+    //                 <p class="post-text">${blog.content}</p>
+    //                 <img src="${blog.image}" class="post-img">
+    //                 <div class="activity-icons">                         
+    //                 </div>
+    //                 </div>
+    //                 </div>
+    //                 </div>
+    //                 `
+    //                 }
+    //                 stringHTML = stringHTML.replace('{avatar}', str1)
+    //                 stringHTML = stringHTML.replace('{sidebar-avatar}', str2)
+    //                 stringHTML = stringHTML.replace('{story-avatar}', str3)
+    //                 stringHTML = stringHTML.replace('{write-avatar}', str4)
+    //                 stringHTML = stringHTML.replace('{index-content}', str5)
+    //                 res.write(stringHTML);
+    //                 res.end();
+    //             })
+    //         })
+    //     }
+    // }
