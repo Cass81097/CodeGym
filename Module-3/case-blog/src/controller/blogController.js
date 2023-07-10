@@ -11,6 +11,13 @@ class BlogController {
         })
     }
 
+    showProfile(req, res) {
+        fs.readFile('view/blog/profile.html', 'utf-8', (err, stringHTML) => {
+            res.write(stringHTML);
+            res.end();
+        })
+    }
+
     showAll(req, res) {
         fs.readFile('view/blog/list.html', 'utf-8', (err, stringHTML) => {
             let str = '';

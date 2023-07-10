@@ -2,7 +2,7 @@ import fs from "fs";
 
 class HomeController {
     showIndex(req, res) {
-        fs.readFile('view/user/signUp.html', 'utf-8', (err, stringHTML) => {
+        fs.readFile('view/index.html', 'utf-8', (err, stringHTML) => {
             res.write(stringHTML);
             res.end();
         })
@@ -14,6 +14,7 @@ class HomeController {
             res.end();
         })
     }
+
 }
 
 export default new HomeController();

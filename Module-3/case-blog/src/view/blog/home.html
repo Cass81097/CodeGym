@@ -4,36 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-
-    <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
-        integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
-        crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../css/my-style.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/home/style.css">
+    <link rel="stylesheet" href="css/home/header.css">
+    <link rel="stylesheet" href="css/home/left-sidebar.css">
+    <link rel="stylesheet" href="css/home/right-sidebar.css">
+    <link rel="stylesheet" href="css/home/main-content.css">
+    <link rel="stylesheet" href="css/home/home-content.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.6.95/css/materialdesignicons.min.css">
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-
-    <!-- My Style -->
-    <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/left-sidebar.css">
-    <link rel="stylesheet" href="../css/main-content.css">
-    <link rel="stylesheet" href="../css/right-sidebar.css">
-    <link rel="stylesheet" href="../css/home-style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </head>
 
 <body>
     <header>
         <div class="fb-nav">
+
             <div class="title">
                 <a href="">F4kebook</a>
             </div>
@@ -43,15 +32,15 @@
             </div>
             <div class="home-media">
                 <div class="social-media">
-                    <a href="" data-toggle="tooltip" data-placement="bottom" title="Messenger"><i
+                    <a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Messenger"><i
                             class='bx bxl-messenger'></i></a>
-                    <a href="" data-toggle="tooltip" data-placement="bottom" title="Thông báo"><i
+                    <a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thông báo"><i
                             class='bx bxs-bell'></i></a>
                 </div>
 
                 <div class="ava">
-                    <a href=""><i class="bx avatar online" data-toggle="tooltip" data-placement="bottom"
-                            title="Tài khoản"></i></a>
+                    <a href=""><i class="bx avatar online" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            title="Tài khoản" style="background-image: url('../../img/home/avatar.jpg')"></i></a>
                 </div>
             </div>
 
@@ -69,7 +58,7 @@
                 </li>
                 <li class="links link-avatar">
                     <a href="">
-                        <div class="left-ava"><i class="bx left-avatar"></i></div>
+                        <div class="left-ava"><i class="bx left-avatar" style="background-image: url('../../img/home/avatar.jpg');"></i></div>
                         <span style="margin-left: 5px;" class="text nav-text">Avatar</span>
                     </a>
                 </li>
@@ -142,26 +131,74 @@
 
                 <div class="body-content">
                     <div class="story-galley">
-                        <div class="story">
-                            <img src="./img/upload.png" alt="">
+                        <div class="story" style="background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url('../../img/home/avatar-main.jpg');">
+                            <img src="../../img/upload.png" alt="">
                             <h6>Tạo tin</h6>
                         </div>
-
-                        <div class="story-one">
+                        <!-- <div class="story-one">
                         </div>
-
                         <div class="story-two">
                         </div>
-
                         <div class="story-three">
-                        </div>
+                        </div> -->
                     </div>
-
-
                 </div>
             </div>
 
+            <div class="home-content">
+                <div class="write-post-container">
+                    <div class="user-profile">
+                        <img src="img/avatar.jpg">
+                        <div>
+                            <p>Trương Hoàng Anh</p>
+                            <small>Public
+                                <i class="fas fa-caret-down"></i>
+                            </small>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="post-input-container">
+                    <textarea name="textarea" id="textarea" placeholder="Bạn đang nghĩ gì thế?" rows="3"></textarea>
+                    <div class="add-post-links">
+                        <a href="#"><img src="img/live-video.png"> Video trực tiếp</a>
+                        <a href="#"><img src="img/photo.png"> Ảnh/video</a>
+                        <a href="#"><img src="img/feeling.png"> Cảm xúc/hoạt động</a>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="index-content">
+                <div class="post-container">
+                    <div class="user-profile">
+                        <img src="img/avatar.jpg">
+                        <div>
+                            <p>Trương Hoàng Anh</p>
+                            <div class="time-status">
+                                <span>8 tháng 7 lúc 20:20</span>
+                                <i class="fas fa-globe-americas" style="color: #65676B;"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-user">
+                        <p class="post-text">Lâu rồi mới có thời gian rảnh sau giờ ăn tối cùng gia đình, để đi rửa bát,
+                            đi lấy cơm cho bọn này.
+                            Mọi ngày phải lấy 3 bát cơm. Hôm nay lấy có 2 bát tự dưng hụt hẫng ghê. Thế là em Dudu 10
+                            tuổi đi cùng mẹ Kato rồi. Còn chưa được gặp e Dudu lần cuối đã vội vã với những sự kiện đã
+                            được lên kế hoạch trước, kiếm tiền cho đã rồi về không còn bên cạnh những điều mình yêu thì
+                            có để làm gì đou chớ
+                            Kiếp sau đừng có ngã gãy chân nữa bà Dudu ơi!</p>
+                        <img src="img/avatar-main.jpg" class="post-img">
+
+                        <div class="activity-icons">
+                            
+                           
+                                              
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
 
@@ -172,7 +209,7 @@
 
                     <div class="ads-one">
                         <a href="">
-                            <i class="fa-solid fa-xmark button-remove"></i>
+                            <i class="fas fa-times button-remove"></i>
                             <img src="./img/meo.png" alt="">
                             <div class="ads-title">
                                 <h5>Meo meo</h5>
@@ -183,7 +220,7 @@
 
                     <div class="ads-two">
                         <a href="">
-                            <i class="fa-solid fa-xmark button-remove"></i>
+                            <i class="fas fa-times button-remove"></i>
                             <img src="./img/shopee.png" alt="">
                             <div class="ads-title">
                                 <h5>Shopee</h5>
@@ -201,19 +238,17 @@
                     <div class="birthday-content">
                         <p>Hôm nay là sinh nhật của <a href="">Nguyễn Thị Quỳnh.</p></a>
                     </div>
-
                 </div>
-
             </div>
 
             <div class="rightbar-contact">
                 <h4>Người liên hệ</h4>
                 <div class="rightbar-icon">
-                    <a href=""><i class='bx bxs-camera-movie right-icon' data-toggle="tooltip" data-placement="bottom"
-                            title="Cuộc gọi mới"></i></a>
-                    <a href=""><i class='bx bx-search right-icon' data-toggle="tooltip" data-placement="bottom"
+                    <a href=""><i class='bx bxs-camera-movie right-icon' data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" title="Cuộc gọi mới"></i></a>
+                    <a href=""><i class='bx bx-search right-icon' data-bs-toggle="tooltip" data-bs-placement="bottom"
                             title="Tìm kiếm"></i></a>
-                    <a href=""><i class='bx bx-menu right-icon' data-toggle="tooltip" data-placement="bottom"
+                    <a href=""><i class='bx bx-menu right-icon' data-bs-toggle="tooltip" data-bs-placement="bottom"
                             title="Tùy chọn"></i></a>
                 </div>
             </div>
@@ -245,7 +280,7 @@
 
     </div>
 
-    <script src="../../js/tool-tip.js"></script>
+    <script src="index.js"></script>
 </body>
 
 </html>

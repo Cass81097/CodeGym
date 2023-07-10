@@ -1,0 +1,63 @@
+.about {
+    background: #ffff;
+    height: 100vh;
+    width: 100%;
+    border : 1px solid #dadcdf;
+    border-radius: 10px;
+    border-top: none;
+    display: flex;
+}
+
+.left-about {
+    padding: 10px;
+    width: 30%;
+    /* background-color: red; */
+    height: 100vh;
+    border-right: 1px solid #dadcdf;
+}
+
+.right-about {
+    width: 70%;
+    padding: 5px 10px 5px 5px;
+}
+
+
+.fa-mobile {
+    font-size: 1.5em !important;
+}
+
+.mobile {
+    transform: translateX(2px);
+}
+
+.user,
+.pass {
+    margin-right: 5px;
+}
+
+.highlight {
+    display: flex;
+    padding: 20px;
+}
+
+.title-about h5 {
+    color: black;
+    font-weight: 600;
+    font-size: 22px;
+}
+
+.content-about {
+    color: black;
+    font-weight: 500;
+    border-radius: 6px;
+    background: #E7F3FF;
+    padding: 10px;
+}
+
+.title-about {
+    padding: 5px;
+}
+
+.icon-about {
+    font-size: 25px;
+}
