@@ -8,9 +8,9 @@ class BlogService {
 
     findAll() {
         return new Promise((resolve, reject) => {   
-            const sql = `SELECT blog.id, title, content, name 
-                        FROM demo2006.blog 
-                        JOIN category on idCategory = category.id; `
+            const sql = `SELECT *
+            FROM information 
+            JOIN post on postId = information.accId; `
             connection.getConnection().query(sql, (err, list) => {
                 if (err) {
                     reject(err)
@@ -21,7 +21,23 @@ class BlogService {
             })
         })
     }  
-    // INSERT INTO `demo2006`.`blog` (`id`, `title`, `content`, `idCategory`) VALUES ('3', 'Đua xe', 'Đam mê', '1');
+
+    findAllByIdAccount(userId) {
+        return new Promise((resolve, reject) => {   
+            const sql = `SELECT *
+            FROM information 
+            JOIN post on postId = information.accId
+            WHERE information.accId = ${userId}; `
+            connection.getConnection().query(sql, (err, list) => {
+                if (err) {
+                    reject(err)
+                } else {
+                    // console.log(list)
+                    resolve(list)
+                }
+            })
+        })
+    }  
 
     save(blog) {
         return new Promise((resolve, reject) => {   

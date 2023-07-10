@@ -9,7 +9,7 @@ class UserService {
     checkUser(user) {
         return new Promise((resolve, reject) => {
             connection.getConnection().query(
-                `select * from accounts where username = '${user.username}' and password = '${user.password}';`,
+                `select * from account where username = '${user.username}' and password = '${user.password}';`,
                 (err, result) => {
                     if (err) {
                         reject(err);
@@ -19,6 +19,28 @@ class UserService {
                 }
             );
         });
+    }
+    
+    checkUserID = (userID) => {
+        return new Promise((resolve, reject) => {
+            let query = `select accountId
+                         from account
+                         where accountId = ${userID}
+            `
+            // console.log("--checking user ID query:", query)
+            connection.getConnection().query(query, (err, ids) => {
+                if (err) {
+                    reject(err)
+                } else {
+                    // console.log("find All:", products)
+                    if (ids.length > 0) {
+                        resolve(true)
+                    } else {
+                        resolve(false)
+                    }
+                }
+            })
+        })
     }
 
     addUser(user) {

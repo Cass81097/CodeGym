@@ -1,9 +1,10 @@
 import fs from "fs";
 import qs from 'qs';
+import cookie from 'cookie';
 import userService from "../service/userService.js";
 
 class UserController {
-    
+
     signUp(req, res) {
         let data = '';
         req.on('data', (dataRaw) => {
@@ -17,7 +18,7 @@ class UserController {
                 });
             } else {
                 data = qs.parse(data);
-                if(data.password === data.passConfirm){
+                if (data.password === data.passConfirm) {
                     userService.addUser(data)
                         .then(() => {
                             fs.readFile('view/user/signIn.html', 'utf-8', (err, stringHTML) => {
@@ -68,8 +69,14 @@ class UserController {
                 data = qs.parse(data);
                 console.log(data);
                 userService.checkUser(data)
-                    .then((result) => {     
+                    .then((result) => {
+                        // console.log(result);
                         if (result.length > 0) {
+                            res.setHeader('Set-Cookie', cookie.serialize('userID', String(result[0].accountId), {
+                                httpOnly: false,
+                                maxAge: 60 * 60 * 24 * 7 // 1 week
+                            }));
+
                             res.writeHead(302, {
                                 Location: '/home'
                             });
@@ -90,6 +97,19 @@ class UserController {
             }
         });
     }
+
+    getUserID = async (req) => {
+        if (req.headers.cookie) {
+            let cookies = cookie.parse(req.headers.cookie);
+            let userID = parseInt(cookies.userID);
+            if (isNaN(userID)) {
+                return null
+            } else if (await userService.checkUserID(userID)) {
+                return userID
+            }
+        }
+        return null
+    }
 }
 
-export default new UserController();
+export default new UserController();    

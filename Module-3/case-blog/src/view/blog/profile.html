@@ -46,10 +46,11 @@
                      class='bx bxs-bell'></i></a>
             </div>
 
-            <div class="ava">
+            <!-- <div class="ava">
                <a href=""><i class="bx avatar online" data-toggle="tooltip" data-placement="bottom" title="Tài khoản"
                      style="background-image: url('../../img/home/avatar.jpg');"></i></a>
-            </div>
+            </div> -->
+            {avatar}
          </div>
 
       </div>
@@ -63,12 +64,13 @@
                   <i class='select1 bx bxs-home icon' style="color: black"></i>
                </a>
             </li>
-            <li class="links link-avatar">
+            <!-- <li class="links link-avatar">
                <a href="">
                   <div class="left-ava"><i class="select bx left-avatar"
                         style="background-image: url('../../img/home/avatar.jpg');"></i></div>
                </a>
-            </li>
+            </li> -->
+            {sidebar-avatar}
          </div>
 
          <div class="mid-content">
@@ -120,7 +122,7 @@
 
       <!-- profile page  -->
 
-      <div class="profile-container">
+      <!-- <div class="profile-container">
          <img src="../../img/my-img/background-profile.jpg" class="cover-img">
          <div class="profile-details">
             <div class="pd-left">
@@ -136,216 +138,138 @@
                   </div>
                </div>
             </div>
-            <div class="pd-right">
-               <div class="add-button">
-                  <button type="button" class="btn btn-primary btn-add">
-                     <i class="fas fa-plus fa-xa"><span>Thêm vào tin</span></i>
+         <div class="pd-right">
+            <div class="add-button">
+               <button type="button" class="btn btn-primary btn-add">
+                  <i class="fas fa-plus fa-xa"><span>Thêm vào tin</span></i>
+               </button>
+            </div>
+            <div class="edit-button">
+               <button type="button" class="btn btn-secondary btn-edit">
+                  <i class="fas fa-pen fa-xz"><span>Chỉnh sửa trang cá nhân</span></i>
+               </button>
+            </div>
+         </div>
+      </div> -->
+      {profile-container}
+
+      <div class="all-task">
+
+         <div class="post-task">
+            <a href="#"><span>Bài viết</span></a>
+         </div>
+         <div class="profile-task">
+            <a href="#"><span>Giới thiệu</span></a>
+         </div>
+      </div>
+
+      {profile-info}
+
+      <div class="about" hidden>
+
+         <div class="left-about">
+            <div class="title-about">
+               <h5>Giới thiệu</h5>
+            </div>
+
+            <div class="content-about">
+               <a href="#">Tổng quan</a>
+            </div>
+         </div>
+
+         <div class="right-about">
+
+            <div class="highlight">
+               <div class="field">
+                  <i class="fas fa-user-circle icon-about"></i>
+                  <span>Trương Hoàng Anh</span>
+               </div>
+
+               <div class="featured-button">
+                  <a href="">
+                     <button id="edit-icon" class="edit"><span class="edit-icon"></span></button>
+                  </a>
+                  <button class="btn-remove btn-delete-remove">
+                     <span class="mdi mdi-delete mdi-24px"></span>
+                     <span class="mdi mdi-delete-empty mdi-24px"></span>
                   </button>
                </div>
-               <div class="edit-button">
-                  <button type="button" class="btn btn-secondary btn-edit">
-                     <i class="fas fa-pen fa-xz"><span>Chỉnh sửa trang cá nhân</span></i>
+            </div>
+
+            <div class="highlight">
+               <div class="field">
+                  <i class="fa fa-mobile fa-lg m-r-5 icon-about"></i>
+                  <span>+1-(847)-367-8924</span>
+               </div>
+
+               <div class="featured-button">
+                  <a href="">
+                     <button id="edit-icon" class="edit"><span class="edit-icon"></span></button>
+                  </a>
+                  <button class="btn-remove btn-delete-remove">
+                     <span class="mdi mdi-delete mdi-24px"></span>
+                     <span class="mdi mdi-delete-empty mdi-24px"></span>
                   </button>
                </div>
             </div>
-         </div>
 
-         <div class="all-task">
-
-            <div class="post-task">
-               <a href="#"><span>Bài viết</span></a>
-            </div>
-            <div class="profile-task">
-               <a href="#"><span>Giới thiệu</span></a>
-            </div>
-         </div>
-
-
-         <div class="profile-info" hidden>
-            <div class="info-col">
-               <div class="about-info">
-                  <h5>Giới thiệu</h5>
+            <div class="highlight">
+               <div class="field">
+                  <i class="fas fa-address-card icon-about"></i>
+                  <span>Add Number</span>
                </div>
-
-               <div class="profile-about">
-                  <div class="class-profile">
-                     <i class="fas fa-graduation-cap icon-profile"></i>
-                     <span>Từng học tại Học Viện Ngân Hàng</span>
-                  </div>
-
-                  <div class="address-profile">
-                     <i class="fas fa-map-marker-alt icon-profile"></i>
-                     <span>Mỹ Tho</span>
-                  </div>
-
-                  <div class="picture-profile">
-                     <div class="picture-profile-1"
-                        style="background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url(./img/avatar-main.jpg);">
-                     </div>
-                  </div>
+               <div class="featured-button">
+                  <a href="">
+                     <button id="edit-icon" class="edit"><span class="edit-icon"></span></button>
+                  </a>
+                  <button class="btn-remove btn-delete-remove">
+                     <span class="mdi mdi-delete mdi-24px"></span>
+                     <span class="mdi mdi-delete-empty mdi-24px"></span>
+                  </button>
                </div>
             </div>
 
-            <div class="post-col">
-               <div class="home-content">
-                  <div class="write-post-container">
-                     <div class="user-profile">
-                        <img src="img/avatar.jpg">
-                        <div>
-                           <p>Trương Hoàng Anh</p>
-                           <small>Public
-                              <i class="fas fa-caret-down"></i>
-                           </small>
-                        </div>
-                     </div>
-                  </div>
-
-                  <div class="post-input-container">
-                     <textarea name="textarea" id="textarea" placeholder="Bạn đang nghĩ gì thế?" rows="3"></textarea>
-                     <div class="add-post-links">
-                        <a href="#"><img src="img/live-video.png"> Video trực tiếp</a>
-                        <a href="#"><img src="img/photo.png"> Ảnh/video</a>
-                        <a href="#"><img src="img/feeling.png"> Cảm xúc/hoạt động</a>
-
-                     </div>
-                  </div>
+            <div class="highlight">
+               <div class="field">
+                  <i class="fas fa-envelope icon-about"></i>
+                  <span>Add Number</span>
                </div>
 
-               <div class="index-content">
-                  <div class="post-container">
-                     <div class="user-profile">
-                        <img src="img/avatar.jpg">
-                        <div>
-                           <p>Trương Hoàng Anh</p>
-                           <div class="time-status">
-                              <span>8 tháng 7 lúc 20:20</span>
-                              <i class="fas fa-globe-americas" style="color: #65676B;"></i>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="post-user">
-                        <p class="post-text">Lâu rồi mới có thời gian rảnh sau giờ ăn tối cùng gia đình, để đi rửa bát,
-                           đi lấy cơm cho bọn này.
-                           Mọi ngày phải lấy 3 bát cơm. Hôm nay lấy có 2 bát tự dưng hụt hẫng ghê. Thế là em Dudu 10
-                           tuổi đi cùng mẹ Kato rồi. Còn chưa được gặp e Dudu lần cuối đã vội vã với những sự kiện đã
-                           được lên kế hoạch trước, kiếm tiền cho đã rồi về không còn bên cạnh những điều mình yêu thì
-                           có để làm gì đou chớ
-                           Kiếp sau đừng có ngã gãy chân nữa bà Dudu ơi!</p>
-                        <img src="img/avatar-main.jpg" class="post-img">
-
-                        <div class="activity-icons">
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-
-         <div class="about">
-
-            <div class="left-about">
-               <div class="title-about">
-                  <h5>Giới thiệu</h5>
-               </div>
-
-               <div class="content-about">
-                  <a href="#">Tổng quan</a>
+               <div class="featured-button">
+                  <a href="">
+                     <button id="edit-icon" class="edit"><span class="edit-icon"></span></button>
+                  </a>
+                  <button class="btn-remove btn-delete-remove">
+                     <span class="mdi mdi-delete mdi-24px"></span>
+                     <span class="mdi mdi-delete-empty mdi-24px"></span>
+                  </button>
                </div>
             </div>
 
-            <div class="right-about">
-               
-               <div class="highlight">
-                  <div class="field">
-                     <i class="fas fa-user-circle icon-about"></i>
-                     <span>Trương Hoàng Anh</span>
-                  </div>
-
-                  <div class="featured-button">
-                     <a href="">
-                        <button id="edit-icon" class="edit"><span class="edit-icon"></span></button>
-                     </a>
-                     <button class="btn-remove btn-delete-remove">
-                        <span class="mdi mdi-delete mdi-24px"></span>
-                        <span class="mdi mdi-delete-empty mdi-24px"></span>
-                     </button>
-                  </div>
+            <div class="highlight">
+               <div class="field">
+                  <i class="fas fa-birthday-cake icon-about"></i>
+                  <span>Add Number</span>
                </div>
 
-               <div class="highlight">
-                  <div class="field">
-                     <i class="fa fa-mobile fa-lg m-r-5 icon-about"></i>
-                     <span>+1-(847)-367-8924</span>
-                  </div>
-
-                  <div class="featured-button">
-                     <a href="">
-                        <button id="edit-icon" class="edit"><span class="edit-icon"></span></button>
-                     </a>
-                     <button class="btn-remove btn-delete-remove">
-                        <span class="mdi mdi-delete mdi-24px"></span>
-                        <span class="mdi mdi-delete-empty mdi-24px"></span>
-                     </button>
-                  </div>
+               <div class="featured-button">
+                  <a href="">
+                     <button id="edit-icon" class="edit"><span class="edit-icon"></span></button>
+                  </a>
+                  <button class="btn-remove btn-delete-remove">
+                     <span class="mdi mdi-delete mdi-24px"></span>
+                     <span class="mdi mdi-delete-empty mdi-24px"></span>
+                  </button>
                </div>
-
-               <div class="highlight">
-                  <div class="field">
-                     <i class="fas fa-address-card icon-about"></i>
-                     <span>Add Number</span>
-                  </div>
-                     <div class="featured-button">
-                        <a href="">
-                           <button id="edit-icon" class="edit"><span class="edit-icon"></span></button>
-                        </a>
-                        <button class="btn-remove btn-delete-remove">
-                           <span class="mdi mdi-delete mdi-24px"></span>
-                           <span class="mdi mdi-delete-empty mdi-24px"></span>
-                        </button>
-                     </div>
-                  </div>
-
-                     <div class="highlight">
-                        <div class="field">
-                           <i class="fas fa-envelope icon-about"></i>
-                           <span>Add Number</span>
-                        </div>
-
-                        <div class="featured-button">
-                           <a href="">
-                              <button id="edit-icon" class="edit"><span class="edit-icon"></span></button>
-                           </a>
-                           <button class="btn-remove btn-delete-remove">
-                              <span class="mdi mdi-delete mdi-24px"></span>
-                              <span class="mdi mdi-delete-empty mdi-24px"></span>
-                           </button>
-                        </div>
-                     </div>
-
-                     <div class="highlight">
-                        <div class="field">
-                           <i class="fas fa-birthday-cake icon-about"></i>
-                           <span>Add Number</span>
-                        </div>
-
-                        <div class="featured-button">
-                           <a href="">
-                              <button id="edit-icon" class="edit"><span class="edit-icon"></span></button>
-                           </a>
-                           <button class="btn-remove btn-delete-remove">
-                              <span class="mdi mdi-delete mdi-24px"></span>
-                              <span class="mdi mdi-delete-empty mdi-24px"></span>
-                           </button>
-                        </div>
-                     </div>
-
-                  </div>
-               </div>
-
             </div>
 
          </div>
       </div>
+
+   </div>
+
+   </div>
+   </div>
 
 </body>
 
