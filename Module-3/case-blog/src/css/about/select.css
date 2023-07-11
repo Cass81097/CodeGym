@@ -1,0 +1,21 @@
+.profile-task span {
+    font-weight: 500;
+    color: blue;
+}
+
+.post-task span {
+    font-weight: 500;
+    color: black;
+}
+
+.select::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    top: 95%;
+    height: 3px;
+    background: rgb(24 118 242);
+    transform: rotate(0deg);
+    border-radius: 50px 50px 0px 0px;
+}
