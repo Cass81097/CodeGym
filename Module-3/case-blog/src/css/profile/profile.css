@@ -155,17 +155,28 @@ header {
     border-radius: 10px;
 }
 
-.picture-profile {
+/* .picture-profile {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
+} */
+
+.list-image-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    /* justify-content: center; */
+    padding-bottom: 10px;
 }
 
 .picture-profile-1 {
     margin-left: 10px;
-    height: 220px;
-    padding-left: 30%;
-    position: relative;
+    margin-right: 10px;
+    margin-top: 10px;
+    height: 200px;
+    width: 145px;
+    /* padding-left: 30%; */
+    /* position: relative; */
     background-position: center;
     background-size: cover;
     border-radius: 10px;
@@ -202,18 +213,12 @@ header {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .address-profile i {
     margin-left: 5px;
     width: 53px;
-}
-
-.picture-profile {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
 }
 
 .home-content {
@@ -235,10 +240,12 @@ header {
 .user-profile {
     display: flex;
     align-items: center;
+    padding: 20px 20px 0px 20px;
 }
 
 .user-profile img {
     width: 45px;
+    height: 45px;
     border-radius: 50%;
     margin-right: 10px;
 }
@@ -265,7 +272,7 @@ header {
     border-bottom: 1px solid #ccc;
     background: transparent;
     resize: none;
-    height: 50px;
+    height: 40px;
 }
 
 .add-post-links {
@@ -290,8 +297,11 @@ header {
 }
 
 .index-content {
+    padding-bottom: 20px;
     margin-top: 15px;
     background: white !important;
+    /* height: 300px; */
+    width: 100%;
     border-radius: 15px;
     overflow: hidden;
     border: 1px solid #dfdaec;
@@ -301,7 +311,7 @@ header {
     width: 100%;
     background: #fff;
     border-radius: 6px;
-    padding: 20px;
+    /* padding: 20px; */
     color: #626262;
 }
 
@@ -328,16 +338,16 @@ header {
 
 .post-text {
     color: #050505;
-    margin: 15px 0;
+    padding: 10px 20px 0px 15px;
     font-size: 15px;
 }
 
-.post-img {
+/* .post-img {
     width: 100%;
     border-radius: 4px;
     margin-bottom: 5px;
     border: 1px solid white
-}
+} */
 
 .icons {
     display: flex;
@@ -355,3 +365,14 @@ header {
     display: flex;
 }
 
+.post-detail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #D2D3CE;
+}
+
+.post-detail img {
+    width: 90%;
+    height: 550px;
+}

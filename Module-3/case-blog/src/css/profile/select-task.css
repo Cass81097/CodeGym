@@ -8,12 +8,16 @@
     color: blue;
 }
 
-.select::after {
+.select-task {
+    position: relative;
+}
+
+.select-task::after {
     content: "";
     position: absolute;
     width: 100%;
-    left: 0px;
-    top: 95%;
+    left: 0;
+    top: 96%;
     height: 3px;
     background: rgb(24 118 242);
     transform: rotate(0deg);

@@ -28,6 +28,7 @@ class InformationController {
                         let str5 = '';
                         let str6 = '';
                         let str7 = '';
+                        let str8 = '';
 
                         let blogs = await blogService.findAccountAndsortBlog(userID)
 
@@ -52,17 +53,26 @@ class InformationController {
                                         <span class="mdi mdi-delete-empty mdi-24px"></span>
                                     </button>
 
-                                </div>
+                                    </div>
                                 </div>
                                 <div class="post-user">
-                                    <p class="post-text">${blog.content}</p>
-                                    <img src="${blog.image}" class="post-img">
-                                    <div class="activity-icons">
+                                <p class="post-text">${blog.content}</p>
+                                    <div class="post-detail">
+                                        <img src="${blog.image}" class="post-img">
                                     </div>
                                 </div>
                                 </div>
                             </div>
                             `
+
+                            if (blog.image !== '') {
+                                str8 += `
+                                    <div class="picture-profile">
+                                        <div class="picture-profile-1" style="background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url(${blog.image});">
+                                        </div>
+                                    </div>
+                                `;
+                            }
                         }
 
                         let blogsById = await blogService.findAllByIdAccount(userID);
@@ -133,10 +143,8 @@ class InformationController {
                                             <span>Đến từ ${blog.address}</span>
                                         </div>
 
-                                        <div class="picture-profile">
-                                            <div class="picture-profile-1"
-                                                style="background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url(${blog.avatar});">
-                                            </div>
+                                        <div class="list-image-content">
+                                            {list-image-content}
                                         </div>
                                     </div>
                         `
@@ -196,6 +204,7 @@ class InformationController {
                         stringHTML = stringHTML.replace('{info-col}', str4);
                         stringHTML = stringHTML.replace('{post-col}', str5);
                         stringHTML = stringHTML.replace('{list-friend}', str7);
+                        stringHTML = stringHTML.replace('{list-image-content}', str8);
 
 
                         res.write(stringHTML);

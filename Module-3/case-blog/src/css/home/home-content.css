@@ -5,7 +5,7 @@
     width: 80%;
     margin-left: 30px;
     border-radius: 15px;
-    overflow: hidden;
+    /* overflow: hidden; */
     border: 1px solid #dfdaec;
 }
 
@@ -21,11 +21,12 @@
 .user-profile {
     display: flex;
     align-items: center;
+    padding: 20px 20px 0px 20px;
 }
 
 .user-profile img {
-    max-width : 45px;
-    max-height: 45px;
+    width : 45px;
+    height: 45px;
     border-radius: 50%;
     margin-right: 10px;
 }
@@ -52,7 +53,7 @@
     border-bottom: 1px solid #ccc;
     background: transparent;
     resize: none;
-    height: 50px;
+    height: 40px;
 }
 
 .add-post-links {
@@ -77,6 +78,7 @@
 }
 
 .index-content {
+    padding-bottom: 20px;
     margin-top: 15px;
     background: white !important;
     /* height: 300px; */
@@ -91,7 +93,7 @@
     width: 100%;
     background: #fff;
     border-radius: 6px;
-    padding: 20px;
+    /* padding: 20px; */
     color: #626262;
 }
 
@@ -118,16 +120,8 @@
 
 .post-text {
     color: #050505;
-    margin: 15px 0;
     font-size: 15px;
-    text-align: justify
-}
-
-.post-img {
-    width: 100%;
-    border-radius: 4px;
-    margin-bottom: 5px;
-    border: 1px solid white
+    padding: 10px 20px 0px 15px;
 }
 
 .icons {
@@ -146,3 +140,14 @@
     display: flex;
 }
 
+.post-detail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #D2D3CE;
+}
+
+.post-detail img {
+    width: 90%;
+    height: 550px;
+}

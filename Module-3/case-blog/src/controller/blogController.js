@@ -45,10 +45,10 @@ class BlogController {
                                             </div>
                                         </div>
                                         <div class="post-user">
-                                            <p class="post-text">${blog.content}</p>
-                                            <img src="${blog.image}" class="post-img">
-
-                                            <div class="activity-icons"></div>
+                                        <p class="post-text">${blog.content}</p>
+                                            <div class="post-detail">
+                                                <img src="${blog.image}" class="post-img">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

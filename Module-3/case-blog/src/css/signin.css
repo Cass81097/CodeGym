@@ -258,6 +258,7 @@ input[type="submit"] {
 
 h6 {
   font-size: 15px;
+  margin-bottom: 0px !important
 }
 
 .facebook {
@@ -277,6 +278,7 @@ h6 {
 
 .text {
   margin-bottom: 90px;
+  
 }
 
 
@@ -300,6 +302,8 @@ h6 {
   font-size: 1.75rem;
   white-space: nowrap;
 }
+
+
 
 /* Media */
 
