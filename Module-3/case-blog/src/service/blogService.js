@@ -25,8 +25,8 @@ class BlogService {
     findAllByIdAccount(userId) {
         return new Promise((resolve, reject) => {   
             const sql = `SELECT *
-            FROM information 
-            JOIN post on postId = information.accId
+            FROM post 
+            JOIN information on post.accId = information.accId
             WHERE information.accId = ${userId}; `
             connection.getConnection().query(sql, (err, list) => {
                 if (err) {

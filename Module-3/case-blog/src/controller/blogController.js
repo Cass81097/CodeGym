@@ -24,6 +24,7 @@ class BlogController {
                         let str3 = '';
                         let str4 = '';
                         let str5 = '';
+                        let str6 = '';
 
                         let blogs = await blogService.findAll();
                         console.log(blogs);
@@ -110,6 +111,10 @@ class BlogController {
                                     </div>
                                 </div>
                             `;
+
+                            str6 = `
+                                ${blog.accId}
+                            `
                         }
 
                         stringHTML = stringHTML.replace('{index-content}', str5);
@@ -117,10 +122,10 @@ class BlogController {
                         stringHTML = stringHTML.replace('{sidebar-avatar}', str2);
                         stringHTML = stringHTML.replace('{story-avatar}', str3);
                         stringHTML = stringHTML.replace('{write-avatar}', str4);
+                        stringHTML = stringHTML.replace('{accId-value}', str6);
 
                         res.write(stringHTML);
                         res.end();
-
                     } 
                 } catch (err) {
                     console.error(err);

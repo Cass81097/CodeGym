@@ -43,6 +43,8 @@ class UserService {
         })
     }
 
+    
+
     addUser(user) {
         return new Promise((resolve, reject) => {
             connection.getConnection().query(
