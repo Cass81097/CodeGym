@@ -172,6 +172,11 @@
     transition: var(--tran)
 }
 
+.rightbar-online {
+    position: relative;
+    transform: translateY(12%);
+}
+
 .online-list {
     position: relative;
     margin-top: 10px;

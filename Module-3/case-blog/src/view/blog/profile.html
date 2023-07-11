@@ -413,10 +413,17 @@
    </script>
 
    <script>
+      function confirmDeleteCookie() {
+         if (confirm("Bạn có chắc chắn đăng xuất không?")) {
+            deleteCookie();
+            window.location.href = "sign-in";
+         }
+      }
       function deleteCookie() {
          document.cookie = "userID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       }
    </script>
+
    <script>
       function handleDelete(postId) {
          if (confirm("Bạn có chắc muốn xóa bài đăng này không?")) {

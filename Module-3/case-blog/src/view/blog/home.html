@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/home/right-sidebar.css">
     <link rel="stylesheet" href="css/home/main-content.css">
     <link rel="stylesheet" href="css/home/home-content.css">
+    <link rel="stylesheet" href="css/home/add-img.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -255,7 +256,11 @@
                 </div>
             </div>
 
-            <div class="online-list" style="margin-top: 50px;">
+            <div class="rightbar-online">
+                {online-list}
+            </div>
+            
+            <!-- <div class="online-list" style="margin-top: 50px;">
                 <a href="">
                     <div class="ava-contact">
                         <img src="./img/quynh.jpg" alt="" class="bx avatar-contact online-contact">
@@ -275,7 +280,7 @@
                         <h5>Bùi Hữu Nghĩa</h5>
                     </div>
                 </a>
-            </div>
+            </div> -->
         </div>
     </div>
 
@@ -310,8 +315,182 @@
             </div>
         </div>
     </div>
+
+    <!-- Add-New-Img-Content -->
+    <div class="modal fade" id="modal-add-new-img-content" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modal-title">Thêm ảnh mới :</h1>
+                    <button type="button" data-bs-dismiss="modal" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div id="form-add-content">
+                    <div class="modal-body" style="background-color: #f9f8fb; padding-bottom: 5px;">
+                        <div class="mb-avatar">
+                            <label for="formFile" class="form-label inputcode"><span>Chọn ảnh :</span></label>
+                            <input type="file" id="image-upload" onchange="uploadImage(event)" hidden>
+                            <label for="image-upload" class="file-upload-button">Choose File</label>
+                            <span id="file-name" style="font-size: 0px;"></span>
+                            <div class="info-progress">
+                                <div class="progress">
+                                    <div id="upload-progress"
+                                        class="progress-bar progress-bar-striped progress-bar-animated"
+                                        role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                                        style="width: 0; min-width: 2em;" hidden="">0%
+                                    </div>
+                                </div>
+                                <div class="image-url" hidden>
+                                    <img src="" alt="" id="image-url">
+                                </div>
+                            </div>
+                            <input value="" id="image" class="form-control" type="text" name="avatar" hidden>
+                        </div>
+                        <div class="mb-notice" hidden>
+                            <span id="notice"></span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button id="btn-savecard" class="btn btn-primary ps-5 pe-5" data-bs-dismiss="modal">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Add IMG -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDxG2vMNkqz1sf4UGAaMzcaq3lVdAN5C8M",
+            authDomain: "users-8f542.firebaseapp.com",
+            projectId: "users-8f542",
+            storageBucket: "users-8f542.appspot.com",
+            messagingSenderId: "351740883393",
+            appId: "1:351740883393:web:b9c6a3bba9f040cf3ebf40",
+            measurementId: "G-KN5Q9HHHL7"
+        };
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+    </script>
+
+    <script type="module">
+        import {
+            getStorage,
+            ref,
+            uploadBytesResumable,
+            getDownloadURL
+        } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-storage.js";
+
+        const storage = getStorage();
+
+        // Create the file metadata
+        /** @type {any} */
+        const metadata = {
+            'jpg': 'images/jpg',
+            'jpeg': 'images/jpeg',
+            'png': 'images/png'
+        };
+
+
+        function uploadImage(e) {
+
+            var input = event.target;
+            if (input.files && input.files[0]) {
+                var fileName = input.files[0].name;
+                document.getElementById("file-name").textContent = fileName;
+            }
+
+            document.getElementById("image-upload").disabled = true
+            // let uploader = document.getElementById('uploader');
+            let file = e.target.files[0];
+
+            // Upload file and metadata to the object 'images/mountains.jpg'
+            const storageRef = ref(storage, 'images/' + file.name);
+            const uploadTask = uploadBytesResumable(storageRef, file, metadata);
+            document.getElementById("upload-progress").hidden = false;
+
+            // Listen for state changes, errors, and completion of the upload.
+            uploadTask.on('state_changed',
+                (snapshot) => {
+                    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                    let progressBar = document.getElementById("upload-progress");
+                    let progressImg = document.querySelector(".progress");
+                    progressBar.style.width = Math.round(progress) + "%";
+                    progressBar.innerHTML = Math.round(progress) + "%";
+                    progressImg.style.margin = "0px 0px 10px 0px";
+                    const divElement = document.querySelector('.image-url');
+                    divElement.removeAttribute('hidden');
+                    const inputElement = document.getElementById('image');
+                    inputElement.readOnly = true;
+                    switch (snapshot.state) {
+                        case 'paused':
+                            console.log('Upload is paused');
+                            break;
+                        case 'running':
+                            console.log('Upload is running');
+                            break;
+                    }
+                },
+                (error) => {
+                    // A full list of error codes is available at
+                    // https://firebase.google.com/docs/storage/web/handle-errors
+                    switch (error.code) {
+                        case 'storage/unauthorized':
+                            // User doesn't have permission to access the object
+                            break;
+                        case 'storage/canceled':
+                            // User canceled the upload
+                            break;
+
+                        // ...
+
+                        case 'storage/unknown':
+                            // Unknown error occurred, inspect error.serverResponse
+                            break;
+                    }
+                },
+                () => {
+                    // Upload completed successfully, now we can get the download URL
+                    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                        console.log('File available at', downloadURL);
+                        const pElement = document.querySelector('.mb-notice');
+                        pElement.removeAttribute('hidden');
+                        document.getElementById('notice').textContent = 'Hoàn thành!!!';
+                        let image = document.getElementById('image');
+                        let imageContent = document.getElementById('image-content');
+                        image.value = downloadURL;
+                        document.getElementById('image-url').src = downloadURL;
+                        // pushNewIMG(downloadURL)
+                        setTimeout(() => {
+                            document.getElementById("image-upload").disabled = false;
+                        }, 500)
+                    });
+                }
+            );
+        }
+
+        window.uploadImage = uploadImage;
+
+    </script>
+
     <script src="index.js"></script>
+
     <script>
+        function confirmDeleteCookie() {
+            if (confirm("Bạn có chắc chắn muốn đăng xuất không?")) {
+                deleteCookie();
+                window.location.href = "sign-in";
+            }
+        }
         function deleteCookie() {
             document.cookie = "userID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         }

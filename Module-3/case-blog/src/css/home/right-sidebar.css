@@ -152,6 +152,11 @@
     font-size: 16px;
 }
 
+.rightbar-online {
+    position: relative;
+    transform: translateY(12%);
+}
+
 .right-icon {
     color: #707070;
     font-size: 20px;

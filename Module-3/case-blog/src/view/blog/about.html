@@ -32,7 +32,7 @@
       <div class="fb-nav">
 
          <div class="title">
-            <a href="">F4kebook</a>
+            <a href="home">F4kebook</a>
          </div>
          <div class="search-box">
             <i class='bx bx-search icon-search'></i>
@@ -343,6 +343,12 @@
    </div>
 
    <script>
+      function confirmDeleteCookie() {
+         if (confirm("Bạn có chắc chắn muốn đăng xuất không?")) {
+            deleteCookie();
+            window.location.href = "sign-in";
+         }
+      }
       function deleteCookie() {
          document.cookie = "userID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       }

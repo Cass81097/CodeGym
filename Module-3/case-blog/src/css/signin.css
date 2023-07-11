@@ -1,11 +1,11 @@
 /* Google Font Import - Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
-*{
-   font-family: 'Poppins', sans-serif;
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 
 body{
@@ -13,6 +13,8 @@ body{
   background-attachment: fixed;
   background-size: cover;
   max-height: 100vh;
+  /* background-color: #f0f2f5; */
+
 }   
 
 :root {
@@ -89,11 +91,12 @@ header{
 }
 
 .grid {
-  inline-size: 90%;
+  /* inline-size: 90%;
   margin-inline: auto;
-  max-inline-size: 20rem;
-  margin-top: 110px;
-  padding-bottom: 10px;
+  max-inline-size: 20rem; */
+  /* margin-top: 110px; */
+  width: 400px;
+  padding: 15px;
 }
 
 .hidden {
@@ -140,6 +143,7 @@ input[type="submit"] {
 .form {
   display: grid;
   gap: var(--formGap);
+  margin: -10px 10px 10px 10px;
 }
 
 .form input[type="password"],
@@ -150,7 +154,8 @@ input[type="submit"] {
 
 .login {
   color: var(--loginColor);
-  margin-top: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ddd3d3;
 }
 
 .login label,
@@ -194,13 +199,9 @@ input[type="submit"] {
   background-color: var(--loginSubmitHoverBackgroundColor);
 }
 
-p {
-  margin-block: 1.5rem;
-}
-
-.text--center {
+.text-center {
   text-align: center;
-  margin-top: 10px;
+  margin-top: -5px;
 }
 
 .text--center a{
@@ -248,13 +249,81 @@ p {
 
 .align {  
   background: #ffffff;
-  max-width: 400px;
+  /* max-width: 400px; */
   max-height: 100vh;
   margin: auto;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px -2px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 5px -2px rgba(0,0,0,0.5);
 }
 
 h6 {
   font-size: 15px;
+}
+
+.facebook {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.facebook-page {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.text {
+  margin-bottom: 90px;
+}
+
+
+.facebook-page {
+  justify-content: space-between;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.facebook-page .text {
+  margin-bottom: 90px;
+}
+
+.facebook-page h1 {
+  color: #1877f2;
+  font-size: 4rem;
+  margin-bottom: 10px;
+}
+
+.facebook-page p {
+  font-size: 1.75rem;
+  white-space: nowrap;
+}
+
+/* Media */
+
+@media (max-width: 900px) {
+  .facebook-page {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .facebook-page .text {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 460px) {
+  .facebook-page h1 {
+    font-size: 3.5rem;
+  }
+
+  .facebook-page p {
+    font-size: 1.3rem;
+  }
+
+  form {
+    padding: 15px;
+  }
 }
