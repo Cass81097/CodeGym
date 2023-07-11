@@ -50,7 +50,7 @@ body {
 .navbar a {
   position: relative;
   font-size: 1.2rem;
-  color: blue;
+  color: #fdfdfd;
   font-weight: 500;
   margin-right: 3rem;
 }
@@ -62,12 +62,12 @@ body {
   width: 100%;
   bottom: -6px;
   height: 0.1rem;
-  background: blue;
+  background: #fdfdfd;
 }
 
 section {
   min-height: 100vh;
-  padding: 10rem 7% 2rem; 
+  padding: 10rem 7% 2rem;
 }
 
 .home {

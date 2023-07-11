@@ -1,5 +1,5 @@
 function sendFetchDelete(id) {
-    fetch(`http://localhost:8080/products/delete?id=${id}`)
+    fetch(`http://localhost:3000/profile/delete?id=${id}`)
         .then(res => {
         console.log(res);
         // alert('Xóa thành công!');

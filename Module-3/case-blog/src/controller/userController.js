@@ -21,6 +21,7 @@ class UserController {
                 if (data.password === data.passConfirm) {
                     userService.addUser(data)
                         .then(() => {
+                            console.log(data);
                             fs.readFile('view/user/signIn.html', 'utf-8', (err, stringHTML) => {
                                 let str = '';
                                 str += `<div class="container mt-5">

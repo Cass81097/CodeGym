@@ -20,7 +20,7 @@ class UserService {
             );
         });
     }
-    
+
     checkUserID = (userID) => {
         return new Promise((resolve, reject) => {
             let query = `select accountId
@@ -43,20 +43,18 @@ class UserService {
         })
     }
 
-    
 
     addUser(user) {
         return new Promise((resolve, reject) => {
-            connection.getConnection().query(
-                `insert into accounts (username, password, passConfirm, name, phone, address, email)
-                 values ('${user.username}', '${user.password}', '${user.passConfirm}', '${user.name}', '${user.phone}', '${user.address}', '${user.email}')`,
-                (err, products) => {
-                if (err) {
-                    reject(err)
-                } else {
-                    resolve(products[0])
-                }
-            })
+            let sql =  `insert into account (username, password, passConfirm, role, name, phone, college, address, email, avatar, cover_photo)
+            values ('${user.username}', '${user.password}', '${user.passConfirm}', 'user', 'New User', '', '', '', '', '../../img/home/avatar-default.jpg', '../../img/home/avatar-default.jpg')`
+                connection.getConnection().query(sql,(err, users) => {
+                        if (err) {
+                            reject(err)
+                        } else {
+                            resolve(users[0])
+                        }
+                    })
         })
     }
 

@@ -26,14 +26,7 @@ class BlogController {
                         let str5 = '';
                         let str6 = '';
 
-                        let blogs = await blogService.findAll();
-                        console.log(blogs);
-                        if (blogs.length === 0) {
-                            console.log(blogs);
-                            console.log(blogs.length);
-                            // Chuyển hướng sang trang báo lỗi
-                            return res.redirect('/error');
-                        }
+                        let blogs = await blogService.findAllAndSortBlog();
 
                         for (const allBlog of blogs) {
                             // console.log(allBlog);
@@ -64,6 +57,7 @@ class BlogController {
                         let blogsById = await blogService.findAllByIdAccount(userID);
 
                         for (const blog of blogsById) {
+                            // console.log(blog);
                             str1 = `
                                 <div class="ava">
                                     <a href="sign-in" onclick="deleteCookie()"><i class="bx avatar online" data-bs-toggle="tooltip" data-bs-placement="bottom"
@@ -127,6 +121,13 @@ class BlogController {
                         res.write(stringHTML);
                         res.end();
                     } 
+
+                    if (userID == null) {
+                        res.writeHead(302, {
+                            Location: '/err',
+                        });
+                        res.end();
+                    }
                 } catch (err) {
                     console.error(err);
                     // res.status(500).send('Internal Server Error');
@@ -134,13 +135,11 @@ class BlogController {
             } else {
                 data = qs.parse(data);
                 blogService.save(data).then(() => {
-                    console.log(data);
                     res.writeHead(302, {
                         Location: '/home',
                     });
                     res.end();
                 })
-
             }
         })
     }

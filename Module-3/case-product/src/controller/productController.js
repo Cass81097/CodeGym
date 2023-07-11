@@ -81,8 +81,8 @@ class ProductController {
     sortByPrice(req, res) {
         fs.readFile('view/product/sidebar.html', 'utf-8', (err, stringHTML) => {
             let str = '';
-            const urlObject = url.parse(req.url, true);
-            productService.sortProduct(urlObject.query.id).then((products) => {
+            // const urlObject = url.parse(req.url, true);
+            productService.sortProduct().then((products) => {
                 for (const product of products) {
                     str += `
                     <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
@@ -123,8 +123,8 @@ class ProductController {
     sortById(req, res) {
         fs.readFile('view/product/sidebar.html', 'utf-8', (err, stringHTML) => {
             let str = '';
-            const urlObject = url.parse(req.url, true);
-            productService.sortId(urlObject.query.id).then((products) => {
+            // const urlObject = url.parse(req.url, true);
+            productService.sortId().then((products) => {
                 for (const product of products) {
                     str += `
                     <div class="col-lg-3 col-md-4 col-sm-6 pb-1">

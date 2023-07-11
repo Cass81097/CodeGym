@@ -39,7 +39,8 @@ header {
 }
 
 .pd-image {
-    width: 150px;
+    width: 250px;
+    height: 150px;
     margin-right: 20px;
     border-radius: 50%;
 }
@@ -215,7 +216,7 @@ header {
 
 .home-content {
     background: white !important; 
-    /* height: 210px; */
+    height: auto;
     border-radius: 15px;
     overflow: hidden;
     border: 1px solid #dfdaec;
@@ -350,4 +351,29 @@ header {
 
 .left-icons {
     display: flex;
+}
+
+.confirm-content {
+    padding: 10px 0px 10px 0px
+}
+
+.confirm-content button {
+    width: 100%;
+}
+
+#notice {
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.profile-task span {
+    font-weight: 500;
+    color: black;
+}
+
+.post-task span {
+    font-weight: 500;
+    color: black;
 }

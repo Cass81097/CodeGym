@@ -10,7 +10,7 @@ class BlogService {
         return new Promise((resolve, reject) => {   
             const sql = `SELECT *
             FROM post 
-            JOIN information on post.accId = information.accId; `
+            JOIN account on post.accId = account.accountId; `
             connection.getConnection().query(sql, (err, list) => {
                 if (err) {
                     reject(err)
@@ -22,12 +22,45 @@ class BlogService {
         })
     }  
 
+    findAllAndSortBlog() {
+        return new Promise((resolve, reject) => {   
+            const sql = `SELECT *
+            FROM account
+            JOIN post ON post.accId = account.accountId
+            ORDER BY post.postId DESC;`
+            connection.getConnection().query(sql, (err, list) => {
+                if (err) {
+                    reject(err)
+                } else {
+                    // console.log(list)
+                    resolve(list)
+                }
+            })
+        })
+    }   
+
+    findAllById(userId) {
+        return new Promise((resolve, reject) => {   
+            const sql = `SELECT *
+            FROM account 
+            JOIN post on post.accId = account.accountId
+            WHERE accountId = ${userId}; `
+            connection.getConnection().query(sql, (err, list) => {
+                if (err) {
+                    reject(err)
+                } else {
+                    // console.log(list)
+                    resolve(list)
+                }
+            })
+        })
+    }
+
     findAllByIdAccount(userId) {
         return new Promise((resolve, reject) => {   
             const sql = `SELECT *
-            FROM post 
-            JOIN information on post.accId = information.accId
-            WHERE information.accId = ${userId}; `
+            FROM account 
+            WHERE account.accountId = ${userId}; `
             connection.getConnection().query(sql, (err, list) => {
                 if (err) {
                     reject(err)
@@ -51,6 +84,24 @@ class BlogService {
             })
         })
     }
+
+    findAccountAndsortBlog(id) {
+        return new Promise((resolve, reject) => {
+            let sql = `SELECT *
+            FROM account
+            JOIN post ON post.accId = account.accountId
+            WHERE post.accId = ${id}
+            ORDER BY post.postId DESC;`
+            connection.getConnection().query(sql, (err, list) => {
+                if (err) {
+                    reject(err)
+                } else {
+                    // console.log(list)
+                    resolve(list)
+                }
+            })
+        })
+    } 
 
     findProfile() {
         return new Promise((resolve, reject) => {

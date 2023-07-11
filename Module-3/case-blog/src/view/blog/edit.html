@@ -36,15 +36,16 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </a>
       </div>
-      <div class="modal-body" style="background-color: #f9f8fb;">
-        <form id="form-add-product" action="/profile/edit" method="post">
-          <div class="mb-id" style="display: none;">
+
+      <form id="form-add-product" action="/profile/edit" method="post">
+        <div class="modal-body" style="background-color: #f9f8fb;">
+          <!-- <div class="mb-id" style="display: none;">
             <label for="formFile" class="form-label"><span>infoId :</span></label>
             <input class="form-control" type="hidden" name="infoId" id="client-name" value="{infoId}">
-          </div>
+          </div> -->
           <div class="mb-id" style="display: none;">
             <label for="formFile" class="form-label"><span>accId :</span></label>
-            <input class="form-control" type="hidden" name="accId" id="client-name" value="{accId}">
+            <input class="form-control" type="hidden" name="accountId" id="client-name" value="{accountId}">
           </div>
           <div class="mb-name">
             <label for="formFile" class="form-label"><span>Name :</span></label>
@@ -105,19 +106,23 @@
               </div>
               <input value="{cover_photo}" id="cover_photo" class="form-control" type="text" name="cover_photo"
                 required>
-
             </div>
           </div>
 
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="close-btn btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-        <button id="btn-savecard" class="btn btn-primary ps-5 pe-5">Lưu</button>
-      </div>
+        </div>
+        <div class="modal-footer">
+          <a href="../about"><button type="button" class="close-btn btn btn-secondary">Đóng</button></a>
+          <button id="btn-savecard" class="btn btn-primary ps-5 pe-5">Lưu</button>
+        </div>
       </form>
     </div>
   </div>
+  </div>
+
+
+  <script>
+
+  </script>
 
   <!-- Add IMG -->
   <script type="module">
