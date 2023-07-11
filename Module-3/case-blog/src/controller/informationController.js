@@ -43,7 +43,7 @@ class InformationController {
                                         <p>${blog.name}</p>
                                         <div class="time-status">
                                             <span>8 tháng 7 lúc 20:20</span>
-                                            <i class="fas fa-globe-americas" style="color: #65676B;"></i>
+                                            <i class="fas fa-globe-americas" style="color: #65676B; transform: translateY(8%)"></i>
                                         </div>
                                     </div>
 
