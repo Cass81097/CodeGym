@@ -21,6 +21,24 @@ class BlogService {
         })
     }  
 
+    findAllExcept(id) {
+        return new Promise((resolve, reject) => {   
+            const sql = `
+            SELECT *
+            FROM account
+            WHERE accountId <> ${id};
+            `
+            connection.getConnection().query(sql, (err, list) => {
+                if (err) {
+                    reject(err)
+                } else {
+                    // console.log(list)
+                    resolve(list)
+                }
+            })
+        })
+    }
+
     findAllAndSortBlog() {
         return new Promise((resolve, reject) => {   
             const sql = `SELECT *

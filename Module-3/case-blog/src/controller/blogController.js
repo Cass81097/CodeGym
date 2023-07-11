@@ -53,11 +53,11 @@ class BlogController {
                                     </div>
                                 </div>
                             `;
-                        }
+                        }   
 
-                        let blogOnline = await blogService.findAll();
+                        let blogOnline = await blogService.findAllExcept(userID);
 
-                        for (const blog of blogOnline) {                     
+                        for (const blog of blogOnline) {                  
                             str7 += `
                             <div class="online-list">
                                 <a href="">

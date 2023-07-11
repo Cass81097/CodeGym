@@ -188,7 +188,7 @@ class InformationController {
                         `
                         }
 
-                        let blogOnline = await blogService.findAll();
+                        let blogOnline = await blogService.findAllExcept(userID);
 
                         for (const blog of blogOnline) {
                             // console.log(blog);
