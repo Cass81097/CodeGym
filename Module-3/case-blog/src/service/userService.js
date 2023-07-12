@@ -58,6 +58,20 @@ class UserService {
         })
     }
 
+    countUser() {
+        return new Promise((resolve, reject) => {
+            let sql = `SELECT COUNT(accountId) AS accountCount FROM blog.account;`
+            connection.getConnection().query(sql, (err, result) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(result);
+                    }
+                }
+            );
+        });
+    }
+
 }
 
 export default new UserService();

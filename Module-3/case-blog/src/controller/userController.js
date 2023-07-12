@@ -45,10 +45,9 @@ class UserController {
                             res.end();
                         });
                 } else {
-                    res.writeHead(302, {
-                        Location: '/sign-up?1'
-                    });
-                    res.write('Password error')
+                    res.writeHead(200, {'Content-Type': 'text/html'});
+                    res.write(`<script>alert("Tai khoan da co nguoi su dung")</script>`);
+                    res.write('<meta http-equiv="refresh" content="0;URL=\'/sign-up\'" />');
                     res.end();
                 }
             }
@@ -82,11 +81,10 @@ class UserController {
                                 Location: '/home'
                             });
                             res.end();
-                        } else {
-                            res.writeHead(302, {
-                                Location: '/sign-in'
-                            });
-                            res.write('Tài khoản đã tồn tại')
+                        } else {           
+                            res.writeHead(200, {'Content-Type': 'text/html'});
+                            res.write('<script>alert("Sai tài khoản hoặc mật khẩu")</script>');
+                            res.write('<meta http-equiv="refresh" content="0;URL=\'/sign-in\'" />');
                             res.end();
                         }
                     })

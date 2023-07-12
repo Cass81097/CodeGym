@@ -259,7 +259,7 @@
             <div class="rightbar-online">
                 {online-list}
             </div>
-            
+
             <!-- <div class="online-list" style="margin-top: 50px;">
                 <a href="">
                     <div class="ava-contact">
@@ -469,6 +469,14 @@
                         let imageContent = document.getElementById('image-content');
                         image.value = downloadURL;
                         document.getElementById('image-url').src = downloadURL;
+
+                        const imageArea = document.getElementById('image-url');
+                        const submitButton = document.querySelector('.confirm-content');
+                        if (imageArea.src.trim() !== '') {
+                            submitButton.style.display = 'block';
+                        } else {
+                            submitButton.style.display = 'none';
+                        }
                         // pushNewIMG(downloadURL)
                         setTimeout(() => {
                             document.getElementById("image-upload").disabled = false;
@@ -494,6 +502,19 @@
         function deleteCookie() {
             document.cookie = "userID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         }
+    </script>
+
+    <script>
+        const textarea = document.getElementById('textarea');
+        const submitButton = document.querySelector('.confirm-content');
+
+        textarea.addEventListener('input', function () {
+            if (textarea.value.trim() !== '') {
+                submitButton.style.display = 'block';
+            } else {
+                submitButton.style.display = 'none';
+            }
+        });
     </script>
 
 </body>

@@ -1,11 +1,11 @@
 .home-content {
     margin-top: 15px;
     background: white !important; 
-    height: 245px;
+    height: auto;
     width: 80%;
     margin-left: 30px;
     border-radius: 15px;
-    /* overflow: hidden; */
+    overflow: hidden;
     border: 1px solid #dfdaec;
 }
 
@@ -14,7 +14,7 @@
     width: 100%;
     background-color: #fff;
     border-radius: 6px;
-    padding: 20px;
+    padding: 5px 0px 20px 0px;
     /* columns: #626262; */
 }
 
@@ -43,6 +43,7 @@
 
 .post-input-container {
     padding-left: 55px; 
+    padding-bottom: 10px;
     width: 92%;
 }
 

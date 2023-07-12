@@ -154,7 +154,7 @@
       {profile-container}
 
       <div class="all-task">
-         <div class="post-task select-task" >
+         <div class="post-task select-task">
             <a href="profile"><span>Bài viết</span></a>
          </div>
          <div class="profile-task">
@@ -270,9 +270,9 @@
                               style="width: 0; min-width: 2em;" hidden="">0%
                            </div>
                         </div>
-                        <div class="image-url" hidden>
-                           <img src="" alt="" id="image-url">
-                        </div>
+                        <!-- <div class="image-url" hidden>
+                           <img src="" id="image-url">
+                        </div> -->
                      </div>
                      <input value="" id="image" class="form-control" type="text" name="avatar" hidden>
                   </div>
@@ -399,6 +399,16 @@
                   let imageContent = document.getElementById('image-content');
                   image.value = downloadURL;
                   document.getElementById('image-url').src = downloadURL;
+
+                  //Handle Button
+                  const imageArea = document.getElementById('image-url');
+                  const submitButton = document.querySelector('.confirm-content');
+                  if (imageArea.src.trim() !== '') {
+                     submitButton.style.display = 'block';
+                  } else {
+                     submitButton.style.display = 'none';
+                  }
+                  
                   // pushNewIMG(downloadURL)
                   setTimeout(() => {
                      document.getElementById("image-upload").disabled = false;
@@ -433,6 +443,18 @@
    </script>
 
    <script>
+
+      const textArea = document.getElementById('textarea');
+      const submitButton = document.querySelector('.confirm-content');
+
+      textArea.addEventListener('input', function () {
+         if (textArea.value.trim() !== '') {
+            submitButton.style.display = 'block';
+         } else {
+            submitButton.style.display = 'none';
+         }
+      });
+
    </script>
    <script src="../../js/delete.js"></script>
 </body>

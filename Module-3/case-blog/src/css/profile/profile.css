@@ -70,7 +70,7 @@ header {
 
 .pd-right {
     display: flex;
-    max-width: 510px;
+    min-width: 40%;
 }
 
 .add-button {
@@ -171,10 +171,10 @@ header {
 
 .picture-profile-1 {
     margin-left: 10px;
-    margin-right: 10px;
+    /* margin-right: 10px; */
     margin-top: 10px;
     height: 200px;
-    width: 145px;
+    width: 185px;
     /* padding-left: 30%; */
     /* position: relative; */
     background-position: center;
@@ -233,7 +233,7 @@ header {
     width: 100%;
     background-color: #fff;
     border-radius: 6px;
-    padding: 20px;
+    padding: 5px 0px 20px 0px;
     columns: #626262;
 }
 
@@ -263,6 +263,7 @@ header {
 .post-input-container {
     padding-left: 55px; 
     width: 92%;
+    padding-bottom: 10px;
 }
 
 .post-input-container textarea {

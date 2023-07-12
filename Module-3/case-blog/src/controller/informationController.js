@@ -29,11 +29,14 @@ class InformationController {
                         let str6 = '';
                         let str7 = '';
                         let str8 = '';
+                        let str9 = '';
 
                         let blogs = await blogService.findAccountAndsortBlog(userID)
 
                         for (const blog of blogs) {
                             // console.log(blog);
+
+                            if (blog.image !== '') {
                             str6 += `
                             <div class="index-content">
                                 <div class="post-container">
@@ -64,6 +67,36 @@ class InformationController {
                                 </div>
                             </div>
                             `
+                            }  else {
+                                str6 += `
+                            <div class="index-content">
+                                <div class="post-container">
+                                <div class="user-profile">
+                                    <img src="${blog.avatar}">
+                                    <div>
+                                        <p>${blog.name}</p>
+                                        <div class="time-status">
+                                            <span>8 tháng 7 lúc 20:20</span>
+                                            <i class="fas fa-globe-americas" style="color: #65676B; transform: translateY(8%)"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="featured-button">
+                                    <button class="btn-remove btn-delete-remove" onclick="handleDelete(${blog.postId})">
+                                        <span class="mdi mdi-delete mdi-24px"></span>
+                                        <span class="mdi mdi-delete-empty mdi-24px"></span>
+                                    </button>
+
+                                    </div>
+                                </div>
+                                <div class="post-user">
+                                <p class="post-text">${blog.content}</p>
+                                   
+                                </div>
+                                </div>
+                            </div>
+                            `
+                            }
 
                             if (blog.image !== '') {
                                 str8 += `
@@ -104,7 +137,7 @@ class InformationController {
                                     <img class="pd-image" src="${blog.avatar}">
                                     <div>
                                         <h3>${blog.name}</h3>
-                                        <p>1000 bạn bè - 20 bạn chung</p>
+                                        <p>{total-friend} bạn bè</p>
                                         {list-friend}
                                     </div>
                                 </div>
@@ -170,8 +203,8 @@ class InformationController {
                                     </div>
                                     <textarea name="content" id="textarea" placeholder="Bạn đang nghĩ gì thế?" rows="3"></textarea> 
                                     <input name="image" value="" id="image" class="form-control" type="text" hidden>
-                                    <div class="image-url" hidden>
-                                        <img src="" alt="" id="image-url">
+                                    <div class="image-url">
+                                        <img id="image-url">
                                     </div>
                                     <div class="add-post-links">
                                         <a href="#"><img src="img/live-video.png"> Video trực tiếp</a>
@@ -179,7 +212,7 @@ class InformationController {
                                         <a href="#"><img src="img/feeling.png"> Cảm xúc/hoạt động</a>
                                     </div>
               
-                                    <div class="confirm-content">
+                                    <div class="confirm-content" style="display:none">
                                         <button class="btn btn-primary">Đăng</button>
                                     </div>
                                 </form>
@@ -191,9 +224,16 @@ class InformationController {
                         let blogOnline = await blogService.findAllExcept(userID);
 
                         for (const blog of blogOnline) {
-                            // console.log(blog);
                             str7 += `
                                 <img src="${blog.avatar}">
+                            `
+                        }
+
+                        let accountUser = await userService.countUser();
+
+                        for (const user of accountUser) {
+                            str9 = `
+                                ${user.accountCount}
                             `
                         }
 
@@ -205,6 +245,7 @@ class InformationController {
                         stringHTML = stringHTML.replace('{post-col}', str5);
                         stringHTML = stringHTML.replace('{list-friend}', str7);
                         stringHTML = stringHTML.replace('{list-image-content}', str8);
+                        stringHTML = stringHTML.replace('{total-friend}', str9);
 
 
                         res.write(stringHTML);

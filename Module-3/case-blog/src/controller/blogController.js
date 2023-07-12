@@ -26,12 +26,14 @@ class BlogController {
                         let str5 = '';
                         let str6 = '';
                         let str7 = '';
+                        // let str8 = '';
 
                         let blogs = await blogService.findAllAndSortBlog();
 
                         for (const blog of blogs) {
                             // console.log(allBlog);
-                            str6 += `
+                            if (blog.image !== '') {
+                                str6 += `
                                 <div class="index-content">
                                     <div class="post-container">
                                         <div class="user-profile">
@@ -53,6 +55,30 @@ class BlogController {
                                     </div>
                                 </div>
                             `;
+                            } else {
+                                str6 += `
+                                <div class="index-content">
+                                    <div class="post-container">
+                                        <div class="user-profile">
+                                            <img src="${blog.avatar}">
+                                            <div>
+                                                <p>${blog.name}</p>
+                                                <div class="time-status">
+                                                    <span>8 tháng 7 lúc 20:20</span>
+                                                    <i class="fas fa-globe-americas" style="color: #65676B; transform: translateY(8%);" ></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="post-user">
+                                        <p class="post-text">${blog.content}</p>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                            }
+
+                            
                         }   
 
                         let blogOnline = await blogService.findAllExcept(userID);
@@ -130,7 +156,7 @@ class BlogController {
                                         <a href="#"><img src="img/feeling.png"> Cảm xúc/hoạt động</a>
                                     </div>
               
-                                    <div class="confirm-content">
+                                    <div class="confirm-content" style="display:none">
                                         <button class="btn btn-primary">Đăng</button>
                                     </div>
                                 </form>
@@ -144,6 +170,7 @@ class BlogController {
                         }
 
                         stringHTML = stringHTML.replace('{index-content}', str6);
+                        // stringHTML = stringHTML.replace('{post-image}', str8);
                         stringHTML = stringHTML.replace('{online-list}', str7);
                         stringHTML = stringHTML.replace('{avatar}', str1);
                         stringHTML = stringHTML.replace('{sidebar-avatar}', str2);
