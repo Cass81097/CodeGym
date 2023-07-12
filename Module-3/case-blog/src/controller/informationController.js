@@ -233,7 +233,7 @@ class InformationController {
 
                         for (const user of accountUser) {
                             str9 = `
-                                ${user.accountCount}
+                                ${user.accountCount-1}
                             `
                         }
 
@@ -293,8 +293,7 @@ class InformationController {
                         let str4 = '';
                         let str5 = '';
                         let str6 = '';
-                        let str7 = '';
-
+            
                     let blogs = await blogService.findAllByIdAccount(userID)
                     for (const blog of blogs) {
                         str1 = `
@@ -323,8 +322,8 @@ class InformationController {
                                  <img class="pd-image" src="${blog.avatar}">
                                  <div>
                                     <h3>${blog.name}</h3>
-                                    <p>1000 bạn bè - 20 bạn chung</p>
-                                    {online-list}
+                                    <p>{total-friend} bạn bè</p>
+                                    {list-friend}
                                  </div>
                               </div>
                            </div>
@@ -396,20 +395,28 @@ class InformationController {
                     `
                     }   
 
-                    let blogOnline = await blogService.findAll();
+                    let blogOnline = await blogService.findAllExcept(userID);
 
                         for (const blog of blogOnline) {
-                            // console.log(blog);
                             str5 += `
                                 <img src="${blog.avatar}">
                             `
-                    }
+                        }
 
+                    let accountUser = await userService.countUser();
+
+                        for (const user of accountUser) {
+                            str6 = `
+                                ${user.accountCount-1}
+                            `
+                        }
+                        
                     stringHTML = stringHTML.replace('{avatar}', str1)
                     stringHTML = stringHTML.replace('{sidebar-avatar}', str2)
                     stringHTML = stringHTML.replace('{profile-container}', str3)
                     stringHTML = stringHTML.replace('{profile-info}', str4)
-                    stringHTML = stringHTML.replace('{online-list}', str5)
+                    stringHTML = stringHTML.replace('{list-friend}', str5)
+                    stringHTML = stringHTML.replace('{total-friend}', str6)
 
                     res.write(stringHTML);
                     res.end();
@@ -480,129 +487,3 @@ class InformationController {
 
 export default new InformationController();
 
-// showAbout = async (req, res) => {
-//     let userID = await userController.getUserID(req)
-//     if (userID) {
-//         fs.readFile('view/blog/about.html', 'utf-8', (err, stringHTML) => {
-//             let str1 = '';
-//             let str2 = '';
-//             let str3 = '';
-//             let str4 = '';
-//             let str5 = '';
-
-//             blogService.findAllByIdAccount(userID).then((blogs) => {
-//                 for (const blog of blogs) {
-//                     str1 = `
-//                     <div class="ava">
-//                         <a href="#" onclick="confirmDeleteCookie()">
-//                         <i class="bx avatar online" data-toggle="tooltip" data-placement="bottom" title="Tài khoản"
-//                         style="background-image: url('${blog.avatar}');"></i>
-//                         </a>
-//                      </div>
-//                 `
-
-//                     str2 = `
-//                     <li class="links link-avatar">
-//                     <a href="">
-//                        <div class="left-ava" ><i class="select bx left-avatar"; style="background-image: url('${blog.avatar}')"></i></div>
-//                     </a>
-//                  </li>
-//                 `
-
-//                     str3 = `
-//                     <div class="profile-container">
-//                     <img src="${blog.cover_photo}" class="cover-img">
-//                     <div class="profile-details">
-//                        <div class="pd-left">
-//                           <div class="pd-row">
-//                              <img class="pd-image" src="${blog.avatar}">
-//                              <div>
-//                                 <h3>${blog.name}</h3>
-//                                 <p>1000 bạn bè - 20 bạn chung</p>
-//                                 <img src="img/my-img/hiep.jpg">
-//                                 <img src="img/my-img/nhuanh.jpg">
-//                                 <img src="img/my-img/quynh.jpg" width="200px">
-//                                 <img src="img/my-img/trananh.jpg">
-//                              </div>
-//                           </div>
-//                        </div>
-//                     <div class="pd-right">
-//                        <div class="add-button">
-//                           <button type="button" class="btn btn-primary btn-add">
-//                              <i class="fas fa-plus fa-xa"><span>Thêm vào tin</span></i>
-//                           </button>
-//                        </div>
-//                        <div class="edit-button">
-//                             <a href="profile/edit?idEdit=${blog.accountId}">
-//                                 <button type="button" class="btn btn-secondary btn-edit">
-//                                     <i class="fas fa-pen fa-xz"><span>Chỉnh sửa trang cá nhân</span></i>
-//                                 </button>
-//                             </a>
-//                        </div>
-//                     </div>
-//                  </div>
-//                 `
-
-//                     str4 = `
-                    
-//                     <div class="about">
-//                         <div class="left-about">
-//                             <div class="title-about">
-//                             <h5>Giới thiệu</h5>
-//                             </div>
-
-//                             <div class="content-about">
-//                             <a href="#">Tổng quan</a>
-//                             </div>
-//                         </div>
-
-//                         <div class="about-table">
-//                             <table>
-//                                 <tr>
-//                                     <td>
-//                                     <i class="fas fa-user-circle icon-about"></i>
-//                                     </td>
-//                                     <td>${blog.name}</td>
-//                                 </tr>
-//                                 <tr>
-//                                     <td>
-//                                     <i class="fas fa-phone-alt m-r-5 icon-about"></i>
-//                                     </td>
-//                                     <td>${blog.phone}</td>
-//                                 </tr>
-//                                 <tr>
-//                                     <td>
-//                                     <i class="fas fa-address-card icon-about"></i>
-//                                     </td>
-//                                     <td>${blog.address}</td>
-//                                 </tr>
-//                                 <tr>
-//                                     <td>
-//                                     <i class="fas fa-envelope icon-about"></i>
-//                                     </td>
-//                                     <td>${blog.email}</td>
-//                                 </tr>
-//                                 <tr>
-//                                     <td>
-//                                     <i class="fas fa-graduation-cap icon-about"></i>
-//                                     </td>
-//                                     <td>${blog.college}</td>
-//                                 </tr>
-//                             </table>
-//                         </div>
-//                     </div>
-           
-//                 `
-//                 }
-
-//                 stringHTML = stringHTML.replace('{avatar}', str1)
-//                 stringHTML = stringHTML.replace('{sidebar-avatar}', str2)
-//                 stringHTML = stringHTML.replace('{profile-container}', str3)
-//                 stringHTML = stringHTML.replace('{profile-info}', str4)
-//                 stringHTML = stringHTML.replace('{online-list}', str5)
-//                 res.write(stringHTML);
-//                 res.end();
-//             })
-//         })
-//     }
-// }
