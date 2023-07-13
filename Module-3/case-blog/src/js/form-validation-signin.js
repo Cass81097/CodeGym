@@ -3,7 +3,7 @@ Validator({
     errorSelector : '.form-message',
     rules: [
       // isEmail('#email', 'Vui lòng nhập địa chỉ Email'),
-      isRequired('#usn', 'Vui lòng nhập Username'),
+      isRequired('#usn', 'Vui lòng nhập tên đăng nhập'),
       pwMinLength('#password', 6, 'Mật khẩu tối thiểu 6 ký tự'),
     ]
   })    

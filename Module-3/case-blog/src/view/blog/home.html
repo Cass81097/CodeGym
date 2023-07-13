@@ -329,7 +329,7 @@
                         <div class="mb-avatar">
                             <label for="formFile" class="form-label inputcode"><span>Chọn ảnh :</span></label>
                             <input type="file" id="image-upload" onchange="uploadImage(event)" hidden>
-                            <label for="image-upload" class="file-upload-button">Choose File</label>
+                            <label for="image-upload" class="file-upload-button">Chọn ảnh</label>
                             <span id="file-name" style="font-size: 0px;"></span>
                             <div class="info-progress">
                                 <div class="progress">
@@ -351,7 +351,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                        <button id="btn-savecard" class="btn btn-primary ps-5 pe-5" data-bs-dismiss="modal">Ok</button>
+                        <button id="btn-savecard" class="btn btn-primary ps-5 pe-5" data-bs-dismiss="modal">Thêm ảnh</button>
                     </div>
                 </div>
             </div>
@@ -514,6 +514,12 @@
             } else {
                 submitButton.style.display = 'none';
             }
+        });
+    </script>
+
+    <script>
+        document.getElementById("search-card").addEventListener("click", function () {
+            alert('Ơ sao không chạy được nhể');
         });
     </script>
 

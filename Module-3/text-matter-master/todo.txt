@@ -1,0 +1,24 @@
+- UI:
+    + setting icon. Done
+    + setting throw. Done
+- canvas resize (need upgrade)
+- Char with 2 path
+
+Future :
+- setting throw. Done
+- Typing: Vn, Eng
+- Render style: 
+    + choice fill color: white color
+    + choice stroke color: white color
+    + neon
+    + ranbow color
+
+- Impact:
+ + On touch : neon | color
+ + On delete entity : effect,... 
+ + throw position and direction
+
+- Physic:
+ + gravity
+ + bounce
+ + Collision type

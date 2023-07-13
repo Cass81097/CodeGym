@@ -154,7 +154,7 @@
 
 .rightbar-online {
     position: relative;
-    transform: translateY(25%);
+    transform: translateY(23%);
 }
 
 .right-icon {
@@ -179,7 +179,7 @@
 
 .online-list {
     position: relative;
-    margin-top: 10px;
+    margin-top: 5px;
     transition: var(--tran);
     border-radius: 6px;
 }

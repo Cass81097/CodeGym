@@ -2,7 +2,7 @@ Validator({
     form : '#form-1',
     errorSelector : '.form-message',
     rules: [
-      isRequired('#usn', 'Vui lòng nhập Username'),
+      isRequired('#usn', 'Vui lòng nhập tên đăng nhập'),
       // isRequired('#email', 'Vui lòng nhập địa chỉ Email'), 
       // isEmail('#email', 'Vui lòng nhập đúng địa chỉ Email'), 
       isRequired('#password', 'Vui lòng nhập mật khẩu'), 

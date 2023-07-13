@@ -83,7 +83,7 @@ class UserController {
                             res.end();
                         } else {           
                             res.writeHead(200, {'Content-Type': 'text/html'});
-                            res.write('<script>alert("Sai tài khoản hoặc mật khẩu")</script>');
+                            res.write('<script>alert("Sai tai khoan hoac mat khau")</script>');
                             res.write('<meta http-equiv="refresh" content="0;URL=\'/sign-in\'" />');
                             res.end();
                         }
