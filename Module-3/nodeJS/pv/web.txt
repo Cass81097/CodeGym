@@ -1,0 +1,11 @@
+Trong JavaScript, luồng (flow) của một ứng dụng web thường tuân theo mô hình MVC (Model-View-Controller) hoặc một biến thể gần như như MVVM (Model-View-ViewModel). Dưới đây là cách thông thường để thực hiện luồng từ router đến controller, services và view:
+
+Router: Đầu tiên, tại lớp router, bạn sẽ xác định các tuyến định tuyến (routes) trong ứng dụng. Mỗi tuyến định tuyến được liên kết với một URL cụ thể và một xử lý controller tương ứng.
+
+Controller: Khi một yêu cầu được gửi đến từ router, controller được kích hoạt. Controller có trách nhiệm xử lý các yêu cầu của client, thực thi logic và tương tác với các dịch vụ (services) để lấy/gửi dữ liệu. Controller thực hiện các công việc xử lý và chuẩn bị dữ liệu để truyển cho view.
+
+Services: Services (dịch vụ) là các thành phần riêng lẻ trong ứng dụng, chịu trách nhiệm điều phối các hoạt động kinh doanh và xử lý logic nghiệp vụ. Chúng thường được sử dụng bởi controller để truy xuất và xử lý dữ liệu từ các nguồn khác nhau, chẳng hạn như cơ sở dữ liệu hoặc API bên ngoài.
+
+View: Sau khi controller đã chuẩn bị dữ liệu cần thiết, nó sẽ truyền dữ liệu này cho view để hiển thị. View là thành phần đảm nhận trách nhiệm về giao diện người dùng (UI), hiển thị dữ liệu và tương tác với người dùng. Trong JavaScript, view thường được xây dựng bằng HTML và CSS, và có thể sử dụng các thư viện JavaScript như React, Angular hoặc Vue.js để quản lý và tổ chức mã nguồn liên quan đến view.
+
+Tổng kết, luồng trong một ứng dụng web JavaScript thông thường là: Router -> Controller -> Services -> View. Quá trình này giúp phân chia logic và trách nhiệm của các thành phần khác nhau trong ứng dụng, tạo ra một kiến trúc rõ ràng và dễ bảo trì.

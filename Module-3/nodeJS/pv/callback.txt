@@ -1,0 +1,23 @@
+Trong lập trình bất đồng bộ, callback là một hàm được truyền vào như một tham số của một hàm khác. Nó được sử dụng để xử lý kết quả hoặc thực hiện các tác vụ sau khi một hoạt động bất đồng bộ hoàn thành.
+
+Khi một hoạt động bất đồng bộ được gọi, nó không chờ đợi cho đến khi hoàn thành, mà tiếp tục thực thi các câu lệnh tiếp theo trong chương trình. Để xử lý kết quả hoặc thực hiện các tác vụ sau khi hoạt động bất đồng bộ hoàn thành, chúng ta sử dụng callback.
+
+Ví dụ, trong JavaScript, chúng ta có thể sử dụng callback để xử lý kết quả của một yêu cầu HTTP bất đồng bộ:
+
+function fetchData(callback) {
+  // Thực hiện yêu cầu HTTP bất đồng bộ
+  // Khi hoàn thành, gọi callback với kết quả hoặc lỗi
+}
+
+// Sử dụng fetchData với callback
+fetchData(function(err, data) {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log(data);
+  }
+});
+
+Trong ví dụ trên, fetchData là một hàm bất đồng bộ, và chúng ta truyền một callback như là tham số. Khi hoạt động bất đồng bộ hoàn thành, callback sẽ được gọi với hai đối số: một là lỗi (nếu có) và hai là dữ liệu kết quả (nếu thành công).
+
+Callback giúp xác định hành động tiếp theo sau khi một hoạt động bất đồng bộ hoàn thành. Nó cho phép chúng ta thực hiện các tác vụ đồng bộ hoặc bất đồng bộ khác tùy thuộc vào kết quả của hoạt động trước đó.
