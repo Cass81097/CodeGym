@@ -96,9 +96,11 @@ class ProductController {
     async editProduct(req, res) {
         try {
             await productService.update(req.body);
+            // res.writeHead(302, {
+            //     Location: '/api/products'
+            // });
             res.writeHead(200, { 'Content-Type': 'text/html' });
-            res.write(`<script>alert("Sua san pham thanh cong!")</script>`);
-            res.write('<meta http-equiv="refresh" content="0;URL=\'/api/products\'" />');
+            res.write(`<script>alert("Sua san pham thanh cong!"); window.location.href = '/api/products';</script>`);
             res.end();
 
         } catch (err) {
