@@ -1,62 +1,130 @@
 import productService from "../services/productService.js";
 import fs from "fs";
 import url from "url";
-
+import axios from 'axios';
 
 class ProductController {
-    constructor() {
-    }
+    constructor() { }
 
-    findAll(req, res) {
-        fs.readFile('views/product/list.html', 'utf-8', (err, stringHTML) => {
+    async findAll(req, res) {
+        try {
+            let stringHTML = await fs.promises.readFile(
+                'views/product/list.html',
+                'utf-8'
+            );
             let str = '';
-            productService.findAll().then((products) => {
-                for (const item of products) {
-                    str += `<h1>${item.name}, ${item.price}, ${item.quantity}</h1>`;
-                }
-                stringHTML = stringHTML.replace('{list}', str)
-                res.write(stringHTML);
-                res.end();
-            })
-        })
-    }
+            const urlObject = url.parse(req.url, true)
+            const keyword = urlObject.query.search ?? '';
+            const products = await productService.searchProduct(keyword);
 
-    showAddForm(req, res) {
-        fs.readFile('views/product/add.html', 'utf-8', (err, stringHTML) => {
+            if (products.length === 0) {
+
+                str = `<h4>Không có sản phẩm phù hợp</h4>`
+            } else {
+
+                for (const item of products) {
+                    str += `
+                    <h1>${item.id}. ${item.name}, ${item.price}, ${item.quantity}</h1>
+                    <button onclick="handleDelete('${item.name}')">Delete</button>
+                    <button><a href="products/edit?idEdit=${item.id}">Edit</a></button>
+                    `
+                }
+            }
+
+            stringHTML = stringHTML.replaceAll('{list}', str);
+            stringHTML = stringHTML.replaceAll('{key}', keyword)
             res.write(stringHTML);
             res.end();
-        })
+
+        } catch (err) {
+            console.error(err);
+            res.sendStatus(500);
+        }
     }
 
-    showEditForm(req, res) {
-        fs.readFile('views/product/edit.html', 'utf-8', (err, stringHTML) => {
-            let urlObject = url.parse(req.url, true)
-            productService.findById(urlObject.query.idEdit).then((product) => {
-                stringHTML = stringHTML.replace('{id}', product.id);
-                stringHTML = stringHTML.replace('{name}', product.name);
-                stringHTML = stringHTML.replace('{price}', product.price);
-                stringHTML = stringHTML.replace('{quantity}', product.quantity);
-                stringHTML = stringHTML.replace('{image}', product.image);
-                res.write(stringHTML);
-                res.end();
-            });
-        })
+    async showAddForm(req, res) {
+        try {
+            const stringHTML = await fs.promises.readFile(
+                'views/product/add.html',
+                'utf-8'
+            );
+            res.write(stringHTML);
+            res.end();
+
+        } catch (err) {
+            console.error(err);
+            res.sendStatus(500);
+        }
     }
 
-    addProduct(req, res) {
-        productService.save(req.body).then(() => {
-            res.writeHead(301,{'location':'/api/products'})
-            res.end()
-        })
+    async addProduct(req, res) {
+        try {
+            await productService.save(req.body);
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.write(`<script>alert("Them san pham thanh cong!"); window.location.href = '/api/products';</script>`);
+            res.end();
+        } catch (err) {
+            console.error(err);
+            res.sendStatus(500);
+        }
+    }
+    
+
+    async showEditForm(req, res) {
+        try {
+            const stringHTML = await fs.promises.readFile(
+                'views/product/edit.html',
+                'utf-8'
+            );
+            const urlObject = url.parse(req.url, true);
+            const product = await productService.findById(urlObject.query.idEdit);
+            let updatedStringHTML = stringHTML.replace('{id}', product.id);
+            updatedStringHTML = updatedStringHTML.replace('{name}', product.name);
+            updatedStringHTML = updatedStringHTML.replace('{price}', product.price);
+            updatedStringHTML = updatedStringHTML.replace('{quantity}', product.quantity);
+            updatedStringHTML = updatedStringHTML.replace('{image}', product.image);
+            res.write(updatedStringHTML);
+            res.end();
+
+        } catch (err) {
+            console.error(err);
+            res.sendStatus(500);
+        }
     }
 
-    editProduct(req, res) {
-        productService.update(req.body).then(() => {
-            res.writeHead(301,{'location':'/api/products'})
-            res.end()
-        })
+
+    async editProduct(req, res) {
+        try {
+            await productService.update(req.body);
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.write(`<script>alert("Sua san pham thanh cong!")</script>`);
+            res.write('<meta http-equiv="refresh" content="0;URL=\'/api/products\'" />');
+            res.end();
+
+        } catch (err) {
+            console.error(err);
+            res.sendStatus(500);
+        }
     }
 
+    async deleteProduct(req, res) {
+        try {
+            const urlObject = url.parse(req.url, true);
+            const productName = urlObject.query.name;
+            const result = await productService.deleteProductByName(productName);
+
+            if (typeof result === 'string') {
+                res.sendStatus(500);
+            } else {
+                res.write('Deleted');
+                res.end();    
+            }
+        } catch (err) {
+            console.error(err);
+            res.sendStatus(500);
+        }
+    }
+    
 }
 
 export default new ProductController();

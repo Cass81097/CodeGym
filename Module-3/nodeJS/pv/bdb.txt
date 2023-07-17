@@ -1,0 +1,5 @@
+Để khắc phục vấn đề blocking của synchronous, người ta đưa ra khái niệm lập trình bất đồng bộ (không đồng bộ - asynchronous programming). Về cơ bản, bất đồng bộ là các câu lệnh chạy có thể không theo thứ tự, lệnh chạy trước có thể kết thúc sau câu lệnh chạy sau.
+
+Task A > Task B > Task B end > ......... > Task A end
+
+Bất đồng bộ không làm chương trình chạy nhanh hơn, đúng ra nó chỉ tránh lãng phí thời gian chờ đợi vô ích các tác vụ IO, network,... trong khi những tác vụ đấy thực hiện thì làm việc khác, khi nào chúng xong sẽ có cơ chế để thông báo lại cho mình.

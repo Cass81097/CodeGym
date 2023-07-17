@@ -3,12 +3,18 @@ import productController from '../controllers/productController.js';
 
 const productRouter = Router();
 
+//Show + Search Product
 productRouter.get('', productController.findAll);
 
-productRouter.post('', productController.addProduct);
+//Add Product
 productRouter.get('/add', productController.showAddForm);
+productRouter.post('/add', productController.addProduct);
 
-productRouter.post('', productController.editProduct);
+//Edit Product
 productRouter.get('/edit', productController.showEditForm);
+productRouter.post('/edit', productController.editProduct);
+
+//Delete Product
+productRouter.delete('/delete', productController.deleteProduct);
 
 export default productRouter;

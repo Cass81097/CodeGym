@@ -11,4 +11,4 @@ Await - tạm dừng việc thực hiện các hàm async. (Var result = await s
 
 Khi được đặt trước một Promise, nó sẽ đợi cho đến khi Promise kết thúc và trả về kết quả.
 Await chỉ làm việc với Promises, nó không hoạt động với callbacks.
-Await chỉ có thể được sử dụng bên trong các function async.
+Await chỉ có thể được sử dụng bên trong các function async.z

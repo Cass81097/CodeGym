@@ -1,13 +1,79 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
+
 <body>
-{list}
+
+    <a href="products">Danh sách sản phẩm</a>
+    <a href="products/add">Thêm sản phẩm</a>
+    {list}
+
+    <div style="margin-top:20px">
+        <form>
+            <input id="search-card" type="search" name="search" id="search" value="{key}"
+                placeholder="Tìm kiếm sản phẩm" style="font-weight: 500">
+            <button>OK</button>
+        </form>
+    </div>
 </body>
+
+<script>
+    async function handleDelete(productName) {
+        if (confirm(`Bạn có chắc muốn xóa sản phẩm '${productName}' này không?`)) {
+            try {
+                await axios.delete(`http://localhost:3000/api/products/delete?name=${productName}`);
+                alert(`Xóa sản phẩm thành công!`);
+                location.reload();
+            } catch (error) {
+                alert(`Không thể xóa sản phẩm '${productName}' vì đang có ràng buộc với dữ liệu khác!`);
+                // console.error(error);
+            }
+        }
+    }
+</script>
+
+<!-- <script>
+    async function getProductName(postID) {
+    try {
+        const response = await axios.get(`http://localhost:3000/api/products/${postID}`);
+        const product = response.data;
+        const productName = product.name;
+        return productName;
+    } catch (error) {
+        console.error(error);
+        return null; // hoặc có thể xử lý lỗi khác theo ý của bạn
+    }
+}
+</script>
+
+<script>
+    async function handleDelete(postID) {
+    if (confirm(`Bạn có chắc muốn xóa sản phẩm có ID = ${postID} này không?`)) {
+        try {
+            const productName = await getProductName(postID);
+
+            if (productName) {
+                await axios.delete(`http://localhost:3000/api/products/delete?id=${postID}`);
+                alert(`Xóa sản phẩm "${productName}" thành công!`);
+                location.reload();
+            } else {
+                alert(`Không thể tìm thấy thông tin sản phẩm có ID = ${postID}!`);
+            }
+        } catch (error) {
+            alert(`Không thể xóa sản phẩm có ID = ${postID} vì đang có ràng buộc với dữ liệu khác!`);
+            console.error(error);
+        }
+    }
+}
+</script> -->
+
 </html>
