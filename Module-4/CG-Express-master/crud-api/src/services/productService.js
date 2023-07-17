@@ -29,6 +29,28 @@ class ProductService {
     }
 
     findById(id) {
+        return new Promise((resolve, reject) => {
+            db.query(`select * from product where id =${id} `, (err, products) => {
+                if (err) {
+                    reject(err)
+                } else {
+                    resolve(products[0])
+                }
+            })
+        })
+    }
+
+    update(product) {
+        return new Promise((resolve, reject) => {
+            db.query(`UPDATE product SET name = '${product.name}', price = ${product.price}, quantity = ${product.quantity}, image = '${product.image}' WHERE id = ${product.id}`, (err, products) => {
+                if (err) {
+                    reject(err)
+                } else {
+                    console.log(`Sửa thành công!`)
+                    resolve(products)
+                }
+            })          
+        })
     }
 }
 

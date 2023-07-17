@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/products">Danh sách sản phẩm</a>
+<form action="/api/products" method="post">
+    <input type="text" name="id" value="{id}" hidden>
+    <input type="text" name="name" value="{name}">
+    <input type="text" name="price" value="{price}">
+    <input type="text" name="quantity" value="{quantity}">
+    <input type="text" name="image" value="{image}">
+    <button>Edit</button>
+</form>
+</body>
+</html>
