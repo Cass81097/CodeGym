@@ -1,0 +1,53 @@
+Webservice và website là hai khái niệm khác nhau trong lĩnh vực phát triển web.
+
+Webservice : ( 1 phần của Backend )
+
+Webservice là một dịch vụ cung cấp các chức năng và tài nguyên thông qua Internet.
+Webservice được thiết kế để giao tiếp giữa các ứng dụng khác nhau trên nền tảng web.
+Cách giao tiếp thường sử dụng trong webservice là SOAP (Simple Object Access Protocol) hoặc REST (Representational State Transfer).
+Webservice có thể truyền và nhận dữ liệu dưới dạng XML hoặc JSON.
+
+Website: ( 1 phần của Frontend)
+
+Website là một tập hợp các trang web liên kết với nhau được truy cập từ một địa chỉ duy nhất (URL).
+Website thường được thiết kế cho mục đích hiển thị thông tin, tương tác với người dùng thông qua giao diện người dùng (UI).
+Giao diện của website thường sử dụng HTML, CSS và JavaScript.
+API (Application Programming Interface):
+- API là một bộ quy tắc và giao thức mà cho phép hai ứng dụng giao tiếp và trao đổi dữ liệu với nhau.
+- API xác định các phương thức và quy tắc mà ứng dụng khác có thể sử dụng để gọi các chức năng của ứng dụng đó.
+- API có thể truyền và nhận dữ liệu dưới dạng XML hoặc JSON.
+
+Để viết một API với Express (một framework phát triển ứng dụng web trong Node.js), bạn có thể làm theo các bước sau:
+
+Cài đặt Node.js và Express:
+
+Cài đặt Node.js từ https://nodejs.org.
+Tạo một thư mục mới và mở command prompt/terminal trong thư mục đó.
+Chạy lệnh sau để tạo package.json: npm init -y
+Cài đặt Express: npm install express
+Tạo file server.js:
+
+Tạo một file có tên server.js trong thư mục của bạn.
+Mở file server.js và nhập mã sau:
+javascript
+const express = require('express');
+const app = express();
+
+// Định nghĩa các route cho API
+app.get('/api', (req, res) => {
+  res.json({ message: 'Hello World!' });
+});
+
+// Khởi chạy server
+app.listen(3000, () => {
+  console.log('Server started on port 3000');
+});
+Chạy server:
+
+Trong command prompt/terminal, chạy lệnh sau để khởi động server: node server.js
+Server sẽ lắng nghe trên cổng 3000.
+Kiểm tra API:
+
+Mở trình duyệt và nhập URL http://localhost:3000/api.
+Bạn sẽ nhận được phản hồi JSON: {"message": "Hello World!"}.
+Đây chỉ là một ví dụ đơn giản về việc viết API với Express. Bạn có thể mở rộng và tùy chỉnh theo nhu cầu của bạn.

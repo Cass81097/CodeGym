@@ -1,7 +1,6 @@
 import productService from "../services/productService.js";
 import fs from "fs";
 import url from "url";
-import axios from 'axios';
 
 class ProductController {
     constructor() { }
