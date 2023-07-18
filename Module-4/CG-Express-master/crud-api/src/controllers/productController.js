@@ -60,7 +60,7 @@ class ProductController {
         try {
             await productService.save(req.body);
             res.writeHead(200, { 'Content-Type': 'text/html' });
-            res.write(`<script>alert("Them san pham thanh cong!"); window.location.href = '/api/products';</script>`);
+            res.write(`<script>alert("Them san pham '${req.body.name}' thanh cong!"); window.location.href = '/api/products';</script>`);
             res.end();
         } catch (err) {
             console.error(err);
