@@ -14,7 +14,7 @@ class ProductController {
             let str = '';
             const urlObject = url.parse(req.url, true)
             const keyword = urlObject.query.search ?? '';
-            const products = await productService.searchProduct(keyword);
+            const products = await productService.findAllProduct(keyword);
 
             if (products.length === 0) {
 

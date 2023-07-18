@@ -16,7 +16,7 @@ class ProductService {
         })
     }
 
-    searchProduct(keyword) {
+    findAllProduct(keyword) {
         return new Promise((resolve, reject) => {
             db.query(`SELECT * FROM product WHERE id like '%${keyword}%' or name like '%${keyword}%'`, (err, products) => {
                 if (err) {
