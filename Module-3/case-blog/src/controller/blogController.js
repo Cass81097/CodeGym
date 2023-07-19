@@ -16,7 +16,7 @@ class BlogController {
             if (req.method === 'GET') {
                 try {
                     let userID = await userController.getUserID(req);
-
+                    
                     if (userID) {
                         let stringHTML = await fs.promises.readFile('view/blog/home.html', 'utf-8');
                         let str1 = '';

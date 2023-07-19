@@ -5,6 +5,7 @@ const productRouter = Router();
 
 //Show + Search Product
 productRouter.get('', productController.findAll);
+productRouter.get('/detail', productController.infoProduct);
 
 //Add Product
 productRouter.get('/add', productController.showAddForm);

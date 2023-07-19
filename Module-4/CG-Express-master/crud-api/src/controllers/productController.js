@@ -5,6 +5,21 @@ import url from "url";
 class ProductController {
     constructor() { }
 
+    async infoProduct(req, res) {
+        try {
+            let stringHTML = await fs.promises.readFile(
+                'views/product/detail.html',
+                'utf-8'
+            );
+            res.write(stringHTML);
+            res.end();
+
+        } catch (err) {
+            console.error(err);
+            res.sendStatus(500);
+        }
+    }
+
     async findAll(req, res) {
         try {
             let stringHTML = await fs.promises.readFile(
@@ -24,6 +39,7 @@ class ProductController {
                 for (const item of products) {
                     str += `
                     <h1>${item.id}. ${item.name}, ${item.price}, ${item.quantity}</h1>
+                    <button><a href="products/detail?${item.name}">See More</a></button>
                     <button onclick="handleDelete('${item.name}')">Delete</button>
                     <button><a href="products/edit?idEdit=${item.id}">Edit</a></button>
                     `
@@ -71,13 +87,14 @@ class ProductController {
 
     async showEditForm(req, res) {
         try {
-            const stringHTML = await fs.promises.readFile(
+            let updatedStringHTML = await fs.promises.readFile(
                 'views/product/edit.html',
                 'utf-8'
             );
             const urlObject = url.parse(req.url, true);
-            const product = await productService.findById(urlObject.query.idEdit);
-            let updatedStringHTML = stringHTML.replace('{id}', product.id);
+            const productID = urlObject.query.idEdit
+            const product = await productService.findById(productID);
+            updatedStringHTML = updatedStringHTML.replace('{id}', product.id);
             updatedStringHTML = updatedStringHTML.replace('{name}', product.name);
             updatedStringHTML = updatedStringHTML.replace('{price}', product.price);
             updatedStringHTML = updatedStringHTML.replace('{quantity}', product.quantity);

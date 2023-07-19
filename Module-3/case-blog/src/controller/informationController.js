@@ -30,7 +30,7 @@ class InformationController {
                         let str7 = '';
                         let str8 = '';
                         let str9 = '';
-
+                        
                         let blogs = await blogService.findAccountAndsortBlog(userID)
 
                         for (const blog of blogs) {

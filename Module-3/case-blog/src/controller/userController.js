@@ -70,8 +70,8 @@ class UserController {
                 console.log(data);
                 userService.checkUser(data)
                     .then((result) => {
-                        // console.log(result);
                         if (result.length > 0) {
+                            console.log(result);
                             res.setHeader('Set-Cookie', cookie.serialize('userID', String(result[0].accountId), {
                                 httpOnly: false,
                                 maxAge: 60 * 60 * 24 * 7 // 1 week
