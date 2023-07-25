@@ -20,7 +20,7 @@ class classController {
 
     deleteClassById = async (req: Request, res: Response) => {
         await classService.deleteClassById(req.params.id);
-        res.json('Xóa thành công sản phẩm!');
+        res.json('Xóa thành công!');
     }
 
     updateClass = async (req: Request, res: Response) => {
@@ -42,7 +42,7 @@ class classController {
         } catch (error) {
             console.log(error);
 
-            res.status(500).json({ error: 'Internal Server Error' });
+            res.status(500).json({ error: 'Error!' });
         }
     };
 }
