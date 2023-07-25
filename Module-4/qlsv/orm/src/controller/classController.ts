@@ -26,9 +26,9 @@ class classController {
     updateClass = async (req: Request, res: Response) => {
         try {
             let indexClass = await classService.searchClass(req.query.id);
-            let pID = req.query.id;
+            let cID = req.query.id;
             let classes = req.body;
-            let results = await classService.updateStudent(pID, classes);
+            let results = await classService.updateStudent(cID, classes);
 
             if (
                 indexClass.name !== results.name ||

@@ -27,7 +27,7 @@ class studentController {
                 res.json(resultsDesc);
             }
             else {
-                res.status(400).json({ message: 'Lỗi!' });
+                res.status(400).json({ message: 'Error!' });
             }
         };
         this.searchStudent = async (req, res) => {
@@ -42,7 +42,7 @@ class studentController {
                 res.json(results);
             }
             else {
-                res.status(400).json({ message: 'Lỗi!' });
+                res.status(400).json({ message: 'Error!' });
             }
         };
         this.findAllStudentByClass = async (req, res) => {
@@ -72,7 +72,7 @@ class studentController {
             }
             catch (error) {
                 console.log(error);
-                res.status(500).json({ error: 'Internal Server Error' });
+                res.status(500).json({ error: 'Error!' });
             }
         };
         this.deleteStudentById = async (req, res) => {

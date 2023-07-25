@@ -21,14 +21,14 @@ class classController {
         };
         this.deleteClassById = async (req, res) => {
             await classService_1.default.deleteClassById(req.params.id);
-            res.json('Xóa thành công sản phẩm!');
+            res.json('Xóa thành công!');
         };
         this.updateClass = async (req, res) => {
             try {
                 let indexClass = await classService_1.default.searchClass(req.query.id);
-                let pID = req.query.id;
+                let cID = req.query.id;
                 let classes = req.body;
-                let results = await classService_1.default.updateStudent(pID, classes);
+                let results = await classService_1.default.updateStudent(cID, classes);
                 if (indexClass.name !== results.name ||
                     indexClass.teacherName !== results.teacherName ||
                     indexClass.totalStudent !== results.totalStudent) {
@@ -40,7 +40,7 @@ class classController {
             }
             catch (error) {
                 console.log(error);
-                res.status(500).json({ error: 'Internal Server Error' });
+                res.status(500).json({ error: 'Error!' });
             }
         };
     }
