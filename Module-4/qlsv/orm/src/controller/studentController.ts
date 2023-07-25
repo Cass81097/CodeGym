@@ -53,9 +53,9 @@ class studentController {
     updateStudent = async (req: Request, res: Response) => {
         try {
             let indexStudent = await studentService.searchStudentById(req.query.id);
-            let pID = req.query.id;
+            let sID = req.query.id;
             let student = req.body;
-            let results = await studentService.updateStudent(pID, student);
+            let results = await studentService.updateStudent(sID, student);
 
             if (
                 indexStudent.name !== results.name ||
