@@ -1,7 +1,5 @@
 import { Request, Response } from "express";
 import classService from "../service/classService";
-import url from "url";
-import * as fs from "fs";
 
 class classController {
     findAll = async (req: Request, res: Response) => {

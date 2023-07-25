@@ -1,13 +1,10 @@
 import { Request, Response } from "express";
 import studentService from "../service/studentService";
-import url from "url";
-import * as fs from "fs";
 
 class studentController {
     findAll = async (req: Request, res: Response) => {
         let { minPoint, maxPoint, asc, desc } = req.query;
         // console.log({ minPoint, maxPoint, asc, desc });
-
         if (minPoint === undefined && maxPoint === undefined && asc === undefined && desc === undefined) {
             let listStudent = await studentService.getAll();
             res.json(listStudent);
@@ -23,7 +20,7 @@ class studentController {
             console.log(resultsDesc);
             res.json(resultsDesc);
         } else {
-            res.status(400).json({ message: 'Lỗi!' });
+            res.status(400).json({ message: 'Error!' });
         }
     }
 
@@ -38,7 +35,7 @@ class studentController {
             let results = await studentService.searchStudentByName(name);
             res.json(results);
         } else {
-            res.status(400).json({ message: 'Lỗi!' });
+            res.status(400).json({ message: 'Error!' });
         }
     }
 
@@ -73,16 +70,13 @@ class studentController {
         } catch (error) {
             console.log(error);
 
-            res.status(500).json({ error: 'Internal Server Error' });
+            res.status(500).json({ error: 'Error!' });
         }
     };
-
 
     deleteStudentById = async (req: Request, res: Response) => {
         await studentService.deleteStudentById(req.query.id);
         res.json(`Xóa thành công sinh viên có ID = ${req.query.id}`);
     }
-
 }
-
 export default new studentController();
