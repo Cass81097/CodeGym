@@ -2,7 +2,7 @@ function loadAddClass() {
     axios.get('http://localhost:3000/classes')
         .then((res) => {
             let data = res.data;
-            let lastId;
+            let lastId = data[data.length - 1].id;
             console.log(data);
             let str = `
                 <div id="home"></div> 
@@ -11,10 +11,7 @@ function loadAddClass() {
             let home = `
                 <span style="color:red" onclick="loadHome()">Home</span> | <span onclick="loadClass()">List Class</span>
             `
-
-            for (let i = 0; i < data.length; i++) {
-                lastId = data[i].id;
-            }
+ 
 
             let main = `
                 <input type="text" placeholder="ID" id="id" value="${lastId + 1}" disabled >

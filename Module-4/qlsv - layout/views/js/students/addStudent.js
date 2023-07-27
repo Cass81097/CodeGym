@@ -2,7 +2,7 @@ function loadAddStudent() {
     axios.get('http://localhost:3000/students')
         .then((res) => {
             let data = res.data;
-            let lastId;
+            let lastId = data[data.length - 1].id;
             console.log(data);
             let str = `
                 <div id="home"></div> 
@@ -12,10 +12,6 @@ function loadAddStudent() {
                 <span style="color:red" onclick="loadHome()">Home</span> | <span onclick="loadStudent()">List Student</span>
             `
 
-            for (let i = 0; i < data.length; i++) {
-                lastId = data[i].id;
-            }
-            
             let main = `
                 <input type="text" placeholder="ID" id="id" value="${lastId + 1}" disabled>
                 <input type="text" placeholder="Name" id="name">
