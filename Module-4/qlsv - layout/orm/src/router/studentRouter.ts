@@ -1,5 +1,4 @@
 import { Router } from "express";
-
 import studentController from "../controller/studentController";
 
 const studentRouter = Router();

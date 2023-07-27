@@ -1,7 +1,10 @@
-import {Router} from "express";
+import { Router } from "express";
+import { auth } from "../middleware/jwt";
 import classController from "../controller/classController";
 
 const classRouter = Router();
+
+classRouter.use(auth);
 
 classRouter.get('/', classController.findAll);
 classRouter.post('/', classController.addClass);

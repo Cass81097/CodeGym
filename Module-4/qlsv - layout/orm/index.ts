@@ -3,12 +3,15 @@ import bodyParser from "body-parser";
 import router from "./src/router/router";
 import {AppDataSource} from "./src/data-source";
 import cors from 'cors';
+import cookieParser from "cookie-parser";
 
 const app = express();
 
 AppDataSource.initialize().then(() => {
     console.log('Connect database success')
 })
+
+app.use(cookieParser());
 app.use(cors());
 app.use(express.static('./public'));
 app.use(bodyParser.json());

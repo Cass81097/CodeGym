@@ -4,29 +4,28 @@ async function loadAddStudent() {
         let data = resStudent.data;
         let lastId = data[data.length - 1].id;
         let str = `
-        <div id="home"></div> 
-        <div id="main"></div>
-      `;
+            <div id="home"></div> 
+            <div id="main"></div>
+        `;
         let home = `
-        <span style="color:red" onclick="loadHome()">Home</span> | <span onclick="loadStudent()">List Student</span>
-      `;
+            <span style="color:red" onclick="loadHome()">Home</span> | <span onclick="loadStudent()">List Student</span>
+        `;
 
         let main = `
-        <input type="text" placeholder="ID" id="id" value="${lastId + 1}" disabled>
-        <input type="text" placeholder="Name" id="name">
-        <input type="text" placeholder="Age" id="age">
-        <input type="text" placeholder="Point" id="point">
-        <select id="classRefId">      
-        </select>
-        <button onclick="saveStudent()">Save</button>
+            <input type="text" placeholder="ID" id="id" value="${lastId + 1}" disabled>
+            <input type="text" placeholder="Name" id="name">
+            <input type="text" placeholder="Age" id="age">
+            <input type="text" placeholder="Point" id="point">
+            <select id="classRefId">      
+            </select>
+            <button onclick="saveStudent()">Save</button>
         `;
 
         const resClass = await axios.get('http://localhost:3000/classes');
-        let data1 = resClass.data;
-        console.log(data1);
+        let dataClass = resClass.data;
 
         let optionClass = `<option value="">Select Class</option>`
-        for (const item of data1) {
+        for (const item of dataClass) {
             optionClass += `    
                     <option value="${item.id}">${item.name}</option>
                      `

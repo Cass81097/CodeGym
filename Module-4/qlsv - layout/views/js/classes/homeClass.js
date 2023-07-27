@@ -4,6 +4,7 @@ async function loadHome() {
         <div id="main"></div>
     `;
     let home = `
+        <h2 onclick="exit()" style="cursor: pointer;max-width: fit-content;">Sign Out</h2>
         <span style="color:red" onclick="loadHome()">Home</span> | 
         <span onclick="loadAddClass()">Add Class</span> | 
         <span onclick="loadEditClass()">Edit Class</span> | 

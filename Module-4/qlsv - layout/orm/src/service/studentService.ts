@@ -1,6 +1,5 @@
 import { Students } from "../entity/students";
 import { AppDataSource } from "../data-source";
-import { Long } from "typeorm";
 
 class StudentService {
     private studentRepository: any;

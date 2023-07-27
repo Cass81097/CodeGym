@@ -4,8 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
+const jwt_1 = require("../middleware/jwt");
 const classController_1 = __importDefault(require("../controller/classController"));
 const classRouter = (0, express_1.Router)();
+classRouter.use(jwt_1.auth);
 classRouter.get('/', classController_1.default.findAll);
 classRouter.post('/', classController_1.default.addClass);
 classRouter.get('/search', classController_1.default.searchClassById);

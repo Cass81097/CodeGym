@@ -1,6 +1,5 @@
 import { Class } from "../entity/class";
 import { AppDataSource } from "../data-source";
-import { Long } from "typeorm";
 
 class ClassService {
     private classRepository : any;
@@ -30,31 +29,10 @@ class ClassService {
         return results;
     }
 
-    deleteClassById = async (product: any) => {
-        let results = await this.classRepository.delete(product)
+    deleteClassById = async (classes: any) => {
+        let results = await this.classRepository.delete(classes)
         return results;
     }
-
-    // deleteProductByName = async (productName) => {
-    //     try {
-    //         const product = await this.productRepository.findOne({ where: { name: productName } });
-    //         if (!product) {
-    //             return `Sản phẩm ${productName} không tồn tại.`;
-    //         }
-
-    //         await this.productRepository.remove(product);
-    //         console.log('Xóa thành công!');
-    //         return `Đã xóa sản phẩm ${productName}.`;
-    //     } catch (error) {
-    //         if (
-    //             error.code === 'ER_ROW_IS_REFERENCED_2' ||
-    //             error.code === 'ER_NO_REFERENCED_ROW'
-    //         ) {
-    //             return `Không thể xóa sản phẩm ${productName} vì đang có ràng buộc với dữ liệu khác trong cơ sở dữ liệu.`;
-    //         }
-    //         throw error;
-    //     }
-    // };
 
 }
 

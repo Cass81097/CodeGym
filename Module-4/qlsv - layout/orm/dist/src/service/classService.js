@@ -22,8 +22,8 @@ class ClassService {
             let results = await this.classRepository.save(classEdited);
             return results;
         };
-        this.deleteClassById = async (product) => {
-            let results = await this.classRepository.delete(product);
+        this.deleteClassById = async (classes) => {
+            let results = await this.classRepository.delete(classes);
             return results;
         };
         this.classRepository = data_source_1.AppDataSource.getRepository(class_1.Class);
