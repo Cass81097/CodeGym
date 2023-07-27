@@ -14,7 +14,7 @@ function loadStudent() {
             let data = res.data;
             let str = '';
             data.map(item => {
-                str += `<h3>${item.id}. Tên: ${item.name} - Tuổi: ${item.age} - Điểm: ${item.point} - HS lớp: ${item.classRef.name}</h3>
+                str += `<h3>${item.id}. Name: ${item.name} - Age: ${item.age} - Point: ${item.point} - Total Student: ${item.classRef.name}</h3>
                 `;
             });
             document.getElementById('main').innerHTML = str;

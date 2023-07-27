@@ -14,7 +14,7 @@ function loadDeleteClass() {
             let data = res.data;
             let str = '';
             data.map(item => {
-                str += `<h3>${item.id}. Lớp: ${item.name} - Giảng viên: ${item.teacherName} - Tổng SV: ${item.totalStudent}</h3>
+                str += `<h3>${item.id}. Class: ${item.name} - Teacher: ${item.teacherName} - Total Student: ${item.totalStudent}</h3>
                         <button onclick="deleteClass(${item.id})">Delete</button>
                 `;
             });

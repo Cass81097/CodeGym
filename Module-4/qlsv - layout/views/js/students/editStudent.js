@@ -14,7 +14,7 @@ function loadEditStudent() {
             let data = res.data;
             let str = '';
             data.map(item => {
-                str += `<h3>${item.id}. Tên: ${item.name} - Tuổi: ${item.age} - Điểm: ${item.point} - HS lớp: ${item.classRef.name}</h3>
+                str += `<h3>${item.id}. Name: ${item.name} - Age: ${item.age} - Point: ${item.point} - Class: ${item.classRef.name}</h3>
                         <button onclick="editButtonStudent(${item.id})">Edit</button>
                 `;
             });
