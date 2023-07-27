@@ -39,7 +39,7 @@ async function saveClass() {
     try {
         const res = await axios.post('http://localhost:3000/classes', data);
         console.log(res);
-        loadClass();
+        this.loadClass();
     } catch (error) {
         console.error(error);
     }
