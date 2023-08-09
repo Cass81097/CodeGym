@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div id="display"></div>
+
+    <!-- Users -->
+    <script src="./js/users/login.js"></script>
+    <script src="./js/users/register.js"></script>
+
+    <!-- Classes -->
+    <script src="./js/classes/addClass.js"></script>
+    <script src="./js/classes/deleteClass.js"></script>
+    <script src="./js/classes/editClass.js"></script>
+    <script src="./js/classes/homeClass.js"></script>
+
+    <!-- Students -->
+    <script src="./js/students/addStudent.js"></script>
+    <script src="./js/students/deleteStudent.js"></script>
+    <script src="./js/students/editStudent.js"></script>
+    <script src="./js/students/homeStudent.js"></script>
+
+    <script>
+        loadLogin();
+    </script>
+    
+    <script>
+        function exit() {
+            if (confirm("Are you sure you want to sign out?")) {
+                // Delete the cookie
+                document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";  
+                window.location.reload()
+            }
+        }
+    </script>
+    
+</body>
+
+</html>

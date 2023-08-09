@@ -8,8 +8,9 @@ class StudentService {
     }
 
     getAll = async () => {
-        let students = await this.studentRepository.find({
-            relations: {
+        let students = await this.studentRepository.findOne(
+            {
+            relations: {    
                 classRef: true
             }
         });
