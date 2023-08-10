@@ -1,0 +1,7 @@
+Next.js là một framework phát triển ứng dụng web phía máy chủ (server-side) và phía máy khách (client-side) được xây dựng trên nền tảng JavaScript và React. Nó được sử dụng để xây dựng các ứng dụng web đơn trang (single-page applications - SPA) và ứng dụng web tĩnh (static web applications).
+
+Next.js giúp tối ưu hóa quá trình phát triển ứng dụng web bằng cách cung cấp các tính năng như routing (định tuyến), server-side rendering (SSR), static site generation (SSG) và nhiều hơn nữa. Điều này cho phép viết mã phía máy khách và phía máy chủ trong cùng một dự án, giúp tăng tốc độ tải trang, cải thiện trải nghiệm người dùng và tối ưu hóa SEO.
+
+Next.js cung cấp một cấu trúc dự án (project structure) chuẩn, hỗ trợ cho việc quản lý tệp tin, xử lý định tuyến, xây dựng trang tĩnh và tích hợp dễ dàng với các thư viện và công cụ phổ biến như React, CSS modules, TypeScript và nhiều nền tảng hosting khác nhau.
+
+Tổng quan, Next.js là một công cụ mạnh mẽ cho phát triển ứng dụng web hiệu quả, linh hoạt và tốn ít công sức. Nó được sử dụng rộng rãi trong cộng đồng phát triển web để xây dựng các ứng dụng web phức tạp và hiệu quả.

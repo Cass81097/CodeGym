@@ -1,0 +1,15 @@
+Firebase là một nền tảng phát triển ứng dụng di động và web được cung cấp bởi Google. Nó cung cấp một bộ công cụ và dịch vụ đám mây để xây dựng và triển khai ứng dụng web và di động một cách dễ dàng và nhanh chóng.
+
+Các tính năng chính của Firebase bao gồm:
+
+Real-time Database: Firebase cung cấp một cơ sở dữ liệu thời gian thực (real-time) cho phép đồng bộ dữ liệu trực tiếp giữa các thiết bị và người dùng. Điều này cho phép xây dựng ứng dụng có tính tương tác cao và cập nhật dữ liệu ngay lập tức.
+
+Authentication: Firebase cung cấp dịch vụ xác thực người dùng, giúp quản lý việc đăng nhập, đăng ký và xác thực người dùng thông qua nhiều phương thức như email/password, xác thực qua mạng xã hội (Google, Facebook, Twitter), và xác thực qua số điện thoại.
+
+Cloud Firestore: Đây là một cơ sở dữ liệu linh hoạt dựa trên tài liệu (document-based) được cung cấp bởi Firebase. Firestore cung cấp một cách tiếp cận dễ dàng để lưu trữ và truy xuất dữ liệu cho ứng dụng web và di động.
+
+Cloud Storage: Firebase cung cấp dịch vụ lưu trữ đám mây (cloud storage) để lưu trữ tệp tin như hình ảnh, video, tài liệu và các tệp tin khác. Điều này giúp dễ dàng quản lý và truy cập vào các tệp tin từ các ứng dụng di động và web.
+
+Hosting: Firebase cung cấp một dịch vụ lưu trữ web để triển khai ứng dụng web một cách nhanh chóng và dễ dàng. Bạn có thể dễ dàng đăng ký miễn phí một tên miền Firebase và triển khai ứng dụng của mình với HTTPS bảo mật.
+
+Ngoài ra, Firebase còn cung cấp nhiều tính năng khác như Cloud Functions, Cloud Messaging, Analytics, Performance Monitoring, và nhiều dịch vụ khác để hỗ trợ việc phát triển và quản lý ứng dụng di động và web.
