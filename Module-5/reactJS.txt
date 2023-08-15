@@ -1,0 +1,5 @@
+1. didMount -> lấy dữ liệu từ BE.
+2. shouldMount.
+3. didUpdate.
+4. Will UnMount.
+

@@ -14,7 +14,7 @@ export default function Home() {
             }}>
                 <Link to={'/list-student'}>List Student</Link> |
                 <Link to={'/create-student'}>Create Student</Link> |
-                <Link to={'/edit-student'}>Edit Student</Link>
+                <Link to={'/delete-student'}>Delete Student</Link> 
             </div>
             <hr/>
             <h1>Home Student</h1>
