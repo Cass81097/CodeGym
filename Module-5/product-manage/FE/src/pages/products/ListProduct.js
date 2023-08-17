@@ -1,27 +1,38 @@
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import $ from "jquery";
 
 export default function ListProduct() {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
     const [list, setList] = useState([]);
     const navigate = useNavigate();
     const [selectedProductId, setSelectedProductId] = useState(null);
     const [selectedProductTitle, setSelectedProductTitle] = useState("");
+    const [alertDelete, setAlertDelete] = useState(null);
 
     useEffect(() => {
         fetchProductList();
     }, []);
 
+    useEffect(() => {
+
+    }, []);
+
     const fetchProductList = async () => {
         try {
             const res = await axios.get("http://localhost:3001/products");
+            console.log(res.data);
             setList(res.data);
         } catch (error) {
             console.error("Error fetching product list:", error);
         }
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem('token'); 
+        localStorage.removeItem('userId'); 
+        navigate('/login'); 
     };
 
     const openModal = (productId, productTitle) => {
@@ -34,7 +45,10 @@ export default function ListProduct() {
             if (!selectedProductId) return;
             await axios.delete(`http://localhost:3001/products/${selectedProductId}`);
             await fetchProductList();
-            alert("Xóa thành công");
+            setAlertDelete("Xóa thành công!!!");
+            setTimeout(() => {
+                setAlertDelete(null);
+            }, 3000);
         } catch (error) {
             console.error("Error deleting product:", error);
         }
@@ -42,21 +56,29 @@ export default function ListProduct() {
 
     return (
         <>
-            <Navbar></Navbar>
             <div
                 style={{
                     display: "flex",
                     justifyContent: "center"
                 }}
             >
-                <Link to={"/list-product"}>List Product</Link> 
+                <Link to={"/list-product"}>List Product</Link>
             </div>
+            <div style={{display: "flex", justifyContent: "flex-end"}}>
+                <button onClick={() => handleLogout()} type="button" className="btn btn-warning" >Log Out</button> 
+            </div>
+             
             <hr />
             <div className="header-product">
                 <div>
-                    <h2>Danh sách sản phẩm</h2>
+                    <h2>Danh sách sản phẩm :</h2>
+                    {alertDelete && (
+                        <div className="alert alert-success" role="alert">
+                            {alertDelete}
+                        </div>
+                    )}
                 </div>
-                <button type="button" className="btn btn-success">
+                <button type="button" className="btn btn-success" style={{ margin: "0 0 10px 5px" }}>
                     <Link to={"/add-product"} style={{ color: "white", textDecoration: "none" }}>
                         Thêm mới
                     </Link>
@@ -72,27 +94,28 @@ export default function ListProduct() {
                             <th scope="col">Mô tả</th>
                             <th scope="col">Giá</th>
                             <th scope="col">Hành động</th>
+                            <th scope="col">User</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {list.map((item, key) => (
-                            <tr key={key}>
-                                <th scope="row">{item.id}</th>
+                        {list.map((item, i) => (
+                            <tr key={i}>
+                                <th scope="row">{i + 1}</th>
                                 <th>
                                     <Link to={"/product/" + item.id}>{item.title}</Link>
                                 </th>
                                 <td>{item.description}</td>
                                 <td>{item.price}</td>
-                                <td>
+                                <td className="my-button">
                                     <button type="button" className="btn btn-danger" onClick={() => openModal(item.id, item.title)} data-toggle="modal" data-target="#myModal">Xóa</button>
                                     <button type="button" className="btn btn-primary" onClick={() => navigate("../edit-product/" + item.id)}>Sửa</button>
                                 </td>
+                                <td>{item.user.username}</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
-            <Footer></Footer>
 
             {/* Delete Product */}
             <div className="modal fade" id="myModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

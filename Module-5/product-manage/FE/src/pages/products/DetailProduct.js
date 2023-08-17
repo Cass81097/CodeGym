@@ -1,4 +1,4 @@
-import Navbar from "../../components/Navbar";
+
 import Footer from "../../components/Footer";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -24,7 +24,7 @@ export default function DetailProduct() {
 
     return (
         <>
-            <Navbar></Navbar>
+          
             <div
                 style={{
                     display: "flex",

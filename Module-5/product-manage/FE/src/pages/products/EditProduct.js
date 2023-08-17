@@ -1,5 +1,4 @@
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Field, Formik, Form } from "formik";
@@ -19,10 +18,10 @@ export default function EditProduct() {
         try {
             const product = res.data;
             setInitialValues({
-                id: product.id,
-                title: product.title,
-                price: product.price,
-                description: product.description,
+                id: product[0].id,
+                title: product[0].title,
+                price: product[0].price,
+                description: product[0].description,
             });
         }
         catch (error) {
@@ -35,30 +34,32 @@ export default function EditProduct() {
     }
 
     return (
-        <>
-            <Navbar></Navbar>
+        <>  
             <div style={{
                 display: "flex",
                 justifyContent: "center"
             }}>
-                <Link to={'/list-product'}>List Student</Link> 
+                <Link to={'/list-product'}>List Product</Link>
             </div>
             <hr />
             <Formik
                 initialValues={initialValues}
-                onSubmit={(data) => {
-                    axios.put(`http://localhost:3001/products/${id}`, data).then(() => {
+                onSubmit={async (data) => {
+                    try {
+                        await axios.put(`http://localhost:3001/products/${id}`, data);
                         console.log(data);
                         alert('Success');
                         navigate('/list-product');
-                    });
+                    } catch (error) {
+                        console.error(error);
+                    }
                 }}
             >
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title" id="exampleModalLabel">
-                                Thêm sản phẩm
+                                Sửa sản phẩm :
                             </h5>
                             <button
                                 type="button"
@@ -94,7 +95,6 @@ export default function EditProduct() {
                     </div>
                 </div>
             </Formik>
-            <Footer></Footer>
         </>
     )
 }

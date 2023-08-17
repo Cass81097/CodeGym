@@ -2,16 +2,29 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { Link, useNavigate } from "react-router-dom";
 import { Field, Formik, Form } from "formik";
+import { useState } from "react";
 import axios from "axios";
 
 export default function AddProduct() {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+    let userId = localStorage.getItem('userId')
+    console.log(userId);
     const navigate = useNavigate();
+    const [showModal, setShowModal] = useState(false); // Biến trạng thái cho Modal
+    const [opacityBackground, setOpacityBackGround] = useState(false); // Biến trạng thái cho Background
 
     const handleSubmit = async (data) => {
         try {
             await axios.post("http://localhost:3001/products", data);
-            alert("Success");
-            navigate("/list-product");
+            console.log(data);
+            setShowModal(true);
+            setOpacityBackGround(true);
+
+            setTimeout(() => {
+                setShowModal(false);
+                setOpacityBackGround(false);
+                navigate("/list-product");
+            }, 1000);
         } catch (error) {
             console.error("Error adding product:", error);
         }
@@ -26,14 +39,14 @@ export default function AddProduct() {
                     justifyContent: "center"
                 }}
             >
-                <Link to={"/list-product"}>List Product</Link> 
+                <Link to={"/list-product"}>List Product</Link>
             </div>
             <hr />
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title" id="exampleModalLabel">
-                            Thêm sản phẩm
+                            Thêm sản phẩm :
                         </h5>
                         <button
                             type="button"
@@ -49,7 +62,10 @@ export default function AddProduct() {
                             initialValues={{
                                 title: "",
                                 price: "",
-                                description: ""
+                                description: "",
+                                user: {
+                                    id: userId
+                                }
                             }}
                             onSubmit={handleSubmit}
                         >
@@ -68,9 +84,7 @@ export default function AddProduct() {
                                 </div>
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" onClick={() => navigate('/list-product')}>Quay về</button>
-                                    <button type="submit" className="btn btn-primary">
-                                        Thêm sản phẩm
-                                    </button>
+                                    <button type="submit" className="btn btn-primary" data-toggle="modal" data-target="#addModal">Thêm sản phẩm</button>
                                 </div>
                             </Form>
                         </Formik>
@@ -78,6 +92,34 @@ export default function AddProduct() {
                 </div>
             </div>
             <Footer></Footer>
+
+            {/* Show Add Alert */}
+            {showModal && (
+                <div
+                    className="modal fade show"
+                    id="addModal"
+                    tabIndex="-1"
+                    role="dialog"
+                    aria-labelledby="exampleModalCenterTitle"
+                    aria-hidden="true"
+                    style={{ display: "block" }}
+                >
+                    <div className="modal-dialog modal-dialog-centered" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header" style={{ justifyContent: "center" }}>
+                                <h5 className="modal-title" id="exampleModalLongTitle">
+                                    Thêm sản phẩm thành công!!!
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Opacity Background when show Alert */}
+            {opacityBackground && (
+                <div className="modal-backdrop fade show"></div>
+            )}
         </>
     );
 }
