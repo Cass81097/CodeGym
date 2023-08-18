@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../Context/AppContext";
 import { setupScrollListeners } from "./myjs/Scroll";
 import { setupListenMusic } from "./myjs/Music";
@@ -8,6 +8,17 @@ import $ from 'jquery';
 export default function Home() {
     const navigate = useNavigate();
     const { listAlbum, listMusic, listPlay, isUser } = useContext(AppContext);
+
+    const [seekValue, setSeekValue] = useState(0);
+    const [volValue, setVolValue] = useState(0);
+
+    const handleSeekChange = (event) => {
+        setSeekValue(event.target.value);
+    };
+
+    const handleVolChange = (event) => {
+        setVolValue(event.target.value);
+    };
 
     useEffect(() => {
         setupScrollListeners();
@@ -90,7 +101,7 @@ export default function Home() {
                             <div id="user" className="user">
                                 {isUser.map((item, i) => (
                                     <div key={i}>
-                                        <img src={item.imgUrl} className="profileUser" alt='' onClick={() => showInfo()}/>
+                                        <img src={item.imgUrl} className="profileUser" alt='' onClick={() => showInfo()} />
                                         <ol className="profile-menu" style={{ display: "none" }}>
                                             <li>Thông tin</li>
                                             <li data-toggle="modal" data-target="#myModal">Đăng xuất</li>
@@ -187,7 +198,8 @@ export default function Home() {
                         </div>
                         <span id="currentStart">0:00</span>
                         <div className="bar">
-                            <input type="range" id="seek" min={0} value={0} max={100}></input>
+                            <input type="range" id="seek" min={0} max={100} value={seekValue}
+                                onChange={handleSeekChange}></input>
                             <div className="bar2" id="bar2"></div>
                             <div className="dot"></div>
                         </div>
@@ -195,7 +207,8 @@ export default function Home() {
 
                         <div className="vol">
                             <i className="bi bi-volume-down-fill" id="vol_icon"></i>
-                            <input type="range" id="vol" min={0} value={0} max={100}></input>
+                            <input type="range" id="vol" min={0} max={100} value={volValue}
+                                onChange={handleVolChange}></input>
                             <div className="vol_bar"></div>
                             <div className="dot" id="vol_dot"></div>
                         </div>
