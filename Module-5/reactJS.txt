@@ -3,3 +3,10 @@
 3. didUpdate.
 4. Will UnMount.
 
+Redux (Store) <==> State (list, setList)
+1. Khởi tạo
+2. lấy ra để dùng, useSelector(store => return store.products)
+3. Cập nhật: Reducer setList
+dispatch(onclick, onchange, ...) , action(dữ liệu mới cho store-newData)
+
+- dispatch ném newData và reducer cập nhật lại store (new Data-Action)

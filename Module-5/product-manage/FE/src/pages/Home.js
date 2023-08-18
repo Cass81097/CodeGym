@@ -20,6 +20,7 @@ export default function Home() {
                 <h1>Product Management</h1>
                 <Footer></Footer>
             </div>
+
         </>
     )
 }
