@@ -18,6 +18,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+console.log(app);
 
 const storage = getStorage();
 
@@ -60,19 +61,19 @@ export default function uploadImage(e) {
             progressImg.style.margin = "0px 0px 10px 0px";
             var divElement = document.querySelector('.image-url');
             divElement.removeAttribute('hidden');
-            const inputElement = document.getElementById('image');
+            // const inputElement = document.getElementById('image');
             
-            if (inputElement !== null) {
-                // inputElement.readOnly = true;
-                switch (snapshot.state) {
-                    case 'paused':
-                        console.log('Upload is paused');
-                        break;
-                    case 'running':
-                        console.log('Upload is running');
-                        break;
-                }
-            }
+            // if (inputElement !== null) {
+            //     inputElement.readOnly = true;
+            //     switch (snapshot.state) {
+            //         case 'paused':
+            //             console.log('Upload is paused');
+            //             break;
+            //         case 'running':
+            //             console.log('Upload is running');
+            //             break;
+            //     }
+            // }
            
         },
         (error) => {
@@ -108,4 +109,5 @@ export default function uploadImage(e) {
         }
     );
 }
-window.uploadImage = uploadImage;
+
+// window.uploadImage = uploadImage;

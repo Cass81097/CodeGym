@@ -243,8 +243,7 @@ export default function Home() {
                                                 <img src="" alt="" id="image-url"></img>
                                             </div>
                                         </div>
-                                        <Field id="image" className="form-control" type="text" name="imgUrl"
-                                            required hidden />
+                                        <Field id="image" className="form-control" type="text" name="imgUrl" hidden />
                                     </div>
                                 </div>
                                 <div className="modal-footer">
