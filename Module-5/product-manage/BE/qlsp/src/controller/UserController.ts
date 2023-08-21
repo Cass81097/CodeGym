@@ -12,8 +12,9 @@ class UserController {
 
     login = async (req: Request, res: Response) => {
         let resultCheck = await UserService.checkUser(req.body);
-        res.status(200).json(resultCheck);
+        res.status(200).json(resultCheck);   
     }
+    
     check = async (req: Request, res: Response) => {
         console.log(req.body)
         let check = await UserService.checkLogin(req.body.username,req.body.password)

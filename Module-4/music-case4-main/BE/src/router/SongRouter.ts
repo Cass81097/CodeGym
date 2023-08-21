@@ -3,7 +3,7 @@ import songController from "../controller/SongController";
 import {auth} from "../middleware/jwt";
 
 const songRouter = Router();
-// songRouter.use(auth);
+songRouter.use(auth);
 songRouter.post('', songController.add);
 songRouter.get('/id/',songController.findAllById);
 songRouter.get('/notId/:notSong',songController.getSongsNotInAnyPlaylist);

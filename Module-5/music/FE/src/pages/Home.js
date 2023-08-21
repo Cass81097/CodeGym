@@ -1,23 +1,31 @@
+import './my-style/home/playlist.css'
+import './my-style/home/styles.css'
+import './my-style/home/upload.css'
+
+import Playbar from '../components/Playbar';
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import { AppContext } from "../Context/AppContext";
+import { useContext, useEffect } from "react";
+import { HomeContext } from "../Context/HomeContext";
 import { setupScrollListeners } from "./myjs/Scroll";
 import { setupListenMusic } from "./myjs/Music";
+import { Field, Formik, Form } from "formik";
 import $ from 'jquery';
+import axios from "axios";
+import uploadImage from './myjs/Upload';
 
 export default function Home() {
     const navigate = useNavigate();
-    const { listAlbum, listMusic, listPlay, isUser } = useContext(AppContext);
+    const { listAlbum, listMusic, listPlay, isUser } = useContext(HomeContext);
+    const userId = localStorage.getItem('userId')
 
-    const [seekValue, setSeekValue] = useState(0);
-    const [volValue, setVolValue] = useState(0);
+    const handleSubmit = async (data) => {
+        try {
+            await axios.post("http://localhost:3000/playlists", data);
+            console.log(data);
 
-    const handleSeekChange = (event) => {
-        setSeekValue(event.target.value);
-    };
-
-    const handleVolChange = (event) => {
-        setVolValue(event.target.value);
+        } catch (error) {
+            console.error("Error adding product:", error);
+        }
     };
 
     useEffect(() => {
@@ -29,12 +37,17 @@ export default function Home() {
         console.log(id);
     };
 
-    const goToAlbum = (AlbumId) => {
-        navigate(`/album/` + AlbumId);
+    const goToAlbum = (albumId) => {
+        navigate(`/album/` + albumId);
     };
 
     const showInfo = () => {
         $('.profile-menu').toggle();
+    };
+
+    const logout = () => {
+        localStorage.clear();
+        navigate('/login');
     };
 
     return (
@@ -76,10 +89,9 @@ export default function Home() {
                                 </div>
                             </div>
 
-
                             <div id="playList" className="songList">
                                 {listPlay.map((item, i) => (
-                                    <li key={i} className="song-Item">
+                                    <li key={i} className="song-Item" onClick={() => navigate(`/playlist/` + item.id)}>
                                         <img src={item.imgUrl} alt=''></img>
                                         <h5>
                                             {item.name}
@@ -104,7 +116,7 @@ export default function Home() {
                                         <img src={item.imgUrl} className="profileUser" alt='' onClick={() => showInfo()} />
                                         <ol className="profile-menu" style={{ display: "none" }}>
                                             <li>Thông tin</li>
-                                            <li data-toggle="modal" data-target="#myModal">Đăng xuất</li>
+                                            <li data-toggle="modal" data-target="#myModal" onClick={() => logout()}>Đăng xuất</li>
                                         </ol>
                                     </div>
                                 ))}
@@ -146,9 +158,7 @@ export default function Home() {
                                                 <th>Tên bài hát</th>
                                                 <th>Album</th>
                                                 <th>Ngày thêm</th>
-                                                <th>
-                                                    {/* <img src="../assets/images/Duration.svg" alt=""></img> */}
-                                                </th>
+                                                <th>Phát</th>
                                             </tr>
                                         </thead>
 
@@ -180,42 +190,72 @@ export default function Home() {
                         </div>
 
                     </div>
-
-                    <div className="master_play">
-                        <div className="wave">
-                            <div className="wave1"></div>
-                            <div className="wave1"></div>
-                            <div className="wave1"></div>
-                        </div>
-                        <img src="../assets/images/HoaMinzy.jpg" id="poster_master_play" alt='Hoa'></img>
-                        <h5 id="title">Bật Tình Yêu Lên <br></br>
-                            <div className="subtitle">Hòa Minzy</div>
-                        </h5>
-                        <div className="icon">
-                            <i className="bi bi-skip-start-fill" id="back"></i>
-                            <i className="bi bi-play-fill" id="masterPlay"></i>
-                            <i className="bi bi-skip-end-fill" id="next"></i>
-                        </div>
-                        <span id="currentStart">0:00</span>
-                        <div className="bar">
-                            <input type="range" id="seek" min={0} max={100} value={seekValue}
-                                onChange={handleSeekChange}></input>
-                            <div className="bar2" id="bar2"></div>
-                            <div className="dot"></div>
-                        </div>
-                        <span id="currentEnd">0:00</span>
-
-                        <div className="vol">
-                            <i className="bi bi-volume-down-fill" id="vol_icon"></i>
-                            <input type="range" id="vol" min={0} max={100} value={volValue}
-                                onChange={handleVolChange}></input>
-                            <div className="vol_bar"></div>
-                            <div className="dot" id="vol_dot"></div>
-                        </div>
-                    </div>
+                    <Playbar></Playbar>
                 </header>
             </div>
 
+            {/* Add Playlist */}
+            <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Thêm Playlist :</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <Formik
+                            initialValues={{
+                                name: "",
+                                imgUrl: "",
+                                description: "",
+                                user: {
+                                    id: userId
+                                }
+                            }}
+                            onSubmit={handleSubmit}
+                        >
+                            <Form>
+                                <div className="modal-body">
+                                    <div className="form-group">
+                                        <label htmlFor="recipient-name" className="col-form-label">Tên :</label>
+                                        <Field type="text" className="form-control" id="name" name="name" />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="recipient-name" className="col-form-label">Mô tả :</label>
+                                        <Field type="text" className="form-control" id="description" name="description" />
+                                    </div>
+                                    <div className="form-group mb-avatar">
+                                        <label htmlFor="formFile" className="form-label inputCode"><span></span></label>
+                                        <input type="file" id="image-upload" onChange={(e) => uploadImage(e)} hidden />
+                                        <label htmlFor="image-upload" className="file-upload-button">Chọn ảnh :</label>
+                                        <span id="file-name" style={{ fontSize: '0px' }}></span>
+                                        <div className="info-progress">
+                                            <div className="progress">
+                                                <div id="upload-progress"
+                                                    className="progress-bar progress-bar-striped progress-bar-animated"
+                                                    role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                                                    style={{ width: '0' }} hidden="">0%
+                                                </div>
+                                            </div>
+                                            <div className="image-url" hidden>
+                                                <img src="" alt="" id="image-url"></img>
+                                            </div>
+                                        </div>
+                                        <Field id="image" className="form-control" type="text" name="imgUrl"
+                                            required hidden />
+                                    </div>
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                    <button type="submit" className="btn btn-primary">Thêm</button>
+                                </div>
+                            </Form>
+                        </Formik>
+                    </div>
+                </div>
+            </div>
         </>
     )
 }

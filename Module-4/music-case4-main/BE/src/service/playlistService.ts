@@ -14,6 +14,7 @@ class PlaylistService implements Service<Playlist>{
                 "playlist.name",
                 "playlist.imgUrl",
                 "playlist.description",
+                "user.id",
                 "user.username",
                 "user.imgUrl"
             ])

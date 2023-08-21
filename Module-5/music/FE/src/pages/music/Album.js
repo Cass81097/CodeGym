@@ -1,32 +1,31 @@
 import '../my-style/album/playlist.css'
 import '../my-style/album/styles.css'
-import '../my-style/album/upload.css'
 
-import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import Playbar from '../../components/Playbar';
+import { useParams, useNavigate } from "react-router-dom";
+import { useEffect, useContext } from "react";
 import { setupListenMusic } from "../myjs/Music";
+import { AlbumContext } from "../../Context/AlbumContext";
 import axios from "axios";
 
 export default function Album() {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+    const { isAlbum, isUser, albumInfo } = useContext(AlbumContext);
     const { id } = useParams();
-    const [isAlbum, setIsAlbum] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        fetchIsAlbum(id);
+        localStorage.setItem("albumId", id);
     }, [id]);
 
     useEffect(() => {
         setupListenMusic();
     }, []);
 
-    const fetchIsAlbum = async (albumId) => {
-        try {
-            const res = await axios.get(`http://localhost:3000/songs/id/?idAlbum=${albumId}`);
-            setIsAlbum(res.data);
-        } catch (error) {
-            console.error("Error fetching Song list:", error);
-        }
-    };
+    const goHomePage = () => {
+        navigate('/home')
+        // localStorage.removeItem("albumId");
+    }
 
     return (
         <>
@@ -34,35 +33,41 @@ export default function Album() {
                 <header>
                     <div className="menu_side_album">
                         <h1>Album</h1>
-
                         <div className="playlist-album">
-                            <h4 id="home" className="active-album"><span></span><i className="bi bi-music-note-beamed"></i> Trang chủ</h4>
+                            <h4 onClick={() => goHomePage()} id="home" className="active-album"><span></span><i className="bi bi-music-note-beamed"></i> Trang chủ</h4>
                             <h4 className="active-album"><span></span><i className="bi bi-music-note-beamed"></i> Album</h4>
                         </div>
                     </div>
 
                     <div className="song_side_album">
                         <nav>
-                            <div className="back-button-album">
+                            <div className="back-button-album" onClick={() => goHomePage()}>
                                 <i className="bi bi-chevron-left"></i>
                             </div>
-                            <div id="user" className="user-album">
-
+                            <div id="user" className="user_album">
+                                {isUser.map((item, i) => (
+                                    <img key={i} src={item.imgUrl} alt=''></img>
+                                ))}
                             </div>
                         </nav>
                         <div className="right">
                             <div className="playlist-header">
                                 <div className="playlist-content" data-toggle="modal" data-target="#exampleModal">
                                     <div id="playlist-cover" className="playlist-cover">
-                                        
+                                        <img src={albumInfo.imgUrl} alt=''></img>
                                     </div>
                                     <div id="playlist-info" className="playlist-info">
-
+                                        <div className="playlist-public">Album</div>
+                                        <div className="playlist-title">{albumInfo.name}</div>
+                                        <div style={{ height: '10px' }}></div>
+                                        <div className="playlist-stats">
+                                            <img src="../assets/images/spotify-logo.png" width="24px" height="24px" alt=""></img>
+                                        </div>
                                     </div>
                                 </div>
 
                             </div>
-                            <div className="playlist-songs-container">
+                            <div className="playlist-songs-container" style={{padding: "20px 20px 20px 20px"}}>
                                 <div className="playlist-buttons">
                                     <div className="playlist-buttons-left">
                                         <div className="playlist-buttons-resume-pause">
@@ -121,36 +126,7 @@ export default function Album() {
 
                     </div>
 
-                    <div className="master_play">
-                        <div className="wave">
-                            <div className="wave1"></div>
-                            <div className="wave1"></div>
-                            <div className="wave1"></div>
-                        </div>
-                        <img src="../assets/images/7.jpg" id="poster_master_play" alt=""></img>
-                        <h5 id="title">Bật Tình Yêu Lên <br></br>
-                            <div className="subtitle">Hòa Minzy</div>
-                        </h5>
-                        <div className="icon">
-                            <i className="bi bi-skip-start-fill" id="back"></i>
-                            <i className="bi bi-play-fill" id="masterPlay"></i>
-                            <i className="bi bi-skip-end-fill" id="next"></i>
-                        </div>
-                        <span id="currentStart">0:00</span>
-                        <div className="bar">
-                            <input type="range" id="seek" min="0" value="0" max="100" readOnly ></input>
-                            <div className="bar2" id="bar2"></div>
-                            <div className="dot"></div>
-                        </div>
-                        <span id="currentEnd">0:00</span>
-
-                        <div className="vol">
-                            <i className="bi bi-volume-down-fill" id="vol_icon"></i>
-                            <input type="range" id="vol" min="0" value="0" max="100" readOnly ></input>
-                            <div className="vol_bar"></div>
-                            <div className="dot" id="vol_dot"></div>
-                        </div>
-                    </div>
+                    <Playbar></Playbar>   
                 </header>
             </div>
 

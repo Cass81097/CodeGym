@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useEffect, useState, createContext } from "react";
 
-export const AppContext = createContext({});
+export const HomeContext = createContext({});
 
-export const AppProvider = ({ children }) => {
-
+export const HomeProvider = ({ children }) => {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+    const userId = localStorage.getItem("userId");
     const [listAlbum, setListAlbum] = useState([]);
     const [listMusic, setListMusic] = useState([]);
     const [listPlay, setListPlay] = useState([]);
@@ -13,9 +14,9 @@ export const AppProvider = ({ children }) => {
     useEffect(() => {
         fetchAlbumList();
         fetchSongList();
-        fetchPlayList();
-        fetchIsUser();
-    }, []);
+        fetchPlayList(userId); 
+        fetchIsUser(userId); 
+    }, [userId]);
 
     const fetchAlbumList = async () => {
         try {
@@ -35,27 +36,27 @@ export const AppProvider = ({ children }) => {
         }
     };
 
-    const fetchPlayList = async (localId) => {
+    const fetchPlayList = async (userId) => {
         try {
-            const res = await axios.get(`http://localhost:3000/playlists/?userId=2`);
+            const res = await axios.get(`http://localhost:3000/playlists/?userId=${userId}`);
             setListPlay(res.data);
         } catch (error) {
-            console.error("Error fetching Song list:", error);
+            console.error("Error fetching Playlist:", error);
         }
     };
 
     const fetchIsUser = async (userId) => {
         try {
-            const res = await axios.get(`http://localhost:3000/?id=2`);
+            const res = await axios.get(`http://localhost:3000/?id=${userId}`);
             setIsUser(res.data);
         } catch (error) {
-            console.error("Error fetching Song list:", error);
+            console.error("Error fetching User:", error);
         }
     };
 
     return (
-        <AppContext.Provider value={{ listAlbum, listMusic, listPlay, isUser }}>
+        <HomeContext.Provider value={{ listAlbum, listMusic, listPlay, isUser }}>
             {children}
-        </AppContext.Provider>
+        </HomeContext.Provider>
     );
 };

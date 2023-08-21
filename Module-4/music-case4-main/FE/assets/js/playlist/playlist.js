@@ -52,7 +52,7 @@ async function showPlayListCover(id) {
             `;
 
         let str2 = `<i onclick="clickRemove('${data.name}')" class="bi bi-trash3"></i>`
-            
+
         document.getElementById('playlist-cover').innerHTML = str1;
         document.getElementById('removePlaylist').innerHTML = str2;
     } catch (error) {
@@ -95,13 +95,13 @@ async function showPlayUser(idCookie) {
     }
 }
 
-function clickRemove(name){
+function clickRemove(name) {
     $('#remove-playlist').html(name);
     $('#playlist-confirm-remove').html(name);
     $('#modalDelete').modal('show');
 }
 
-function removePlaylistByName(){
+function removePlaylistByName() {
     let name = $('#playlist-confirm-remove').html();
     $('#modalDelete').modal('hide');
     // alert(`Xóa Playlist ${name} thành công!`)
@@ -116,6 +116,6 @@ async function removePlaylist(id) {
     } catch (error) {
         console.error(error);
     }
-} 
+}
 
 

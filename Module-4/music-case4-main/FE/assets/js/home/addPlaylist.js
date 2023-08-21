@@ -6,7 +6,7 @@ $('#myModal').on('shown.bs.modal', function () {
 
 function showModal() {
     $('#exampleModal').modal('show');
-}  
+}
 
 function deleteCookie() {
     document.cookie = "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -20,9 +20,8 @@ async function showAddPlayList(idCookie) {
         const res = await axios.get(`http://localhost:3000/playlists/`);
         let data = res.data;
         let lastId = data[data.length - 1].id;
-            str = `
-                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
+        str = `
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -73,7 +72,7 @@ async function showAddPlayList(idCookie) {
                     </div>
                 </div>
             `;
-   
+
         document.getElementById('modal-edit').innerHTML = str;
     } catch (error) {
         console.error(error);
@@ -88,7 +87,7 @@ async function addPlayList() {
         user: {
             id: document.getElementById('userId').value
         },
-        description: document.getElementById('description').value,   
+        description: document.getElementById('description').value,
     };
     console.log(data);
 

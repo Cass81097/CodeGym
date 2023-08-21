@@ -36,7 +36,7 @@ class UserService  {
                 let payload = {
                     idUser: userFind.id,
                     username: userFind.username,
-                    role: 'admin'
+                    // role: 'admin'
                 }
                 return jwt.sign(payload, SECRET, {
                     expiresIn: 36000 * 10 * 100
