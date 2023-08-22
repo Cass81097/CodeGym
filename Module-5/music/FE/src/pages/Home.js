@@ -46,10 +46,14 @@ export default function Home() {
         $('.profile-menu').toggle();
     };
 
-    const logout = () => {
-        localStorage.clear();
-        // firebase.auth().signOut();
-        navigate('/sign-in');    
+    const logout = async () => {
+        try {
+            await firebase.auth().signOut();
+            localStorage.clear();
+            navigate('/sign-in');
+        } catch (error) {
+            console.error("Error :", error);
+        }
     };
 
     return (

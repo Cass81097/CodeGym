@@ -5,22 +5,22 @@ import React, { useEffect, useState } from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { useNavigate } from 'react-router-dom';
 import shortid from 'shortid';
-import jwt_decode from "jwt-decode";
-
-
-SignIn.propTypes = {};
+import jwt_decode from 'jwt-decode';
 
 // Configure Firebase.
 const config = {
     apiKey: 'AIzaSyBtDl7d-eCFuCMdEHampH6lSNaRRjLc1pE',
     authDomain: 'music-app-86a04.firebaseapp.com',
-    // ...
 };
 firebase.initializeApp(config);
 
 const uiConfig = {
-    signInFlow: 'redirect',
+    signInFlow: 'popup',
     signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
+    callbacks: {
+        // Avoid redirects after sign-in.
+        signInSuccessWithAuthResult: () => false,
+    },
 };
 
 function SignIn() {
@@ -30,7 +30,6 @@ function SignIn() {
     useEffect(() => {
         const unregisterAuthObserver = firebase.auth().onAuthStateChanged(user => {
             setIsSignedIn(!!user);
-            console.log(user);
             if (user) {
                 handleGetToken(user);
             }
@@ -43,28 +42,24 @@ function SignIn() {
         localStorage.clear();
     };
 
-    const handleGetToken = async (user) => {
+    const handleGetToken = async user => {
         try {
-            const email = user.email; // Lấy địa chỉ email từ thông tin người dùng đăng nhập
-            const existingUser = await checkIfUserExists(email); // Kiểm tra xem địa chỉ email đã tồn tại hay chưa
+            const email = user.email;
+            const existingUser = await checkIfUserExists(email);
 
             if (existingUser) {
-                // Đăng nhập người dùng bằng tài khoản hiện có
-                const { username } = existingUser;            
+                const { username } = existingUser;
                 const loginData = { username, password: username };
                 const resLogin = await axios.post('http://localhost:3000/login', loginData);
-                let token1 = resLogin.data
-                localStorage.setItem("token", token1);
-                const decodedToken = jwt_decode(token1);
+                const token = resLogin.data;
+                localStorage.setItem('token', token);
+                const decodedToken = jwt_decode(token);
                 const userId = decodedToken.idUser;
-                localStorage.setItem("userId", userId);
+                localStorage.setItem('userId', userId);
                 axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
-                // redirectToHome();
-               
+                redirectToHome();
             } else {
-                // Tạo tài khoản mới và cho phép người dùng đăng nhập
-                const hashedToken = shortid.generate(); // Tạo mã ngẫu nhiên
-
+                const hashedToken = shortid.generate();
                 const data = {
                     username: hashedToken,
                     password: hashedToken,
@@ -75,24 +70,24 @@ function SignIn() {
                 console.log('Registration response:', res.data);
 
                 const resLogin = await axios.post('http://localhost:3000/login', data);
-                let token2 = resLogin.data;
-                localStorage.setItem("token", token2);
-                const decodedToken = jwt_decode(token2);
+                const token = resLogin.data;
+                localStorage.setItem('token', token);
+                const decodedToken = jwt_decode(token);
                 const userId = decodedToken.idUser;
-                console.log("User ID:", userId);
-                localStorage.setItem("userId", userId);
+                console.log('User ID:', userId);
+                localStorage.setItem('userId', userId);
                 axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
-                redirectToHome()
+                redirectToHome();
             }
         } catch (error) {
             console.error('Error during registration:', error);
         }
     };
 
-    const checkIfUserExists = async (email) => {
+    const checkIfUserExists = async email => {
         try {
             const res = await axios.get(`http://localhost:3000/?email=${email}`);
-            const user = res.data[0]; 
+            const user = res.data[0];
             return user;
         } catch (error) {
             console.error('Error checking user existence:', error);
@@ -103,8 +98,6 @@ function SignIn() {
     const redirectToHome = () => {
         navigate('/home');
     };
-
-    console.log(isSignedIn);
 
     if (!isSignedIn) {
         return (
@@ -118,9 +111,7 @@ function SignIn() {
     return (
         <div>
             <h1>My App</h1>
-            <p>
-                Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!
-            </p>
+            <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
             <button onClick={handleSignOut}>Sign-out</button>
         </div>
     );
