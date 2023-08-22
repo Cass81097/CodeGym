@@ -1,19 +1,22 @@
-import './App.css';
 import { Outlet, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import Album from "./pages/music/Album";
-import Login from './pages/users/Login';
-import Playlist from './pages/music/Playlist';
+import './App.css';
 import { AlbumProvider } from './Context/AlbumContext';
 import { HomeProvider } from './Context/HomeContext';
 import { PlaylistProvider } from './Context/PlaylistContext';
+import Home from "./pages/Home";
+import Album from "./pages/music/Album";
+import Playlist from './pages/music/Playlist';
+import Login from './pages/users/Login';
+import SignIn from './pages/users/SignIn';
 
 function App() {
+
     return (
         <>
             <Outlet />
             <Routes>
                 <Route path="/login" element={<Login />} />
+                <Route path="/sign-in" element={<SignIn />} />
                 <Route
                     path="/home"
                     element={
@@ -34,7 +37,7 @@ function App() {
                     path="/playlist/:id"
                     element={
                         <PlaylistProvider>
-                            <Playlist/>
+                            <Playlist />
                         </PlaylistProvider>
                     }
                 />

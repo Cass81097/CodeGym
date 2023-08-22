@@ -1,16 +1,17 @@
-import './my-style/home/playlist.css'
-import './my-style/home/styles.css'
-import './my-style/home/upload.css'
+import './my-style/home/playlist.css';
+import './my-style/home/styles.css';
+import './my-style/home/upload.css';
 
-import Playbar from '../components/Playbar';
-import { Link, useNavigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
-import { HomeContext } from "../Context/HomeContext";
-import { setupScrollListeners } from "./myjs/Scroll";
-import { setupListenMusic } from "./myjs/Music";
-import { Field, Formik, Form } from "formik";
-import $ from 'jquery';
 import axios from "axios";
+import firebase from 'firebase/compat/app';
+import { Field, Form, Formik } from "formik";
+import $ from 'jquery';
+import { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { HomeContext } from "../Context/HomeContext";
+import Playbar from '../components/Playbar';
+import { setupListenMusic } from "./myjs/Music";
+import { setupScrollListeners } from "./myjs/Scroll";
 import uploadImage from './myjs/Upload';
 
 export default function Home() {
@@ -47,7 +48,8 @@ export default function Home() {
 
     const logout = () => {
         localStorage.clear();
-        navigate('/login');
+        // firebase.auth().signOut();
+        navigate('/sign-in');    
     };
 
     return (
