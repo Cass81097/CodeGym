@@ -112,3 +112,17 @@ button:disabled {
     cursor: pointer;
     font-size: 35px;
 }
+
+/* Login with Email */
+.firebaseui-idp-button {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    max-width: 1000px !important;
+}
+
+.firebaseui-card-content {
+    padding: 0 !important;
+}
+
+

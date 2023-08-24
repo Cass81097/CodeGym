@@ -55,7 +55,7 @@ export const HomeProvider = ({ children }) => {
     };
 
     return (
-        <HomeContext.Provider value={{ listAlbum, listMusic, listPlay, isUser }}>
+        <HomeContext.Provider value={{ listAlbum, listMusic, listPlay, isUser, fetchPlayList }}>
             {children}
         </HomeContext.Provider>
     );

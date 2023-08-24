@@ -6,8 +6,8 @@ import axios from "axios";
 import firebase from 'firebase/compat/app';
 import { Field, Form, Formik } from "formik";
 import $ from 'jquery';
-import { useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useNavigate, Redirect } from "react-router-dom";
 import { HomeContext } from "../Context/HomeContext";
 import Playbar from '../components/Playbar';
 import { setupListenMusic } from "./myjs/Music";
@@ -15,19 +15,51 @@ import { setupScrollListeners } from "./myjs/Scroll";
 import uploadImage from './myjs/Upload';
 
 export default function Home() {
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            navigate('/login');
+        }
+    }, []);
+
     const navigate = useNavigate();
-    const { listAlbum, listMusic, listPlay, isUser } = useContext(HomeContext);
+    const { listAlbum, listMusic, listPlay, isUser, fetchPlayList } = useContext(HomeContext);
     const userId = localStorage.getItem('userId')
+    const [imageSrc, setImageSrc] = useState("");
 
     const handleSubmit = async (data) => {
-        try {
-            await axios.post("http://localhost:3000/playlists", data);
-            console.log(data);
+        const newData = {
+            name: data.name,
+            imgUrl: imageSrc,
+            description: data.description,
+            user: {
+                id: userId
+            }
+        };
 
+        try {
+            await axios.post("http://localhost:3000/playlists", newData);
+            $('#exampleModal').hide();
+            $('.modal-backdrop.fade.show').remove();
+            fetchPlayList(userId)
         } catch (error) {
             console.error("Error adding product:", error);
         }
     };
+
+    useEffect(() => {
+        const imageElement = document.getElementById("image-url");
+
+        const handleImageSrcChange = () => {
+            setImageSrc(imageElement.src);
+        };
+
+        imageElement.addEventListener("load", handleImageSrcChange);
+
+        return () => {
+            imageElement.removeEventListener("load", handleImageSrcChange);
+        };
+    }, []);
 
     useEffect(() => {
         setupScrollListeners();
@@ -50,7 +82,7 @@ export default function Home() {
         try {
             await firebase.auth().signOut();
             localStorage.clear();
-            navigate('/sign-in');
+            navigate('/login');
         } catch (error) {
             console.error("Error :", error);
         }
@@ -249,7 +281,6 @@ export default function Home() {
                                                 <img src="" alt="" id="image-url"></img>
                                             </div>
                                         </div>
-                                        <Field id="image" className="form-control" type="text" name="imgUrl" hidden />
                                     </div>
                                 </div>
                                 <div className="modal-footer">

@@ -18,7 +18,6 @@ const firebaseConfig = {
 };
 
 initializeApp(firebaseConfig);
-// console.log(app);
 
 const storage = getStorage();
 
@@ -61,19 +60,19 @@ export default function uploadImage(e) {
             progressImg.style.margin = "0px 0px 10px 0px";
             var divElement = document.querySelector('.image-url');
             divElement.removeAttribute('hidden');
-            // const inputElement = document.getElementById('image');
+            const inputElement = document.getElementById('image');
             
-            // if (inputElement !== null) {
-            //     inputElement.readOnly = true;
-            //     switch (snapshot.state) {
-            //         case 'paused':
-            //             console.log('Upload is paused');
-            //             break;
-            //         case 'running':
-            //             console.log('Upload is running');
-            //             break;
-            //     }
-            // }
+            if (inputElement !== null) {
+                inputElement.readOnly = true;
+                switch (snapshot.state) {
+                    case 'paused':
+                        console.log('Upload is paused');
+                        break;
+                    case 'running':
+                        console.log('Upload is running');
+                        break;
+                }
+            }
            
         },
         (error) => {
@@ -98,9 +97,8 @@ export default function uploadImage(e) {
             // Upload completed successfully, now we can get the download URL
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                 console.log('File available at', downloadURL);
-                let image = document.getElementById('image');
-                image.value = downloadURL;
                 document.getElementById('image-url').src = downloadURL;
+                // document.getElementById('image').value = downloadURL;
                 // pushNewIMG(downloadURL)
                 setTimeout(() => {
                     document.getElementById("image-upload").disabled = false;
@@ -110,4 +108,4 @@ export default function uploadImage(e) {
     );
 }
 
-// window.uploadImage = uploadImage;
+window.uploadImage = uploadImage;
