@@ -7,7 +7,7 @@ import firebase from 'firebase/compat/app';
 import { Field, Form, Formik } from "formik";
 import $ from 'jquery';
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, Redirect } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { HomeContext } from "../Context/HomeContext";
 import Playbar from '../components/Playbar';
 import { setupListenMusic } from "./myjs/Music";
@@ -21,7 +21,7 @@ export default function Home() {
             navigate('/login');
         }
     }, []);
-
+    
     const navigate = useNavigate();
     const { listAlbum, listMusic, listPlay, isUser, fetchPlayList } = useContext(HomeContext);
     const userId = localStorage.getItem('userId')

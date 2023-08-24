@@ -117,6 +117,7 @@ export default function Login() {
                 const data = {
                     username: hashedToken,
                     password: hashedToken,
+                    imgUrl: '../assets/images/avatar-default.jpg',
                     email,
                 };
 

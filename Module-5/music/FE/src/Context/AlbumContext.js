@@ -9,7 +9,7 @@ export const AlbumProvider = ({ children }) => {
     const id = localStorage.getItem("albumId");
     const [isAlbum, setIsAlbum] = useState([]);
     const [isUser, setIsUser] = useState([]);
-    const [albumInfo, setAlbumInfo] = useState([]);
+    const [albumInfo, setAlbumInfo] = useState({});
 
     useEffect(() => {
         fetchIsAlbum(id);
@@ -20,7 +20,11 @@ export const AlbumProvider = ({ children }) => {
     const fetchIsAlbum = async (albumId) => {
         try {
             const res = await axios.get(`http://localhost:3000/songs/id/?idAlbum=${albumId}`);
-            setIsAlbum(res.data);
+            if (Array.isArray(res.data)) {
+                setIsAlbum(res.data);
+            } else {
+                console.error("Invalid data format for Song list");
+            }
         } catch (error) {
             console.error("Error fetching Song list:", error);
         }

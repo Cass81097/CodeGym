@@ -22,7 +22,11 @@ export const PlaylistProvider = ({ children }) => {
     const fetchSongPlaylist = async (playlistId) => {
         try {
             const res = await axios.get(`http://localhost:3000/playlistSongs/id/?idPlaylist=${playlistId}`);
-            setSongPlaylist(res.data);
+            if (Array.isArray(res.data)) {
+                setSongPlaylist(res.data);
+            } else {
+                console.error("Invalid data format for Song list");
+            }
         } catch (error) {
             console.error("Error fetching Song list:", error);
         }
@@ -31,7 +35,11 @@ export const PlaylistProvider = ({ children }) => {
     const showPlaylistInfo = async (playlistId) => {
         try {
             const res = await axios.get(`http://localhost:3000/playlists/?id=${playlistId}`);
-            setPlaylistInfo(res.data);
+            if (Array.isArray(res.data)) {
+                setPlaylistInfo(res.data);
+            } else {
+                console.error("Invalid data format for Song list");
+            }
         } catch (error) {
             console.error("Error fetching Album list:", error);
         }
@@ -49,7 +57,11 @@ export const PlaylistProvider = ({ children }) => {
     const showNotInPlaylist = async (playlistId) => {
         try {
             const res = await axios.get(`http://localhost:3000/songs/notId/${playlistId}`);
-            setIsNotPlaylist(res.data);
+            if (Array.isArray(res.data)) {
+                setIsNotPlaylist(res.data);
+            } else {
+                console.error("Invalid data format for Song list");
+            }
         } catch (error) {
             console.error("Error fetching User:", error);
         }

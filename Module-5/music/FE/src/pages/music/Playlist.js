@@ -56,11 +56,11 @@ export default function Album() {
                             <div className="playlist-header" >
                                 <div className="playlist-content" data-toggle="modal" data-target="#exampleModal">
                                     <div id="playlist-cover" className="playlist-cover">
-                                        <img src={playlistInfo.imgUrl} alt=''></img>
+                                        <img src={playlistInfo && playlistInfo.imgUrl} alt=''></img>
                                     </div>
                                     <div id="playlist-info" className="playlist-info">
                                         <div className="playlist-public">Danh sách phát</div>
-                                        <div className="playlist-title">{playlistInfo.name}</div>
+                                        <div className="playlist-title">{playlistInfo && playlistInfo.name}</div>
                                         <div style={{ height: '10px' }}></div>
                                         <div className="playlist-stats">
                                             <img src="../assets/images/spotify-logo.png" width="24px" height="24px" alt=""></img>
