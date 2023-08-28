@@ -15,18 +15,18 @@ app.use("/api/messages", messageRoutes);
 
 
 const connectDatabase = async () => {
-    try {   
-      await mongoose.connect(process.env.MONGO_URL, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      })
+  try {
+    await mongoose.connect(process.env.MONGO_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
     console.log("connected to database");
-    } catch (error) {
+  } catch (error) {
     console.log(error);
     process.exit(1);
-    }
-    };
-    connectDatabase();
+  }
+};
+connectDatabase();
 
 const server = app.listen(process.env.PORT, () =>
   console.log(mongoose.connection.readyState),

@@ -31,7 +31,7 @@ export default function ChatInput({ handleSendMsg }) {
           <i><BsEmojiSmileFill onClick={handleEmojiPickerhideShow} />
             {showEmojiPicker && <Picker onEmojiClick={handleEmojiClick} />}
           </i>
-          <i class="fas fa-paperclip"></i>
+          <i className="fas fa-paperclip"></i>
         </div>
       <form className="input-container" onSubmit={(event) => sendChat(event)}>
         <input
@@ -118,7 +118,6 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     gap: 2rem;
-    background-color: #ffffff34;
     input {
       width: 90%;
       height: 60%;

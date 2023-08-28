@@ -7,6 +7,7 @@ import { allUsersRoute, host } from "../utils/APIRoutes";
 import ChatContainer from "../components/ChatContainer";
 import Contacts from "../components/Contacts";
 import Welcome from "../components/Welcome";
+import { getLastMessageByUserIds } from "../utils/APIRoutes";
 
 export default function Chat() {
   const navigate = useNavigate();
@@ -14,6 +15,8 @@ export default function Chat() {
   const [contacts, setContacts] = useState([]);
   const [currentChat, setCurrentChat] = useState(undefined);
   const [currentUser, setCurrentUser] = useState(undefined);
+  const [lastMessage, setlastMessage] = useState([]);
+
   useEffect(async () => {
     if (!localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)) {
       navigate("/login");
@@ -36,25 +39,27 @@ export default function Chat() {
   useEffect(async () => {
     if (currentUser) {
       if (currentUser.isAvatarImageSet) {
-        const data = await axios.get(`${allUsersRoute}/${currentUser._id}`);
+        const data = await axios.get(`${allUsersRoute}/${currentUser._id}`);   
         setContacts(data.data);
       } else {
         navigate("/setAvatar");
       }
     }
   }, [currentUser]);
+
   const handleChatChange = (chat) => {
     setCurrentChat(chat);
   };
+
   return (
     <>
 
         <div className="container_chat">
-          <Contacts contacts={contacts} changeChat={handleChatChange} />
+          <Contacts contacts={contacts} changeChat={handleChatChange} lastMessage={lastMessage} socket={socket} />
           {currentChat === undefined ? (
             <Welcome />
           ) : (
-            <ChatContainer currentChat={currentChat} socket={socket} />
+            <ChatContainer currentChat={currentChat} socket={socket} setlastMessage={setlastMessage}/>
           )}
         </div>
     

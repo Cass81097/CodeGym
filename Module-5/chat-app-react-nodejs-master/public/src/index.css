@@ -22,7 +22,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(#009688 0%, #009688 130px, #d9dbd5 130px, #d9dbd5 100%);
+    background: linear-gradient(#0B84EE 0%, #0B84EE 130px, #d9dbd5 130px, #d9dbd5 100%);
 }
 
 .container_chat {
@@ -45,7 +45,7 @@ body {
 .container_chat .rightSide {
     position: relative;
     flex: 70%;
-    background: #e5ddd5;
+    background: #fff;
 }
 
 .header {
@@ -57,15 +57,22 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 0 15px;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
 }
 
 .userimg {
     position: relative;
     width: 40px;
     height: 40px;
-    overflow: hidden;
+    /* overflow: hidden; */
     border-radius: 50%;
     cursor: pointer;
+}
+
+.current_name {
+    transform: translateX(45px) translateY(5px);
+    font-weight: 600;
+    font-size: 1.5rem;
 }
 
 .userimg .cover {
@@ -262,25 +269,25 @@ body {
     margin: 5px 0;
 }
 
-.message p {
+.my_message p {
     position: relative;
     right: 0;
     text-align: right;
     max-width: 65%;
     padding: 12px;
-    background: #dcf8c6;
+    background: #0084FF;
     border-radius: 10px;
     font-size: 0.9em
 }
 
-.message p::before {
+.my_message p::before {
     content: '';
     position: absolute;
     top: 0;
     right: -12px;
     width: 20px;
     height: 20px;
-    background: linear-gradient(135deg, #dcf8c6 0%, #dcf8c6 50%, transparent 50%, transparent);
+    background: linear-gradient(135deg, #0084FF 0%, #0084FF 50%, transparent 50%, transparent);
 }
 
 .message p span {
@@ -292,6 +299,7 @@ body {
 
 .my_message {
     justify-content: flex-end;
+    color: white;
 }
 
 .frnd_message {
@@ -299,8 +307,14 @@ body {
 }
 
 .frnd_message p {
-    background: #fff;
-    text-align: left;
+    position: relative;
+    right: 0;
+    max-width: 65%;
+    padding: 12px;
+    background: #E4E6EB;
+    border-radius: 10px;
+    font-size: 0.9em;
+    text-align: right;
 }
 
 .message.frnd_message p::before {
@@ -310,7 +324,7 @@ body {
     left: -12px;
     width: 20px;
     height: 20px;
-    background: linear-gradient(225deg, #fff 0%, #fff 50%, transparent 50%, transparent);
+    background: linear-gradient(225deg, #E4E6EB 0%, #E4E6EB 50%, transparent 50%, transparent);
 }
 
 .chatbox_input {
@@ -332,6 +346,10 @@ body {
 
 .chatbox_input .emoji i:nth-child(1) {
     margin-right: 15px;
+}
+
+.chatbox_input .emoji i:nth-child(2) {
+    transform: translateY(-2px);
 }
 
 .chatbox_input input {
