@@ -9,25 +9,11 @@ import moment from 'moment';
 import { useNavigate } from "react-router-dom";
 import { getLastMessageByUserIds } from "../utils/APIRoutes";
 
-export default function ChatContainer({ currentChat, socket, setlastMessage }) {
+export default function ChatContainer({ currentChat, socket, updateAllLastMessage }) {
   const scrollRef = useRef();
   const [messages, setMessages] = useState([]);
   const [arrivalMessage, setArrivalMessage] = useState(null);
-  const [isLastMessage, setIsLastMessage] = useState(null);
-
-  useEffect(async () => {
-    const data = await JSON.parse(
-      localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
-    );
-    let senderId = data._id
-    if (isLastMessage) {
-      const dataMessage = await axios.get(
-        `${getLastMessageByUserIds}?senderId=${senderId}&receiverId=${currentChat._id}`
-      )
-      setlastMessage(dataMessage.data)
-    }
-  }, [isLastMessage, setIsLastMessage]);
-
+  
   useEffect(async () => {
     const data = await JSON.parse(
       localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
@@ -69,6 +55,7 @@ export default function ChatContainer({ currentChat, socket, setlastMessage }) {
     const data = await JSON.parse(
       localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
     );
+    let senderId = data._id
     socket.current.emit("send-msg", {
       to: currentChat._id,
       from: data._id,
@@ -81,29 +68,39 @@ export default function ChatContainer({ currentChat, socket, setlastMessage }) {
       message: msg,
     });
 
+    const dataMessage = await axios.get(`${getLastMessageByUserIds}?senderId=${senderId}&receiverId=${currentChat._id}`);
+    const updatedAllLastMessage = dataMessage.data;
+    updateAllLastMessage(updatedAllLastMessage);
+    console.log(updatedAllLastMessage);
+
     const msgs = [...messages];
     msgs.push({ fromSelf: true, message: msg });
     setMessages(msgs);
-    // console.log('ok');
-    setIsLastMessage(Date.now());
   };
 
   useEffect(() => {
+  
     if (socket.current) {
       socket.current.on("msg-recieve", (msg) => {
-        setArrivalMessage({ fromSelf: false, message: msg });
+        setArrivalMessage({ message: msg });
+        updateAllLastMessage(arrivalMessage);
         // alert('ok')
       });
     }
   }, []);
 
   useEffect(() => {
-    arrivalMessage && setMessages((prev) => [...prev, arrivalMessage]);
-    setIsLastMessage(Date.now());
+    if (arrivalMessage) {
+      setMessages((prev) => [...prev, arrivalMessage]);
+      const receiverId = currentChat._id;
+      const message = arrivalMessage.message;
+      // console.log(message);
+      updateAllLastMessage({message, receiverId});
+    }
   }, [arrivalMessage]);
 
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: "smooth" }); 
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   return (
@@ -135,7 +132,7 @@ export default function ChatContainer({ currentChat, socket, setlastMessage }) {
           );
         })}
       </div>
-      <ChatInput handleSendMsg={handleSendMsg}  />
+      <ChatInput handleSendMsg={handleSendMsg} />
     </div>
 
   );

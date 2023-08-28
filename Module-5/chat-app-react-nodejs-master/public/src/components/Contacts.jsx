@@ -1,28 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import moment from 'moment';
 import { getLastMessage } from "../utils/APIRoutes"
 import axios from "axios";
+import { getLastMessageByUserIds } from "../utils/APIRoutes";
 
-export default function Contacts({ contacts, changeChat, lastMessage, socket }) {
+export default function Contacts({ contacts, changeChat, allLastMessage, allLastMessageForChat }) {
   const [currentUserName, setCurrentUserName] = useState(undefined);
   const [currentUserImage, setCurrentUserImage] = useState(undefined);
   const [currentSelected, setCurrentSelected] = useState(undefined);
-  const [currentLastmessage, setCurrentLastmessage] = useState(undefined);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await JSON.parse(
-        localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
-      );
-      let senderId = data._id
-      const dataMessage = await axios.get(
-        `${getLastMessage}/${senderId}`
-      )
-      setCurrentLastmessage(dataMessage.data)
-    };
-
-    fetchData();
-  }, [lastMessage]);
+  const [lastId, setLastId] = useState(null);
+  const [messageValue, setMessageValue] = useState('')
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,20 +20,43 @@ export default function Contacts({ contacts, changeChat, lastMessage, socket }) 
       setCurrentUserName(data.username);
       setCurrentUserImage(data.avatarImage);
     };
-
     fetchData();
   }, []);
 
   const changeCurrentChat = (index, contact) => {
     setCurrentSelected(index);
+    setLastId(contact._id);
     changeChat(contact);
   };
 
-  const convertUTCToVietnamTime = (utcTime, index) => {
-    const message = currentLastmessage[index];
-    const vietnamTime = message ? moment.utc(message.createdAt).local().format('HH:mm') : '';
-    return vietnamTime;
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await JSON.parse(
+        localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
+      );
+
+      const dataId = data._id;
+      console.log(dataId);
+      if (lastId && allLastMessageForChat && lastId === allLastMessageForChat.receiverId) {
+        const test = document.getElementById(`${allLastMessageForChat.receiverId}`);
+        if (dataId === allLastMessageForChat.senderId) {
+          test.innerHTML = `Bạn: ${allLastMessageForChat.message}`;
+        } else {
+          test.innerHTML = allLastMessageForChat.message;
+        }
+        setMessageValue('0');
+      } else {
+        setMessageValue('');
+      }
+    }
+    fetchData();
+  }, [lastId, allLastMessageForChat]);
+
+  // const convertUTCToVietnamTime = (utcTime, index) => {
+  //   const message = currentLastmessage[index];
+  //   const vietnamTime = message ? moment.utc(message.createdAt).local().format('HH:mm') : '';
+  //   return vietnamTime;
+  // };
 
   return (
     <>
@@ -71,17 +82,15 @@ export default function Contacts({ contacts, changeChat, lastMessage, socket }) 
 
           <div className="chatlist">
             {contacts.map((contact, index) => {
-              const isCurrentChat = contacts[index]._id === lastMessage.receiverId;
-              const currentMessage = isCurrentChat ? lastMessage.message : currentLastmessage[index] && currentLastmessage[index].message;
-              // const vietnamTime = lastMessage && lastMessage[index] ? convertUTCToVietnamTime(lastMessage[index].createdAt) : "";
-              const vietnamTime = convertUTCToVietnamTime(lastMessage.createdAt, index);
+              const message = allLastMessage[index];
+              // console.log(message);
+
               return (
                 <div
                   key={contact._id}
                   className={`block ${index === currentSelected ? "active" : ""
                     }`}
                   onClick={() => changeCurrentChat(index, contact)}
-                  id={contacts[index]._id}
                 >
                   <div className="imgbx">
                     <img src={`data:image/svg+xml;base64,${contact.avatarImage}`} alt="" className="cover" />
@@ -89,10 +98,10 @@ export default function Contacts({ contacts, changeChat, lastMessage, socket }) 
                   <div className="details">
                     <div className="listHead">
                       <h4>{contact.username}</h4>
-                      <p className="time">{vietnamTime}</p>
+                      {/* <p className="time">{vietnamTime}</p> */}
                     </div>
                     <div className="message_p">
-                      <p>{currentMessage}</p>
+                      <p id={contact._id}>{message ? message.message : messageValue}</p>
                     </div>
                   </div>
                 </div>
