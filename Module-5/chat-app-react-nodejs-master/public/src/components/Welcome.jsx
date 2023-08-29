@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Robot from "../assets/robot.gif";
-export default function Welcome() {
+import ChatContainer from "../components/ChatContainer"
+
+export default function Welcome(allLastMessageForChat, arrivalLastMessage) {
+
   const [userName, setUserName] = useState("");
   useEffect(async () => {
     setUserName(
@@ -10,6 +13,7 @@ export default function Welcome() {
       ).username
     );
   }, []);
+
   return (
     <Container>
       <div className="welcome">

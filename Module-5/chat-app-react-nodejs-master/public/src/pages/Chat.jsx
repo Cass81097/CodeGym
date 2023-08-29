@@ -101,10 +101,8 @@ export default function Chat() {
 
       <div className="container_chat">
         <Contacts contacts={contacts} changeChat={handleChatChange} currentChat={currentChat} allLastMessage={allLastMessage} allLastMessageForChat={allLastMessageForChat} />
-        {currentChat === undefined ? (
-          <Welcome />
-        ) : (
-          <ChatContainer currentChat={currentChat} socket={socket} updateAllLastMessage={updateAllLastMessage} />
+        {currentChat === undefined ? ( <Welcome allLastMessageForChat={allLastMessageForChat} /> ) : (
+          <ChatContainer currentChat={currentChat} socket={socket} updateAllLastMessage={updateAllLastMessage} contacts={contacts} />
         )}
       </div>
 

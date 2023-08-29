@@ -1,44 +1,47 @@
-import React, { useState, useEffect, useRef } from "react";
-import styled from "styled-components";
+import axios from "axios";
+import moment from 'moment';
+import React, { useEffect, useRef, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { getLastMessageByUserIds, recieveMessageRoute, sendMessageRoute } from "../utils/APIRoutes";
 import ChatInput from "./ChatInput";
 import Logout from "./Logout";
-import { v4 as uuidv4 } from "uuid";
-import axios from "axios";
-import { sendMessageRoute, recieveMessageRoute } from "../utils/APIRoutes";
-import moment from 'moment';
-import { useNavigate } from "react-router-dom";
-import { getLastMessageByUserIds } from "../utils/APIRoutes";
 
 export default function ChatContainer({ currentChat, socket, updateAllLastMessage }) {
   const scrollRef = useRef();
   const [messages, setMessages] = useState([]);
   const [arrivalMessage, setArrivalMessage] = useState(null);
+
+  const blockMessageRef = useRef(null)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = JSON.parse(
+          localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
+        );
+        
+        const response = await axios.post(recieveMessageRoute, {
+          from: data._id,
+          to: currentChat._id,
+          senderId: data._id,
+          receiverId: currentChat._id,
+        });
   
-  useEffect(async () => {
-    const data = await JSON.parse(
-      localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
-    );
-    const response = await axios.post(recieveMessageRoute, {
-      from: data._id,
-      to: currentChat._id,
-    });
-
-    setMessages(response.data);
-
-    if (response.data.length > 0) {
-      const chatTime = response.data[response.data.length - 1].createdAt;
-      // console.log("Thời gian chat:", chatTime);
-      const vietnamTime = convertUTCToVietnamTime(chatTime);
-      localStorage.setItem('vietnamTime', vietnamTime);
-    } else {
-      localStorage.removeItem('vietnamTime');
+        setMessages(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    if (currentChat) {
+      fetchData();
     }
   }, [currentChat]);
 
-  const convertUTCToVietnamTime = (utcTime) => {
-    const vietnamTime = moment.utc(utcTime).local().format('HH:mm');
-    return vietnamTime;
-  };
+  // const convertUTCToVietnamTime = (utcTime) => {
+  //   const vietnamTime = moment.utc(utcTime).local().format('HH:mm');
+  //   return vietnamTime;
+  // };
 
   useEffect(() => {
     const getCurrentChat = async () => {
@@ -62,16 +65,19 @@ export default function ChatContainer({ currentChat, socket, updateAllLastMessag
       msg,
     });
 
+    // console.log('send', currentChat._id);
+
     await axios.post(sendMessageRoute, {
       from: data._id,
       to: currentChat._id,
       message: msg,
     });
+    
+    console.log('POST', currentChat._id);
 
     const dataMessage = await axios.get(`${getLastMessageByUserIds}?senderId=${senderId}&receiverId=${currentChat._id}`);
     const updatedAllLastMessage = dataMessage.data;
     updateAllLastMessage(updatedAllLastMessage);
-    console.log(updatedAllLastMessage);
 
     const msgs = [...messages];
     msgs.push({ fromSelf: true, message: msg });
@@ -79,7 +85,6 @@ export default function ChatContainer({ currentChat, socket, updateAllLastMessag
   };
 
   useEffect(() => {
-  
     if (socket.current) {
       socket.current.on("msg-recieve", (msg) => {
         setArrivalMessage({ message: msg });
@@ -89,13 +94,27 @@ export default function ChatContainer({ currentChat, socket, updateAllLastMessag
     }
   }, []);
 
-  useEffect(() => {
+  useEffect( async() => {
+    const data = await JSON.parse(
+      localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
+    );
+    let senderId = data._id
     if (arrivalMessage) {
       setMessages((prev) => [...prev, arrivalMessage]);
       const receiverId = currentChat._id;
       const message = arrivalMessage.message;
-      // console.log(message);
-      updateAllLastMessage({message, receiverId});
+      console.log({ message, receiverId });
+      updateAllLastMessage({ message, receiverId });
+
+      const dataMessage = await axios.get(`${getLastMessageByUserIds}?senderId=${senderId}&receiverId=${currentChat._id}`);
+      const updatedAllLastMessage = dataMessage.data;
+
+      if (senderId !== updatedAllLastMessage.senderId) {
+        console.log('Tiep tuc return message ');
+      } else {
+        // blockMessageRef.current.textContent = '';
+        console.log('Ko return');
+      }
     }
   }, [arrivalMessage]);
 
@@ -118,15 +137,16 @@ export default function ChatContainer({ currentChat, socket, updateAllLastMessag
       </div>
 
       <div className="chatBox">
-        {messages.map((message) => {
-          const vietnamTime = convertUTCToVietnamTime(message.createdAt);
+        {messages.map((message, index) => {
           return (
             <div ref={scrollRef} key={uuidv4()}>
-              <div
+              <div 
+                ref={blockMessageRef}
+                id={'blockMessage' + index}
                 className={`message ${message.fromSelf ? "my_message" : "frnd_message"
                   }`}
               >
-                <p>{message.message}<br></br><span>{vietnamTime}</span></p>
+                <p>{message.message}<br></br><span></span></p>
               </div>
             </div>
           );

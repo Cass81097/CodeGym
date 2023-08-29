@@ -34,9 +34,7 @@ export default function Contacts({ contacts, changeChat, allLastMessage, allLast
       const data = await JSON.parse(
         localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
       );
-
       const dataId = data._id;
-      console.log(dataId);
       if (lastId && allLastMessageForChat && lastId === allLastMessageForChat.receiverId) {
         const test = document.getElementById(`${allLastMessageForChat.receiverId}`);
         if (dataId === allLastMessageForChat.senderId) {
@@ -84,7 +82,6 @@ export default function Contacts({ contacts, changeChat, allLastMessage, allLast
             {contacts.map((contact, index) => {
               const message = allLastMessage[index];
               // console.log(message);
-
               return (
                 <div
                   key={contact._id}

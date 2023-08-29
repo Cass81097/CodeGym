@@ -2,7 +2,7 @@ const Messages = require("../models/messageModel");
 
 module.exports.getMessages = async (req, res, next) => {
   try {
-    const { from, to } = req.body;
+    const { from, to, senderId, receiverId } = req.body;
 
     const messages = await Messages.find({
       users: {
@@ -14,7 +14,9 @@ module.exports.getMessages = async (req, res, next) => {
       return {
         fromSelf: msg.sender.toString() === from,
         message: msg.message.text,
-        createdAt: msg.createdAt, // Thêm trường createdAt
+        createdAt: msg.createdAt,
+        senderId: senderId,
+        receiverId: receiverId,
       };
     });
 
