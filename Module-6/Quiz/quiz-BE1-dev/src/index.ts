@@ -5,7 +5,7 @@ import router from "./router/router";
 import * as cors from 'cors';
 import * as http from "http";
 import {Server} from "socket.io";
-import {socketContr oller} from "./controller/socket/socketController";
+import {socketController} from "./controller/socket/socketController";
 import userService from "./service/userService";
 
 const hostname = '127.0.0.1';
