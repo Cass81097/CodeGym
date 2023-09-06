@@ -31,7 +31,7 @@ export class UIKitSettings {
 
 		this.chatWindow = window;
 
-		this.userListMode = UIKitSettings.userListFilterOptions["ALL"];
+		this.userListMode = UIKitSettings.userListFilterOptions["FRIENDS"]; 
 		this.groupInMode =
 			UIKitSettings.groupListFilterOptions["PUBLIC_AND_PASSWORD"];
 		this.chatListMode = UIKitSettings.chatListFilterOptions["USERS_AND_GROUPS"];
