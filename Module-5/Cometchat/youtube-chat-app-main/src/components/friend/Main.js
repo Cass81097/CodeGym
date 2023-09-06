@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { CometChatMessages } from '../../cometchat-chat-uikit-react/CometChatWorkspace/src'
+import { CometChatMessages } from '../../cometchat-chat-uikit-react-3/CometChatWorkspace/src'
 import Header from './Header';
 import Pendings from './Pendings';
 import Add from './Add';
@@ -15,8 +15,6 @@ const Main = () => {
     setSelectedOption(() => index);
     setSelectedFriend(null);
   }
-
-  console.log(selectedFriend);
   
   const renderMain = () => {
     if (selectedFriend) {
