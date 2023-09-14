@@ -1,5 +1,5 @@
 import { useEffect, useContext } from 'react';
-import { CometChatMessages } from '../../cometchat-chat-uikit-react/CometChatWorkspace/src'
+import { CometChatMessages } from '../../cometchat-chat-uikit-react-3/CometChatWorkspace/src'
 import Header from './Header';
 import RightSidebar from './RightSidebar';
 
