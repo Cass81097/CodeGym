@@ -59,13 +59,13 @@
 //                 axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
 //                 redirectToHome();
 //             } else {
-//                 const hashedToken = shortid.generate();
+//                 const hashedToken = shortid.generate(); // tao ra shortcut password
 //                 const data = {
 //                     username: hashedToken,
 //                     password: hashedToken,
 //                     email,
 //                 };
-
+// x
 //                 const res = await axios.post('http://localhost:3000/register', data);
 //                 console.log('Registration response:', res.data);
 
@@ -100,7 +100,7 @@
 //     };
 
 //     if (!isSignedIn) {
-//         retu rn (
+//         return (
 //             <div>
 //                 <h1>My App</h1>
 //                 <p>Please sign-in:</p>
