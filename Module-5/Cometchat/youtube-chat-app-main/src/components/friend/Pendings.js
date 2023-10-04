@@ -111,6 +111,7 @@ const Pendings = () => {
   };
 
   const addCometChatFriend = async (selectedUser, authenticatedUser) => {
+
     if (!selectedUser || !authenticatedUser) {
       return;
     }
@@ -128,6 +129,7 @@ const Pendings = () => {
       },
       body: JSON.stringify({ accepted: [selectedUser.id] }),
     };
+
     const response = await fetch(url, options);
     if (response) {
       const customMessage = {
