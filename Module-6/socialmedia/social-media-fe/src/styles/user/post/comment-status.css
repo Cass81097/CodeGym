@@ -1,0 +1,145 @@
+.display-comment {
+    max-height: 400px;
+    overflow: auto;
+}
+
+
+.comment-section {
+    /*display:;*/
+    margin-top: 10px;
+}
+
+.comments {
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+
+}
+
+.detail-comments {
+    background: #F0F2F5;
+    border-radius: 16px;
+    color: black;
+    /* padding: 10px 30px 10px 16px; */
+}
+
+.detail-comments-img img {
+    height: 200px;
+    width: auto;
+    margin-left: 70px;
+    border-radius: 10px;
+}
+
+.edit-comment-form {
+    display: flex;
+    height: 50px;
+    width: 400px;
+    align-items: flex-end;
+}
+
+.nameUser-comments {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.enter-comment {
+    display: flex;
+    margin-top: 20px;
+}
+
+.avatar-comments {
+    width: 48px;
+    height: 45px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.avatar-comments img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.avt-comment {
+    width: 53px;
+    height: 45px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-top: -15px;
+}
+
+.avt-comment img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.text-comment {
+    width: 100%;
+}
+
+.actions-status {
+    margin-left: 80px;
+    display: flex;
+    font-size: 13px;
+}
+
+.actions-status p {
+    margin-right: 15px;
+}
+
+.actions-status p:hover {
+    cursor: pointer;
+    text-decoration: underline !important;
+}
+
+.text-comment {
+    display: flex;
+    align-items: center;
+    /* Canh giữa theo chiều dọc */
+}
+
+.send-comments {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.send-comments i {
+    color: #2578D7;
+}
+
+.show-more-comments:hover {
+    cursor: pointer;
+    text-decoration: underline !important;
+}
+
+.show-more-comment {
+    margin-top: 20px;
+}
+
+.textarea-comment {
+    border : none;
+    background: none;
+    width: 100%;
+    resize: none;
+}
+
+.edit-comment-form i {
+    transform: rotate(45deg);
+    color: #2578D7;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.edit-comment-form i:hover {
+    background-color: rgb(207 201 201 / 27%);
+    border-radius: 50%;
+}
+
+.user-action-post {
+    margin-top: 20px;
+    margin-left: 10px;
+}
