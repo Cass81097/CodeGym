@@ -1,90 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-       .ads-one a:hover,
-.ads-two a:hover {
-    transition: var(--tran);
-    background: var(--primary-color);
-    border-radius: 10px;
-    box-shadow: 0px 0px 20px -2px rgba(0,0,0,0.75);
-}
-
-.button-remove-one {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    background: #e13737;
-    text-align: center;
-    line-height: 30px !important;
-    color: white;
-    border-radius: 30px;
-    cursor: pointer;
-    left: calc(100% - 40px);
-    top: 135px;
-    opacity: 0;
-    transition: 0.3s ease-in-out;
-}
-
-.button-remove-two {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    background: #e13737;
-    text-align: center;
-    line-height: 30px !important;
-    color: white;
-    border-radius: 30px;
-    cursor: pointer;
-    left: calc(100% - 40px);
-    top: 255px;
-    opacity: 0;
-    transition: 0.3s ease-in-out;
-}
-
-.ads-one:hover .button-remove-one {
-   opacity: 1;
-}   
-
-.ads-two:hover .button-remove-two {
-   opacity: 1;
-}   
-
-.button-remove-one:hover .ads-one {
-    transition: var(--tran);
-    background: var(--primary-color);
-    border-radius: 10px;
-    box-shadow: 0px 0px 20px -2px rgba(0,0,0,0.75);
-}
+      p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     </style>
 </head>
+
 <body>
-    <form>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email">
-        <button type="submit" onclick="submitForm()">Submit</button>
-    </form>
-        <script>
-            let emailInput = document.getElementById('email');
 
-            function validateEmail(email) {
-                var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-                return regex.test(email) ? true : false;
-            }
 
-            function submitForm() {
-                if (!validateEmail(emailInput.value)) {
-                    alert('Email không hợp lệ');
-                    return;
-                }
-            }
+   If an element extends beyond the allocated width, how do you truncate the sentence with an ellipsis (...) using CSS
 
-            document.querySelector('form').addEventListener('submit', function(event) {
-                event.preventDefault();
-                submitForm();
-            });
-        </script>
+   For example, "Hello! I am an element..."
+
 </body>
+
 </html>
