@@ -6,7 +6,7 @@
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es2017",
+    "target": "es6",
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
@@ -15,5 +15,8 @@
     "noUnusedParameters": false,
     "noUnusedLocals": false,
   },
+  "include": [
+    "index.ts"
+  ],
   "exclude": ["node_modules", "dist"]
 }

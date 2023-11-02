@@ -1,0 +1,1 @@
+  "start": "rimraf dist && tsc-watch -p tsconfig.build.json --onSuccess \"node dist/index.js\""

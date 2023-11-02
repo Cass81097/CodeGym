@@ -28,12 +28,12 @@ const io = new Server({
     cors: "http://localhost:3001",
 });
 
-let onlineUsers = [];
+let onlineUsers: any[] = [];
 
-io.on("connection", (socket) => {
+io.on("connection", (socket : any) => {
     // console.log("new connection", socket.id);
 
-    socket.on("addNewUser", (userId) => {
+    socket.on("addNewUser", (userId : any) => {
         if (userId !== null) {
             const existingUser = onlineUsers.find(user => user.userId === userId);
             if (!existingUser) {
@@ -51,7 +51,7 @@ io.on("connection", (socket) => {
         io.emit("getOnlineUsers", onlineUsers)
     })
 
-    socket.on("sendFriendRequest", (data) => {
+    socket.on("sendFriendRequest", (data : any) => {
         const { senderId, receiverId } = data;
         const receiver = onlineUsers.find(user => user.userId === receiverId);
         // console.log(receiver, "sendFriendRequest");
@@ -60,7 +60,7 @@ io.on("connection", (socket) => {
         }
     });
 
-    socket.on("acceptFriendRequest", (data) => {
+    socket.on("acceptFriendRequest", (data : any) => {
         const { senderId, receiverId } = data;
         const receiver = onlineUsers.find(user => user.userId === receiverId);
         // console.log(receiver, "acceptFriendRequest");
@@ -69,7 +69,7 @@ io.on("connection", (socket) => {
         }
     });
 
-    socket.on("likeStatus", (data) => {
+    socket.on("likeStatus", (data : any) => {
         const { senderId, receiverId, postId } = data;
         const receiver = onlineUsers.find(user => user?.userId === receiverId);
         if (receiver) {
@@ -77,7 +77,7 @@ io.on("connection", (socket) => {
         }
     });
 
-    socket.on("commentStatus", (data) => {
+    socket.on("commentStatus", (data : any) => {
         const { senderId, receiverId, postId, commentId } = data;
         console.log(data);
         const receiver = onlineUsers.find(user => user?.userId === receiverId);
@@ -87,7 +87,7 @@ io.on("connection", (socket) => {
         }
     });
 
-    socket.on("sendGroupRequest", (data) => {
+    socket.on("sendGroupRequest", (data : any) => {
         const { senderId, receiverId, groupId } = data;
         const receiver = onlineUsers.find(user => user.userId === receiverId);
         console.log(receiver, "sendGroupRequest");
@@ -96,7 +96,7 @@ io.on("connection", (socket) => {
         }
     });
 
-    socket.on("acceptGroupRequest", (data) => {
+    socket.on("acceptGroupRequest", (data : any) => {
         const { senderId, receiverId, groupId } = data;
         const receiver = onlineUsers.find(user => user.userId === receiverId);
         console.log(receiver, "acceptGroupRequest");
