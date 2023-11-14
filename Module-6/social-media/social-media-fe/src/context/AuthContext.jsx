@@ -2,6 +2,7 @@ import React, { createContext, useCallback, useEffect, useState, useContext } fr
 import { baseUrl, getRequest, postRequest } from "../utils/services";
 import { CometChatContext } from "./CometChatContext";
 import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 export const AuthContext = createContext();
 
@@ -21,6 +22,8 @@ export const AuthContextProvider = ({ children }) => {
         cover: "https://i.bloganchoi.com/bloganchoi.com/wp-content/uploads/2020/09/anh-bia-dep-11-696x435.jpg?fit=700%2C20000&quality=95&ssl=1"
     });
 
+    console.log(process.env.REACT_APP_COMETCHAT_AUTH_KEY, "key");
+
     const [loginError, setLoginError] = useState(null);
     const [isLoginLoading, setIsLoginLoading] = useState(false);
     const [loginInfo, setLoginInfo] = useState(
@@ -32,7 +35,7 @@ export const AuthContextProvider = ({ children }) => {
     useEffect(() => {
         const fetchAllUsers = async () => {
             try {
-                const response = await getRequest(`${baseUrl}/users/username`);
+                const response = await axios.get(`${baseUrl}/users/username`);
                 setAllUser(response);
             } catch (error) {
                 console.error("Error fetching all users:", error);

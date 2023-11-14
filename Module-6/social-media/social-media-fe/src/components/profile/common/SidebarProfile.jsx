@@ -29,21 +29,21 @@ export default function Sidebar() {
                             <i className="watch icon" />
                         </a>
                     </li>
-                    <li>
+                    {/* <li>
                         <a href="">
                             <i className="page icon" />
                         </a>
-                    </li>
+                    </li> */}
                     <li>
                         <a href="">
                             <i className="market icon" />
                         </a>
                     </li>
-                    <li>
+                    {/* <li>
                         <a href="">
                             <i className="game icon" />
                         </a>
-                    </li>
+                    </li> */}
                 </div>
             </div>
         </>

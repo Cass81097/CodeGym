@@ -35,21 +35,21 @@ export default function SidebarProfile() {
                             <i className="watch icon" />
                         </Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link to="/">
                             <i className="page icon" />
                         </Link>
-                    </li>
+                    </li> */}
                     <li>
                         <Link to="/">
                             <i className="market icon" />
                         </Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link to="/">
                             <i className="game icon" />
                         </Link>
-                    </li>
+                    </li> */}
                 </div>
             </div>
         </>

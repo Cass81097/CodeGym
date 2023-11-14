@@ -53,12 +53,12 @@ export default function Sidebar() {
                         </Link>
                     </li>
 
-                    <li>
+                    {/* <li>
                         <Link to="">
                             <i className="page icon"></i>
                             <span className="text nav-text">Page</span>
                         </Link>
-                    </li>
+                    </li> */}
 
                     <li>
                         <Link to="">
@@ -67,12 +67,12 @@ export default function Sidebar() {
                         </Link>
                     </li>
 
-                    <li>
+                    {/* <li>
                         <Link to="">
                             <i className="game icon"></i>
                             <span className="text nav-text">Game</span>
                         </Link>
-                    </li>
+                    </li> */}
 
                     <li>
                         <Link to=""
